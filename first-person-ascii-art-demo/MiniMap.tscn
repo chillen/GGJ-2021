@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="MiniMap" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapContainer" type="ViewportContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 276.0
+margin_bottom = 276.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapBG" type="ColorRect" parent="MapContainer"]
+margin_right = 256.0
+margin_bottom = 256.0
+
+[node name="MapViewport" type="Viewport" parent="MapContainer"]
+
+[node name="Camera" type="Camera" parent="MapContainer/MapViewport"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
+cull_mask = 2
+projection = 1
+size = 40.0
