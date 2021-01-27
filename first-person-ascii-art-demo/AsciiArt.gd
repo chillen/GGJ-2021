@@ -26,7 +26,7 @@ var draw_ui : bool = false
 onready var viewport_handle : Viewport = $"/root/Main/Viewport"
 
 # used for rendering the text overlay
-onready var player : Node = $"/root/Main/Viewport/Player"
+onready var player : Node = $"/root/Main/Viewport/Spatial/Player"
 const border_width = 2
 const border_height = 2
 const border_pad_x = 1
@@ -58,7 +58,6 @@ func _ready():
 
 
 func _draw():
-	
 	# get the image data from the viewport and flip it
 	var viewport_image_data = viewport_handle.get_texture().get_data()
 	viewport_image_data.flip_y()
@@ -109,6 +108,7 @@ func _draw():
 			# get the pixel and compute it's luminance
 			var pixel_colour = viewport_image_data.get_pixel(x, y)
 			var pixel_luminance = 0.2126 * pixel_colour[0] + 0.7152 * pixel_colour[1] + 0.0722 * pixel_colour[2]
+			pixel_luminance = min(1.0, pixel_luminance)
 			
 			# this calculation maps a luminance to an index into the palette string
 			var char_index = round(pixel_luminance *  usable_palette_size) * (ascii_art_palette.length() - 1)  / usable_palette_size
@@ -122,7 +122,7 @@ func _draw():
 			# draw the character on the sprite
 			# it is probably worth noting that the values of x and y here are
 			# also dependent on the magic number value mentioned above
-			draw_char(default_font, Vector2(x, y), ascii_art_palette[char_index], " ", char_colour)
+			draw_char(default_font, Vector2(x, y), ascii_art_palette[int(char_index)], " ", char_colour)
 	
 	
 func _process(delta):
