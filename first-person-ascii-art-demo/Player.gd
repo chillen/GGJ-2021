@@ -15,9 +15,12 @@ var maximum_look_angle : float = 90.0
 var mouse_sensitivity : float = 10.0
 var mouse_movement : Vector2 = Vector2()
 
+const selection_ray_length = 1000
+var is_object_selected : bool = false
+var selected_object_id : int = -1
 
 onready var camera_handle : Camera = $"Camera"
-
+onready var camera_raycast : RayCast = $"Camera/RayCast"
 
 func _ready():
 	
@@ -57,6 +60,12 @@ func _physics_process(delta):
 	velocity.y -= gravity_force * delta
 	velocity = move_and_slide(velocity, Vector3.UP)
 
+	if not camera_raycast.get_collider():
+		is_object_selected = false
+		selected_object_id = -1
+	elif camera_raycast.get_collider().get_instance_id() != selected_object_id:
+		is_object_selected = true
+		selected_object_id = camera_raycast.get_collider().get_instance_id()
 
 func _process(delta):
 	

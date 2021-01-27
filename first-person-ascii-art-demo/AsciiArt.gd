@@ -20,17 +20,39 @@ var colour_fidelity : float = 0.075
 # the number of usable characters is a function of the palette_usage parameter above
 var usable_palette_size : int 
 
+var draw_ui : bool = false
 
 # a handle to the viewport (for which the ASCII art representation is created)
 onready var viewport_handle : Viewport = $"/root/Main/Viewport"
 
+# used for rendering the text overlay
+onready var player : Node = $"/root/Main/Viewport/Player"
+const border_width = 2
+const border_height = 2
+const border_pad_x = 1
+const border_pad_y = 1
+	
 # the size of the viewport is necessary for the loop that examines the pixel data
 onready var viewport_wid : int = viewport_handle.get_texture().get_data().get_width()
 onready var viewport_hgt : int = viewport_handle.get_texture().get_data().get_height()
 
 
-func _ready():
+func get_ui_char(text, x, y):
+	var text_len = len(text)
+	if x < border_width or x >= border_width + 2*border_pad_x + text_len:
+		return '#'
+		
+	if y < border_height or y >= border_height + 2*border_pad_y + 1:
+		return '#'
+	
+	if y == border_height + border_pad_y:
+		var x_offset = x - border_width - border_pad_x
+		if x_offset >= 0 and x_offset < text_len:
+			return text[x_offset]
+		
+	return ' '
 
+func _ready():
 	# compute the initial palette size
 	usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1	
 
@@ -44,11 +66,45 @@ func _draw():
 	# lock the pixels of that image so they can be accessed quickly
 	viewport_image_data.lock()
 	
+	var ui_panel_x = 0
+	var ui_panel_y = 0
+	var ui_panel_width = 0
+	var ui_panel_height = 0
+	var text_x = 0
+	var text_y = 0
+	var write_text = false
+	var text_to_write = ""
+	
+	if player.is_object_selected:
+		var inst = instance_from_id(player.selected_object_id)
+		var display_text = inst.get("display_text")
+		if not display_text == null:
+			text_to_write = display_text
+			write_text = true
+	
+	var num_chars_x = int(viewport_wid / magic_number) + 1
+	var num_chars_y = int(viewport_hgt / magic_number)
+	
+	if write_text:
+		ui_panel_width = len(text_to_write) + 2*border_pad_x + 2*border_width
+		ui_panel_height = 1 + 2*border_pad_y + 2*border_height
+		ui_panel_x = (num_chars_x - ui_panel_width) / 2
+		ui_panel_y = (num_chars_y - ui_panel_height) / 2
+		text_x = ui_panel_x + border_width + border_pad_x
+		text_y = ui_panel_y + border_height + border_pad_y
+	
 	# visit every 'magic_number'-th pixel in the image
 	# n.b., fidelity could be improved here by selecting each character based on
 	# the appearance (i.e., average colour, edge shape, etc.) of a small region 
-	for x in range(0, viewport_wid, magic_number):
-		for y in range(0, viewport_hgt, magic_number):
+	for x_idx in range(0, num_chars_x):
+		var x = x_idx * magic_number
+		
+		for y_idx in range(0, num_chars_y):
+			var y = y_idx * magic_number
+			
+			if x_idx >= ui_panel_x and x_idx < ui_panel_x + ui_panel_width and y_idx >= ui_panel_y and y_idx < ui_panel_y + ui_panel_height:
+				draw_char(default_font, Vector2(x,y), get_ui_char(text_to_write, x_idx - ui_panel_x, y_idx - ui_panel_y), " ", Color.black)
+				continue
 			
 			# get the pixel and compute it's luminance
 			var pixel_colour = viewport_image_data.get_pixel(x, y)
