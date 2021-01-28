@@ -1,0 +1,11 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl Sandstone_4(Clone)
+Kd 0.8353 0.6980001 0.5451
+
+newmtl Sandstone_5(Clone)
+Kd 0.8 0.6275001 0.4392
+
+newmtl Sandstone_6(Clone)
+Kd 0.7608 0.5608 0.3373
+
