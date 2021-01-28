@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Level.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Spatial.tscn" type="PackedScene" id=11]
-[ext_resource path="res://3DWorld.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://AsciiArt.gd" type="Script" id=5]
 [ext_resource path="res://Terminal.gd" type="Script" id=6]
+[ext_resource path="res://Spatial.tscn" type="PackedScene" id=11]
+[ext_resource path="res://3DWorld.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -38,9 +38,12 @@ render_target_update_mode = 3
 [node name="3DWorld" parent="Viewport" instance=ExtResource( 12 )]
 
 [node name="Spatial" parent="Viewport" instance=ExtResource( 11 )]
+
 [node name="Level" parent="Viewport" instance=ExtResource( 1 )]
+visible = false
 
 [node name="Player" parent="Viewport" instance=ExtResource( 4 )]
+visible = false
 
 [node name="FirstPerson" type="Sprite" parent="."]
 visible = false
