@@ -1,7 +1,7 @@
 extends Node2D
 
 
-onready var player_handle : KinematicBody = $"Viewport/Spatial/Player"
+onready var player_handle : KinematicBody = $"Viewport/3DWorld/Player"
 onready var viewport : Viewport = $"Viewport"
 
 func _ready():	

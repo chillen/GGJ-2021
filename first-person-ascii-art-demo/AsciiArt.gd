@@ -26,7 +26,7 @@ var draw_ui : bool = false
 onready var viewport_handle : Viewport = $"/root/Main/Viewport"
 
 # used for rendering the text overlay
-onready var player : Node = $"/root/Main/Viewport/Spatial/Player"
+onready var player : Node = $"/root/Main/Viewport/3DWorld/Player"
 const border_width = 2
 const border_height = 2
 const border_pad_x = 1
