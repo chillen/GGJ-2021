@@ -18,6 +18,8 @@ var user_input_state = UserInputMode.FP_FREE_LOOK
 # Objects will look at this varible, and play a sound depending on the current state
 # State : 1, 2 (can add more, but modification to objects needed)
 export var audio_state = 1
+export var pitch_deviance = 0.2
+var initial_pitch = 1
 
 # this code is adapted from a first-person shooter in Godot tutorial that I was
 # working through the other day... it could probably use some refinement... :)
@@ -49,6 +51,7 @@ func _ready():
 	
 	# lock down the mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) 
+	initial_pitch = $FootSteps.pitch_scale
 
 
 func _physics_process(delta):
@@ -83,6 +86,12 @@ func _physics_process(delta):
 			input.x += 1
 		if Input.is_action_pressed("move_jmp") and is_on_floor():
 			velocity.y = jumping_force
+			
+	if (input.x != 0 or input.y != 0) and not $FootSteps.playing and is_on_floor(): 
+			$FootSteps.pitch_scale = rand_range(max(0,initial_pitch-pitch_deviance),initial_pitch+pitch_deviance)
+			$FootSteps.play()
+	if (Input.is_action_just_pressed("move_jmp") and is_on_floor()):
+		$FootSteps.play()
 
 		# normalize it (so that diagonal movement is not faster)
 		input = input.normalized()
