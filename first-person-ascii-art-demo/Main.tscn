@@ -74,7 +74,7 @@ texture = SubResource( 3 )
 centered = false
 
 [node name="MaskTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 0.001
 autostart = true
 
 [node name="LineEdit" type="LineEdit" parent="."]

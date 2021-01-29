@@ -5,6 +5,6 @@ extends Node
 # used as a dump place for variables that need to be
 # accessed across scenes.
 
-var black_board = {
-	activated_pillars = 0
+var bb = {
+	"activated_pillars": 0
 }

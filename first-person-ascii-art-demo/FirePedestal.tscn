@@ -108,3 +108,4 @@ local_coords = false
 draw_order = 2
 process_material = SubResource( 7 )
 draw_pass_1 = SubResource( 9 )
+[connection signal="animation_finished" from="FirePedistalMesh/AnimationPlayer" to="FirePedistalMesh/StaticBody" method="_on_AnimationPlayer_animation_finished"]

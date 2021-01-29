@@ -1,0 +1,32 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl Sandstone_Trim(Clone)
+Kd 0.871 0.765 0.647
+
+newmtl Sandstone_Floor(Clone)
+Kd 0.945 0.898 0.851
+
+newmtl Water(Clone)
+Kd 0.2 0.588 0.82
+
+newmtl Dirt(Clone)
+Kd 0.769 0.686 0.561
+
+newmtl Sandstone_5(Clone)
+Kd 0.8 0.628 0.439
+
+newmtl Sandstone_4(Clone)
+Kd 0.835 0.698 0.545
+
+newmtl Green_Stone_-_Dark(Clone)
+Kd 0.1765 0.3843 0.3373
+
+newmtl Sandstone_6(Clone)
+Kd 0.7608 0.5608 0.3373
+
+newmtl stoneLight(Clone)
+Kd 0.7102468 0.7010057 0.8396226
+
+newmtl stoneDark(Clone)
+Kd 0.4033286 0.3896849 0.5943396
+
