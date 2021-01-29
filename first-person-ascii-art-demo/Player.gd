@@ -41,10 +41,10 @@ var buffer_command : String = ""
 
 # handles to the various components that must be accessed
 onready var camera_handle : Camera = $"Camera"
-onready var spotlight_handle : SpotLight = $"/root/Main/FirstPersonViewport/GameWorld/SpotLight"
 onready var camera_raycast : RayCast = $"Camera/RayCast"
 onready var terminal_handle : Node = $"/root/Main/Terminal"
 onready var examine_memory : Node
+onready var looking_memory : Node
 
 
 func _ready():
@@ -108,37 +108,32 @@ func _physics_process(delta):
 
 	# if the user is in free look or show text mode then the raycast of the player must be checked
 	if user_input_state == UserInputMode.FP_FREE_LOOK or user_input_state == UserInputMode.FP_SHOW_TEXT:
-		
-		# hide the spotlight
-		spotlight_handle.hide()
-
 		if camera_raycast.get_collider():
-			
+			if camera_raycast.get_collider() != looking_memory:
+				looking_memory = camera_raycast.get_collider()
+				camera_raycast.get_collider().looking_at = true
+				
 			if examine_memory != camera_raycast.get_collider():
 				examine_memory = null
-							
-			if 'display_text' in camera_raycast.get_collider() or 'takes_input' in camera_raycast.get_collider():
-				spotlight_handle.transform.origin = camera_raycast.get_collision_point() + (Vector3.UP * 3)
-				spotlight_handle.show()
-
+			camera_raycast.get_collider().looking_at = true
 			# if the player is trying to interact with an interactible object in front of them, then change mode to text entry
-			if Input.is_action_pressed("interact") and 'takes_input' in camera_raycast.get_collider() and camera_raycast.get_collider().takes_input:
-				# user_input_state = UserInputMode.FP_TXT_ENTRY
-				pass
-
+			if Input.is_action_pressed("interact"):
+				#user_input_state = UserInputMode.FP_TXT_ENTRY
+				# TODO: Replace with output from text entry; yield() until text_entered event?
+				camera_raycast.get_collider().interact("interact")
 			# if the raycast collides with something that has a description, then change mode to show text
-			elif Input.is_action_pressed("examine") and 'display_text' in camera_raycast.get_collider() and examine_memory != camera_raycast.get_collider():
-				
+			elif Input.is_action_pressed("examine") and examine_memory != camera_raycast.get_collider():
 				# the raycast must "remember" the thing that it most recently interacted with to ensure that "triggers" don't happen every frame
 				examine_memory = camera_raycast.get_collider()
 				terminal_handle.print_to_terminal(camera_raycast.get_collider().display_text)
-
 			else:
 				user_input_state = UserInputMode.FP_FREE_LOOK
-
 		else:
-			
 			examine_memory = null
+			if looking_memory:
+				looking_memory.looking_at = false
+			looking_memory = null
+			
 			user_input_state = UserInputMode.FP_FREE_LOOK
 			
 			
