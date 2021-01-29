@@ -28,8 +28,8 @@ var ascii_art_palette : String = ".'`,^:\";~-_+<>i!lI?/\\|()1{}[]rcvunxzjftLCJUY
 # these values specify the fidelity of the ascii art representation to the actual first person view
 # they range between 0 and 1 (with 0 being almost completely unusable); experimentally, I think that
 # using 0.5 as a minimum value gives a really nice effect
-var palette_usage : float = 0.5
-var colour_fidelity : float = 0.5
+var palette_usage : float = 1
+var colour_fidelity : float = 1
 
 # the number of usable characters is a function of the palette_usage parameter above
 var usable_palette_size : int 
@@ -143,7 +143,7 @@ func _draw():
 	var current_row = max(0, terminal_handle.last_printed_row - terminal_handle.screen_buffer_high)
 	var current_col = 0
 	
-	var topmost_row = 25
+	var topmost_row = 43
 	var lftmost_col = 1
 	
 	while current_row < terminal_handle.last_printed_row or current_col < terminal_handle.last_printed_col:

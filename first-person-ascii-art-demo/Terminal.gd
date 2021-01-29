@@ -14,17 +14,13 @@ func _ready():
 	
 	# add some of Connor's script for testing
 	print_to_terminal("You are an explorer, an author, seeking information about a lost civilization. After years of searching, a glade seemed to reach out to *you*, but on approach something curious happens. The world is less clear. Your brain begins to fog. The magic of the ancients is strong here, and you aren't quite sure that you like it.")
-	print_to_terminal()
 	print_to_terminal("It is hard to discern now, but this place seems to be the ritual site from your research. A voice echoes \"Words speak louder than actions, seeker.\"")
-	print_to_terminal()
 	print_to_terminal("You see an altar filled with flammable oils.")
 
-	# display the contents of the buffer (for debugging purposes
-	for i in range(len(screen_buffer_data)):
-		print(i, screen_buffer_data[i])
-	print(last_printed_row, " ", last_printed_col, " ", last_buffered_row, " ", last_buffered_col)
-	
+
 func print_to_terminal(remaining_characters = "_"):
+	
+	screen_buffer_data.append("_")
 	
 	# convert the text to be printed to uppercase
 	remaining_characters = remaining_characters.to_upper()
@@ -46,6 +42,7 @@ func print_to_terminal(remaining_characters = "_"):
 
 	# append the remaining characters and determine what the final row and column are
 	screen_buffer_data.append(remaining_characters)
+	
 	last_buffered_row = len(screen_buffer_data) - 1
 	last_buffered_col = len(remaining_characters) - 1 
 

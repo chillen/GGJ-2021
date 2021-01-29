@@ -1,7 +1,7 @@
 extends StaticBody
 
 const takes_input = true
-var display_text = "This is a really awesome tree. Not Forest, it really isn't. Perhaps it used to be..."
+var display_text = "This is a really awesome tree. No Forest, it really isn't. Perhaps it used to be..."
 onready var animation_player = $"../AnimationPlayer"
 
 

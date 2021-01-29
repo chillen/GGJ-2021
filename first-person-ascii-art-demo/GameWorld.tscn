@@ -12,6 +12,13 @@
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.65, 1, 28.102 )
 
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
+light_color = Color( 0, 1, 0, 1 )
+light_energy = 8.0
+spot_range = 10.0
+spot_angle = 5.0
+
 [node name="TestForest" parent="." instance=ExtResource( 2 )]
 
 [node name="TestRob" parent="." instance=ExtResource( 3 )]

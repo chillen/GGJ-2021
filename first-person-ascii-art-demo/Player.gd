@@ -39,10 +39,10 @@ var buffer_command : String = ""
 
 # handles to the various components that must be accessed
 onready var camera_handle : Camera = $"Camera"
-onready var spotlight_handle : SpotLight = $"SpotLight"
+onready var spotlight_handle : SpotLight = $"/root/Main/FirstPersonViewport/GameWorld/SpotLight"
 onready var camera_raycast : RayCast = $"Camera/RayCast"
 onready var terminal_handle : Node = $"/root/Main/Terminal"
-onready var raycast_memory : Node
+onready var examine_memory : Node
 
 
 func _ready():
@@ -96,13 +96,20 @@ func _physics_process(delta):
 	velocity.y -= gravity_force * delta
 	velocity = move_and_slide(velocity, Vector3.UP)
 
+
 	# if the user is in free look or show text mode then the raycast of the player must be checked
 	if user_input_state == UserInputMode.FP_FREE_LOOK or user_input_state == UserInputMode.FP_SHOW_TEXT:
 		
+		# hide the spotlight
+		spotlight_handle.hide()
+
 		if camera_raycast.get_collider():
 			
+			if examine_memory != camera_raycast.get_collider():
+				examine_memory = null
+							
 			if 'display_text' in camera_raycast.get_collider() or 'takes_input' in camera_raycast.get_collider():
-				spotlight_handle.position = camera_raycast.get_collider().position
+				spotlight_handle.transform.origin = camera_raycast.get_collision_point() + (Vector3.UP * 3)
 				spotlight_handle.show()
 
 			# if the player is trying to interact with an interactible object in front of them, then change mode to text entry
@@ -111,27 +118,20 @@ func _physics_process(delta):
 				pass
 
 			# if the raycast collides with something that has a description, then change mode to show text
-			elif Input.is_action_pressed("examine") and 'display_text' in camera_raycast.get_collider() and raycast_memory != camera_raycast.get_collider():
-				user_input_state = UserInputMode.FP_SHOW_TEXT
-				terminal_handle.print_to_terminal(camera_raycast.get_collider().display_text)
+			elif Input.is_action_pressed("examine") and 'display_text' in camera_raycast.get_collider() and examine_memory != camera_raycast.get_collider():
 				
-				# display the contents of the buffer (for debugging purposes
-				for i in range(len(terminal_handle.screen_buffer_data)):
-					print(i, terminal_handle.screen_buffer_data[i])
-				print(terminal_handle.last_printed_row, " ", terminal_handle.last_printed_col, " ", terminal_handle.last_buffered_row, " ", terminal_handle.last_buffered_col)				
+				# the raycast must "remember" the thing that it most recently interacted with to ensure that "triggers" don't happen every frame
+				examine_memory = camera_raycast.get_collider()
+				terminal_handle.print_to_terminal(camera_raycast.get_collider().display_text)
 
 			else:
 				user_input_state = UserInputMode.FP_FREE_LOOK
 
-			# the raycast must "remember" the thing that it most recently collided with to ensure that "triggers" don't happen every frame
-			raycast_memory = camera_raycast.get_collider()
-		
 		else:
 			
+			examine_memory = null
 			user_input_state = UserInputMode.FP_FREE_LOOK
 			
-			# hide the spotlight
-			spotlight_handle.hide()
 			
 
 

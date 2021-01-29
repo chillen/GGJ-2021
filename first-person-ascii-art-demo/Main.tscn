@@ -6,14 +6,14 @@
 [ext_resource path="res://GameWorld.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ViewportTexture" id=1]
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("FirstPersonViewport")
 
 [sub_resource type="ParticlesMaterial" id=2]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-initial_velocity_random = 1.0
+initial_velocity = 200.0
+initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
@@ -34,12 +34,14 @@ render_target_update_mode = 3
 [node name="GameWorld" parent="FirstPersonViewport" instance=ExtResource( 12 )]
 
 [node name="FirstPersonSprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 2.44019, -2.51984 )
 texture = SubResource( 1 )
 centered = false
 flip_v = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 640, 360 )
 
 [node name="AsciiArt" type="Sprite" parent="."]
@@ -58,8 +60,8 @@ render_target_update_mode = 3
 [node name="MaskParticles" type="Particles2D" parent="MaskViewport"]
 position = Vector2( 80, 22 )
 emitting = false
-amount = 150
-lifetime = 0.2
+amount = 250
+lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 2 )
@@ -72,7 +74,7 @@ texture = SubResource( 3 )
 centered = false
 
 [node name="MaskTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 4.0
 autostart = true
 
 [node name="LineEdit" type="LineEdit" parent="."]
