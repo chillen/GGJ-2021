@@ -8,22 +8,28 @@ var dynamic_font = DynamicFont.new()
 
 # this "magic number" is just the step size for processing the pixels in the first-person view
 # it roughly corresponds to the amount of screen space associated with a single character in the ASCII art display
-var magic_number_x = 8
+var magic_number_x = 10
 var magic_number_y = 16
 var magic_offset_h = 0
 var magic_offset_v = 14
 
+# these are the dimensions of the text entry frame that can be used in the first-person mode
+var txt_frame_top = 20
+var txt_frame_btm = 25
+var txt_frame_lft = 50
+var txt_frame_rgt = 110
 
 # this is a 70-character greyscale palette (representing the maximum possible "colour depth")
-var ascii_art_palette : String = ".:-=+*#%@"
-# var ascii_art_palette : String = "@#$%&8BMW*mwqpdbkhaoQ0OZXYUJCLtfjzxnuvcr][}{1)(|\\/?Il!i><+_-~;\":^,`'. "
-# var ascii_art_palette : String = " .'`,^:\";~-_+<>i!lI?/\\|()1{}[]rcvunxzjftLCJUYXZO0Qoahkbdpqwm*WMB8&%$#@"
+# var ascii_art_palette : String = ".:-=+*#%@"
+# var ascii_art_palette : String = "@#$%&8BMW*mwqpdbkhaoQ0OZXYUJCLtfjzxnuvcr][}{1)(|\\/?Il!i><+_-~;\":^,`'."
+var ascii_art_palette : String = ".'`,^:\";~-_+<>i!lI?/\\|()1{}[]rcvunxzjftLCJUYXZO0Qoahkbdpqwm*WMB8&%$#@"
+# var ascii_art_palette : String = "LCJYXZQWMB"
 
 # these values specify the fidelity of the ascii art representation to the actual first person view
 # they range between 0 and 1 (with 0 being almost completely unusable); experimentally, I think that
 # using 0.5 as a minimum value gives a really nice effect
-var palette_usage : float = 0.5
-var colour_fidelity : float = 0.5
+var palette_usage : float = 1
+var colour_fidelity : float = 1
 
 # the number of usable characters is a function of the palette_usage parameter above
 var usable_palette_size : int 
@@ -32,10 +38,12 @@ var usable_palette_size : int
 # from the particle system are added)
 var mask_array = []
 
-# a handle to the viewport (for which the ASCII art representation is created)
-onready var viewport_handle : Viewport = $"/root/Main/Viewport"
-onready var masksprite_handle : Sprite = $"/root/Main/MaskSprite"
+# handles to the various components that must be accessed
+onready var viewport_handle : Viewport = $"/root/Main/FirstPersonViewport"
+onready var player_handle : KinematicBody = $"/root/Main/FirstPersonViewport/GameWorld/Player"
+onready var terminal_handle : Node = $"/root/Main/Terminal"
 onready var maskparticles_handle : Particles2D = $"/root/Main/MaskViewport/MaskParticles"
+onready var masksprite_handle : Sprite = $"/root/Main/MaskSprite"
 onready var masktimer_handle : Timer = $"/root/Main/MaskTimer"
 
 # the size of the viewport is necessary for the loop that examines the pixel data
@@ -48,16 +56,17 @@ func _ready():
 	usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1	
 	
 	# loading the dynamic font (and note that the font size is magic_number_y)
-	dynamic_font.font_data = load("res://Font/iosevka-term-curly-slab-bold.ttf")
-	dynamic_font.size = magic_number_y
+	dynamic_font.font_data = load("res://Font/FoglihtenNo04-070.otf")
+	dynamic_font.size = magic_number_y - 1
 
 	# this creates an empty mask (currently holding only 0s and 1s, but I will
 	# be changing this shortly) and this mask is used to hide the first-person
 	# view behind the simulated terminal (which has not yet been added) 
 	# n.b., 160 and 45 are 1280 / magic_number_x and 720 / magic_number_y, respectively
-	for row in range(45):
+	
+	for row in range(720 / magic_number_y):
 		mask_array.append([])
-		for col in range(160):
+		for col in range(1280 / magic_number_x):
 			mask_array[row].append(0)
 
 
@@ -76,6 +85,8 @@ func _draw():
 	viewport_image_data.lock()
 	mask_image_data.lock()
 	
+	# NOTE TO SELF: THIS ROUTINE DRAWS THE ASCII ART VIEW OF THE 3D WORLD (AND SHOULD PROBABLY BE A FUNCTION OF ITS OWN)
+
 	# visit every 'magic_number'-th pixel in the image (and note that there are
 	# now two magic numbers for the characters because that is necessary to reflect
 	# the aspect ratio (approximately 1x2) of the characters of the font
@@ -87,13 +98,13 @@ func _draw():
 			# any pixel in the mask that has been "hit" by a particle is permanently
 			# transparent (n.b., the permanent mask is mask_array but mask_image_data
 			# is the image from the camera pointed at the particle system
-			if mask_image_data.get_pixel(char_col, char_row)[3] == 1:
+			if mask_image_data.get_pixel(char_col, char_row)[3] == 1 and (mask_array[char_row][char_col] == 0):
 				mask_array[char_row][char_col] = 1
 			
 			# if the corresponding permanent mask location is transparent, draw it
 			# (it might not be necessary to add alpha here, but if we wanted to,
 			# then this would be where it would be added)
-			if mask_array[char_row][char_col] == 1:
+			if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60) and ((not player_handle.user_input_state == player_handle.UserInputMode.FP_SHOW_TEXT and not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY) or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
 				
 				# get the pixel and compute it's luminance
 				var pixel_colour = viewport_image_data.get_pixel(x, y)
@@ -120,6 +131,36 @@ func _draw():
 		char_row += 1
 	
 	
+	# NOTE TO SELF: THIS ROUTINE WILL DRAW THE TEXT ENTRY FRAME IN THE 3D VIEW
+
+	if player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY:
+		pass
+
+
+	# NOTE TO SELF: THIS ROUTINE DRAWS THE TERMINAL IN THE BOTTOM LEFT (AND SHOULD PROBABLY BE A FUNCTION OF ITS OWN)
+
+
+	var current_row = max(0, terminal_handle.last_printed_row - terminal_handle.screen_buffer_high)
+	var current_col = 0
+	
+	var topmost_row = 43
+	var lftmost_col = 1
+	
+	while current_row < terminal_handle.last_printed_row or current_col < terminal_handle.last_printed_col:
+		draw_char_by_row_col(topmost_row - (terminal_handle.last_printed_row - current_row), lftmost_col + current_col, terminal_handle.screen_buffer_data[current_row][current_col], Color.white)
+		
+		current_col += 1
+		if current_col == len(terminal_handle.screen_buffer_data[current_row]):
+			current_col = 0
+			current_row += 1
+
+	if terminal_handle.last_printed_row < terminal_handle.last_buffered_row or terminal_handle.last_printed_col < terminal_handle.last_buffered_col:
+		terminal_handle.last_printed_col += 1
+		if terminal_handle.last_printed_col == len(terminal_handle.screen_buffer_data[terminal_handle.last_printed_row]):
+			terminal_handle.last_printed_col = 0
+			terminal_handle.last_printed_row += 1
+
+
 func _process(delta):
 
 	# for debugging our "changing ASCII art fidelity" concept, I have added some
@@ -133,7 +174,6 @@ func _process(delta):
 		palette_usage = max(0, palette_usage - 0.01)
 		usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1	
 		colour_fidelity = max(0, colour_fidelity - 0.01)
-		print(colour_fidelity)
 
 	# required for continually recreating the ASCII art view
 	update()
@@ -149,8 +189,8 @@ func draw_char_by_row_col(row, col, character, colour):
 func _on_Timer_timeout():
 
 	# this "moves" the particle system somewhere on the mask
-	maskparticles_handle.position[0] = randi() % 160
-	maskparticles_handle.position[1] = randi() % 45
+	maskparticles_handle.position[0] = randi() % 1280 / magic_number_x
+	maskparticles_handle.position[1] = randi() % 720 / magic_number_y
 	
 	# the timer is a "one-shot, explosion-like" effect that is very short, so
 	# the timer triggering it must be restarted, but the wait time is reduced so

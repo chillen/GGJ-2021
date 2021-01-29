@@ -3,17 +3,17 @@
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://AsciiArt.gd" type="Script" id=5]
 [ext_resource path="res://Terminal.gd" type="Script" id=6]
-[ext_resource path="res://3DWorld.tscn" type="PackedScene" id=12]
+[ext_resource path="res://GameWorld.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ViewportTexture" id=1]
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("FirstPersonViewport")
 
 [sub_resource type="ParticlesMaterial" id=2]
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
-initial_velocity = 100.0
-initial_velocity_random = 1.0
+initial_velocity = 200.0
+initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 
@@ -24,28 +24,29 @@ viewport_path = NodePath("MaskViewport")
 light_mask = 3
 script = ExtResource( 3 )
 
-[node name="Viewport" type="Viewport" parent="."]
+[node name="FirstPersonViewport" type="Viewport" parent="."]
 size = Vector2( 1280, 720 )
 own_world = true
 handle_input_locally = false
 hdr = false
 render_target_update_mode = 3
 
-[node name="3DWorld" parent="Viewport" instance=ExtResource( 12 )]
+[node name="GameWorld" parent="FirstPersonViewport" instance=ExtResource( 12 )]
 
-[node name="FirstPerson" type="Sprite" parent="."]
+[node name="FirstPersonSprite" type="Sprite" parent="."]
 visible = false
 position = Vector2( 2.44019, -2.51984 )
 texture = SubResource( 1 )
 centered = false
 flip_v = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2( 640, 360 )
+
 [node name="AsciiArt" type="Sprite" parent="."]
 light_mask = 2
 script = ExtResource( 5 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 640, 360 )
 
 [node name="Terminal" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -59,8 +60,8 @@ render_target_update_mode = 3
 [node name="MaskParticles" type="Particles2D" parent="MaskViewport"]
 position = Vector2( 80, 22 )
 emitting = false
-amount = 150
-lifetime = 0.2
+amount = 250
+lifetime = 0.1
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 2 )
@@ -75,4 +76,13 @@ centered = false
 [node name="MaskTimer" type="Timer" parent="."]
 wait_time = 4.0
 autostart = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 1280.0
+margin_top = 64.0
+margin_right = 1408.0
+margin_bottom = 88.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="MaskTimer" to="AsciiArt" method="_on_Timer_timeout"]
