@@ -3,6 +3,10 @@ extends KinematicBody
 # this code is adapted from a first-person shooter in Godot tutorial that I was
 # working through the other day... it could probably use some refinement... :)
 
+# Objects will look at this varible, and play a sound depending on the current state
+# State : 1, 2 (can add more, but modification to objects needed)
+export var audio_state = 1
+
 var movement_speed : float = 5.0
 var jumping_force : float = 5.0
 var gravity_force : float = 12.0
