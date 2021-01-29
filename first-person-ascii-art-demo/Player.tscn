@@ -24,3 +24,8 @@ cast_to = Vector3( 0, 0, -5 )
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0 )
 omni_range = 15.0
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 5, 0 )
+spot_range = 10.0
+spot_angle = 10.0
