@@ -8,7 +8,7 @@ var dynamic_font = DynamicFont.new()
 
 # this "magic number" is just the step size for processing the pixels in the first-person view
 # it roughly corresponds to the amount of screen space associated with a single character in the ASCII art display
-var magic_number_x = 8
+var magic_number_x = 10
 var magic_number_y = 16
 var magic_offset_h = 0
 var magic_offset_v = 14
@@ -104,7 +104,7 @@ func _draw():
 			# if the corresponding permanent mask location is transparent, draw it
 			# (it might not be necessary to add alpha here, but if we wanted to,
 			# then this would be where it would be added)
-			if mask_array[char_row][char_col] == 1 and (char_row < 34 or char_col > 60) and ((not player_handle.user_input_state == player_handle.UserInputMode.FP_SHOW_TEXT and not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY) or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
+			if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60) and ((not player_handle.user_input_state == player_handle.UserInputMode.FP_SHOW_TEXT and not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY) or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
 				
 				# get the pixel and compute it's luminance
 				var pixel_colour = viewport_image_data.get_pixel(x, y)
