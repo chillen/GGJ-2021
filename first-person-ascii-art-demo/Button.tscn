@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Button.gd" type="Script" id=1]
+[ext_resource path="res://Interactable.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.5
+bottom_radius = 0.75
+height = 0.75
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.4, 0.4, 0.4 )
+
+[sub_resource type="CylinderShape" id=4]
+radius = 0.67931
+height = 0.002
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.610298, 0.508107, 0.627953 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Button_Press"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SwitchHinge:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0.644209, 0 ), Vector3( 0, 0.932551, 0 ), Vector3( 0, 0.619865, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SwitchHinge:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 22.5, 180, 90 ), Vector3( 45, 360, 180 ) ]
+}
+
+[node name="Button" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CSGMesh" type="CSGMesh" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+mesh = SubResource( 1 )
+
+[node name="SwitchHinge" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.644209, 0 )
+
+[node name="CSGMesh2" type="CSGMesh" parent="SwitchHinge"]
+mesh = SubResource( 2 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2371, 0 )
+shape = SubResource( 4 )
+
+[node name="Interactable" parent="." instance=ExtResource( 2 )]
+display_text = "A Stone Tablet, It has a weird stone on top."
+
+[node name="CollisionShape" type="CollisionShape" parent="Interactable"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.805725, 0 )
+shape = SubResource( 5 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Button_Press = SubResource( 3 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93209, 3.97159 )
+visible = false
+[connection signal="interacted" from="Interactable" to="." method="press"]
