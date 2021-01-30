@@ -164,22 +164,15 @@ func _physics_process(delta):
 			else:
 				examine_memory = null
 				user_input_state = UserInputMode.FP_FREE_LOOK
-
+				
+# Player calling interactable object to do task
+# called from AsciiArt
 func action(input,interactable):
-	#print(input)
-	#Dont know if I want a top level structure
-	if input == "take":
-		#print("Player : Pick Up?")
-		pass
-	elif input == "drop":
-		#print("Player : Drop")
-		pass
-	else:
-		interactable.interact(input,self)
-		pass
-	pass
+	interactable.interact(input,self)
+
 	
-	#player_handle.object_to_interact_with.interact(input)
+func terminal_call(text):
+	terminal_handle.print_to_terminal(text)
 
 func _process(delta):
 	# using the mouse movement captured and passed down from main, rotate the camera (if permitted by the current state)
