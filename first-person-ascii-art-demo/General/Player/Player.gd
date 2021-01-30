@@ -43,6 +43,7 @@ onready var lineedit_handle: LineEdit = $"/root/Main/LineEdit"
 onready var examine_memory: Node
 onready var looking_memory: Node
 
+# used by AsciiArt
 var object_to_interact_with
 
 
@@ -119,6 +120,7 @@ func _physics_process(delta):
 		if user_input_state == UserInputMode.FP_FREE_LOOK:
 			# hide the spotlight
 			# spotlight_handle.hide()
+			
 
 			if camera_raycast.get_collider():
 				if examine_memory != camera_raycast.get_collider():
@@ -138,6 +140,8 @@ func _physics_process(delta):
 					user_input_state = UserInputMode.FP_TXT_ENTRY
 					object_to_interact_with = camera_raycast.get_collider()
 					terminal_handle.flashing_prompt_timer = 20
+
+					
 
 					# code that works but doesnt take input
 					# camera_raycast.get_collider().interact("")
