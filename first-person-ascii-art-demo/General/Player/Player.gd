@@ -50,7 +50,6 @@ onready var looking_memory: Node
 # used by AsciiArt
 var object_to_interact_with
 
-
 func _ready():
 	# lock down the mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -113,7 +112,7 @@ func _physics_process(delta):
 			global_transform.basis.x * input.x
 			+ global_transform.basis.z * input.y
 		)
-
+		
 		# compute the components of the velocity vector and pass to move_and_slide 
 		velocity.x = relative_direction.x * movement_speed
 		velocity.z = relative_direction.z * movement_speed
