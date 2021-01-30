@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://TestForest.tscn" type="PackedScene" id=2]
-[ext_resource path="res://TestRob.tscn" type="PackedScene" id=3]
-[ext_resource path="res://SoundObjectTemplate/SoundObjectExample.tscn" type="PackedScene" id=4]
+[ext_resource path="res://RoomScenes/EntryRoom.tscn" type="PackedScene" id=2]
 
 [node name="World" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.65, 1, 28.102 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
@@ -17,10 +14,5 @@ light_energy = 8.0
 spot_range = 10.0
 spot_angle = 5.0
 
-[node name="TestForest" parent="." instance=ExtResource( 2 )]
-
-[node name="TestRob" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -28, -0.5, 37 )
-
-[node name="SoundObjectExample" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00941, 1.78814e-07, 23.7188 )
+[node name="EntryRoom" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516239, 0, 4.33803 )
