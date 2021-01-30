@@ -18,6 +18,13 @@ shape = SubResource( 1 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0 )
 
+[node name="Item" type="Spatial" parent="Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.946406, -1.02596, -1.11808 )
+
+[node name="Right" type="Spatial" parent="Camera/Item"]
+
+[node name="Animation" type="AnimationPlayer" parent="Camera/Item"]
+
 [node name="RayCast" type="RayCast" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0133641, 0 )
 enabled = true
