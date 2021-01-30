@@ -2,11 +2,16 @@ extends Spatial
 
 export var on = false
 
+
+
 func _ready():
 	if on:
 		$TorchLight.show()
 	else:
 		$TorchLight.hide()
+	
+
+	
 
 func _on_Interactable_interacted(interaction_string,interaction_caller):
 	if interaction_string == "take":
@@ -23,3 +28,7 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 		on = !on
 	
 	
+
+
+func _on_RandomTimer_timeout():
+	pass # Replace with function body.
