@@ -278,13 +278,6 @@ func play(input_string):
 						had_effect = true
 						terminal_handle.print_to_terminal(gate_details[1])
 						
-#	area_gates["AREA_03"] = [
-#		[
-#			"USE KEY",
-#			"Finally reunited with the strange key, the lock snaps open. You should be able to OPEN the door now.",
-#			["OPEN DOOR", "AREA_04"]
-#		]
-#	]						
 						if gate_details[2] != []:
 							area_exits[curr_area][gate_details[2][0]] = gate_details[2][1]
 							for fail_details in area_fails[curr_area]:
@@ -384,11 +377,18 @@ func play(input_string):
 	if not ("visited" in area_flags[curr_area]):
 		area_flags[curr_area].append("visited")
 		terminal_handle.print_to_terminal(area_descs[curr_area])
-
+		
 		if not area_hints[curr_area] == "":
 			terminal_handle.print_to_terminal(area_hints[curr_area])
 
+		if len(area_items[curr_area]) > 0:
+			var items_in_area = []
+			for item in area_items[curr_area]:
+				items_in_area.append(item_names[item])
+			terminal_handle.print_to_terminal(list_to_nice_string(items_in_area))
+
 	terminal_handle.print_to_terminal(">")
+	
 	for command in area_flags[curr_area]:
 		var arguments = command.split(" ")
 		match arguments[0]:
@@ -403,3 +403,14 @@ func play(input_string):
 			"cutscene":
 				print("cutscene")
 				emit_signal("cutscene", arguments[1])
+
+func list_to_nice_string(list):
+	if len(list) == 1:
+		return list[0]
+	elif len(list) == 2:
+		return list[0] + " and " + list[1]
+	else:
+		var nice_string = ""
+		for i in range(len(list) - 1):
+			nice_string += list[i] + ", "
+		return nice_string + "and " + list[len(list) - 1]
