@@ -43,11 +43,12 @@ var examine_memory : Node
 
 # handles to the various components that must be accessed
 onready var camera_handle : Camera = $"Camera"
-onready var spotlight_handle : SpotLight = $"/root/Main/FirstPersonViewport/GameWorld/SpotLight"
 onready var camera_raycast : RayCast = $"Camera/RayCast"
 onready var terminal_handle : Node = $"/root/Main/Terminal"
 onready var lineedit_handle : LineEdit = $"/root/Main/LineEdit"
 
+onready var examine_memory : Node
+onready var looking_memory : Node
 
 
 func _ready():
@@ -148,8 +149,7 @@ func _physics_process(delta):
 			else:
 				
 				examine_memory = null
-				user_input_state = UserInputMode.FP_FREE_LOOK
-			
+				user_input_state = UserInputMode.FP_FREE_LOOK			
 			
 
 

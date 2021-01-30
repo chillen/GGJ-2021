@@ -1,0 +1,11 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl Oak_Leaves(Clone)
+Kd 0.322 0.541 0.157
+
+newmtl Wood_Dark(Clone)
+Kd 0.518 0.42 0.333
+
+newmtl Grass(Clone)
+Kd 0.133 0.545 0.133
+

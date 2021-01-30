@@ -1,0 +1,17 @@
+# Made using Asset Forge (2.1.2)
+
+:materials
+
+[name:Grass;color:RGBA(0.133, 0.545, 0.133, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Oak_Leaves;color:RGBA(0.322, 0.541, 0.157, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Wood_Dark;color:RGBA(0.518, 0.420, 0.333, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+
+:models
+
+[name:;collection:modular_terrain_collection;type:Hilly_Prop_Tree_Oak_4;position:(9.0000, 0.0000, 40.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Oak_Leaves+Wood_Dark;]
+[name:;collection:modular_terrain_collection;type:Hilly_Prop_Tree_Oak_3;position:(1.0000, 0.0000, 31.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Oak_Leaves+Wood_Dark;]
+[name:;collection:modular_terrain_collection;type:Hilly_Prop_Tree_Oak_1;position:(12.0000, 0.0000, 37.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Oak_Leaves+Wood_Dark;]
+[name:;collection:modular_terrain_collection;type:Hilly_Prop_Tree_Oak_1;position:(-2.0000, 0.0000, 39.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Oak_Leaves+Wood_Dark;]
+[name:;collection:modular_terrain_collection;type:Hilly_Prop_Tree_Oak_4;position:(11.0000, 0.0000, 31.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Oak_Leaves+Wood_Dark;]
+[name:;collection:modular_terrain_collection;type:Hilly_Prop_Tree_Oak_4;position:(2.0000, 0.0000, 36.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.5000, 1.5000, 1.5000);group:;locked:False;hidden:False;materials:Oak_Leaves+Wood_Dark;]
+[name:;collection:modular_terrain_collection;type:Hilly_Terrain_Grass_Floor;position:(5.0000, 0.0000, 35.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(20.0000, 1.0000, 20.0000);group:;locked:False;hidden:False;materials:Grass;]

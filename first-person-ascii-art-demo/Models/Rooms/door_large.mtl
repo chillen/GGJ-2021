@@ -1,0 +1,14 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl Green_Stone_-_Dark(Clone)
+Kd 0.1765 0.3843 0.3373
+
+newmtl Sandstone_6(Clone)
+Kd 0.7608 0.5608 0.3373
+
+newmtl Sandstone_4(Clone)
+Kd 0.8353 0.6980001 0.5451
+
+newmtl Sandstone_Trim(Clone)
+Kd 0.8706 0.7647 0.6471001
+
