@@ -1,0 +1,9 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl Sandstone_Floor(Clone)
+Kd 0.945 0.898 0.851
+
+newmtl custom6(Clone)
+Kd 0.566 0.397 0.278
+map_Kd Textures/custom6(Clone).png
+
