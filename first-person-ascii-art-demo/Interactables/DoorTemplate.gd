@@ -1,6 +1,9 @@
 extends Spatial
 
 export var animation_open = "Hinge_Open"
+export var locked_text = "Does not seem to budge."
+export var open_text = "You hear creaking as it opens"
+export var close_text = "You hear creaking as it closes"
 export var is_open = false
 export var locked = false
 
@@ -18,14 +21,16 @@ func _ready():
 
 func interaction(interaction,interaction_caller):
 	if locked:
+		interaction_caller.terminal_call(locked_text)
 		# print something to terminal
 		# play sound that might sugest locked
 		return
-
-	if is_open:
+	if is_open and interaction == "close":
 		close()
-	else:
+		interaction_caller.terminal_call(close_text)
+	elif not is_open and interaction == "open":
 		open()
+		interaction_caller.terminal_call(open_text)
 
 
 func open():
