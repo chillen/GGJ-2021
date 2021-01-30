@@ -1,29 +1,32 @@
 extends Node
 
+
 # this is a work in progress, but this node is going to control the traditional
 # interactive fiction interface
 var screen_buffer_data = []
 var screen_buffer_wide : int = 60
 var screen_buffer_high : int = 9  # a weird "off-by-one" issue... e.g., 9 will allow 10 lines onscreen
+
 var last_printed_row : int = 0
 var last_printed_col : int = 0
 var last_buffered_row : int = 0
 var last_buffered_col : int = 0
 
+var display_speed : int = 3
+var max_input_len : int = 32
+
 func _ready():
 	
-	# add some of Connor's script for testing
-	print_to_terminal("You are an explorer, an author, seeking information about a lost civilization. After years of searching, a glade seemed to reach out to *you*, but on approach something curious happens. The world is less clear. Your brain begins to fog. The magic of the ancients is strong here, and you aren't quite sure that you like it.")
-	print_to_terminal("It is hard to discern now, but this place seems to be the ritual site from your research. A voice echoes \"Words speak louder than actions, seeker.\"")
-	print_to_terminal("You see an altar filled with flammable oils.")
+	# maybe we could print a title using a sweet ASCII font?
+	print_to_terminal("Loss for Words")
 
 
-func print_to_terminal(remaining_characters = "_"):
+func print_to_terminal(remaining_characters = ""):
 	
-	screen_buffer_data.append("_")
+	screen_buffer_data.append(" ")
 	
 	# convert the text to be printed to uppercase
-	remaining_characters = remaining_characters.to_upper()
+	remaining_characters = remaining_characters.to_upper() + " "
 	
 	# divide it into blocks of size screen_buffer_wide
 	while len(remaining_characters) > screen_buffer_wide:
@@ -42,7 +45,15 @@ func print_to_terminal(remaining_characters = "_"):
 
 	# append the remaining characters and determine what the final row and column are
 	screen_buffer_data.append(remaining_characters)
-	
+
 	last_buffered_row = len(screen_buffer_data) - 1
 	last_buffered_col = len(remaining_characters) - 1 
 
+func text_entry(next_character):
+	
+	next_character = next_character.to_upper()
+	
+	if screen_buffer_data[last_buffered_row][0] == ">" and len(screen_buffer_data[last_buffered_row]) < max_input_len + 2: #n.b., the +2 is because of the prompt and the trailing whitespace character
+		screen_buffer_data[last_buffered_row][last_buffered_col] = next_character
+		screen_buffer_data[last_buffered_row] += " "
+		last_buffered_col = len(screen_buffer_data[last_buffered_row]) - 1

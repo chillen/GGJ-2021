@@ -19,11 +19,9 @@ var txt_frame_btm = 25
 var txt_frame_lft = 50
 var txt_frame_rgt = 110
 
-# this is a 70-character greyscale palette (representing the maximum possible "colour depth")
+# this is a greyscale palette (representing the maximum possible "colour depth")
 # var ascii_art_palette : String = ".:-=+*#%@"
-# var ascii_art_palette : String = "@#$%&8BMW*mwqpdbkhaoQ0OZXYUJCLtfjzxnuvcr][}{1)(|\\/?Il!i><+_-~;\":^,`'."
-var ascii_art_palette : String = ".'`,^:\";~-_+<>i!lI?/\\|()1{}[]rcvunxzjftLCJUYXZO0Qoahkbdpqwm*WMB8&%$#@"
-# var ascii_art_palette : String = "LCJYXZQWMB"
+var ascii_art_palette : String = "chthulhunaflfhtagn"
 
 # these values specify the fidelity of the ascii art representation to the actual first person view
 # they range between 0 and 1 (with 0 being almost completely unusable); experimentally, I think that
@@ -45,6 +43,8 @@ onready var terminal_handle : Node = $"/root/Main/Terminal"
 onready var maskparticles_handle : Particles2D = $"/root/Main/MaskViewport/MaskParticles"
 onready var masksprite_handle : Sprite = $"/root/Main/MaskSprite"
 onready var masktimer_handle : Timer = $"/root/Main/MaskTimer"
+onready var lineedit_handle : LineEdit = $"/root/Main/LineEdit"
+onready var textadventure_handle : Node = $"/root/Main/TextAdventure"
 
 # the size of the viewport is necessary for the loop that examines the pixel data
 onready var viewport_wid : int = viewport_handle.get_texture().get_data().get_width()
@@ -56,7 +56,7 @@ func _ready():
 	usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1	
 	
 	# loading the dynamic font (and note that the font size is magic_number_y)
-	dynamic_font.font_data = load("res://Font/FoglihtenNo04-070.otf")
+	dynamic_font.font_data = load("res://Font/iosevka-term-curly-slab-bold.ttf")
 	dynamic_font.size = magic_number_y - 1
 
 	# this creates an empty mask (currently holding only 0s and 1s, but I will
@@ -104,7 +104,7 @@ func _draw():
 			# if the corresponding permanent mask location is transparent, draw it
 			# (it might not be necessary to add alpha here, but if we wanted to,
 			# then this would be where it would be added)
-			if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60) and ((not player_handle.user_input_state == player_handle.UserInputMode.FP_SHOW_TEXT and not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY) or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
+			if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60) and (not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
 				
 				# get the pixel and compute it's luminance
 				var pixel_colour = viewport_image_data.get_pixel(x, y)
@@ -154,11 +154,12 @@ func _draw():
 			current_col = 0
 			current_row += 1
 
-	if terminal_handle.last_printed_row < terminal_handle.last_buffered_row or terminal_handle.last_printed_col < terminal_handle.last_buffered_col:
-		terminal_handle.last_printed_col += 1
-		if terminal_handle.last_printed_col == len(terminal_handle.screen_buffer_data[terminal_handle.last_printed_row]):
-			terminal_handle.last_printed_col = 0
-			terminal_handle.last_printed_row += 1
+	for _i in range(terminal_handle.display_speed):
+		if terminal_handle.last_printed_row < terminal_handle.last_buffered_row or terminal_handle.last_printed_col < terminal_handle.last_buffered_col:
+			terminal_handle.last_printed_col += 1
+			if terminal_handle.last_printed_col == len(terminal_handle.screen_buffer_data[terminal_handle.last_printed_row]):
+				terminal_handle.last_printed_col = 0
+				terminal_handle.last_printed_row += 1
 
 
 func _process(delta):
@@ -197,3 +198,12 @@ func _on_Timer_timeout():
 	# the effect of "piercing" the mask is being accelerated
 	masktimer_handle.wait_time = max(0.2, masktimer_handle.wait_time * 0.6)
 	maskparticles_handle.restart()
+
+func _on_LineEdit_text_changed(new_text):
+	terminal_handle.text_entry(new_text)
+	lineedit_handle.text = ""
+
+func _on_LineEdit_text_entered(new_text):
+	if terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] != " ":
+		textadventure_handle.play(terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row])
+

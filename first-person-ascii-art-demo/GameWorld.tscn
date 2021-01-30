@@ -23,5 +23,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516239, 0, 4.33803 )
 [node name="MainRoom" parent="." instance=ExtResource( 3 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.709, 0, 26.297 )
 
+[node name="AREA_04" type="Position3D" parent="."]
+transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -27, 0, 11 )
+
+[node name="AREA_07" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9863, 0, 23.88 )
+
 [node name="EntryWoods" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.0075 )
