@@ -39,8 +39,6 @@ var mouse_movement : Vector2 = Vector2()
 var buffer_display : String = ""
 var buffer_command : String = ""
 
-var examine_memory : Node
-
 # handles to the various components that must be accessed
 onready var camera_handle : Camera = $"Camera"
 onready var camera_raycast : RayCast = $"Camera/RayCast"
@@ -120,7 +118,7 @@ func _physics_process(delta):
 		if user_input_state == UserInputMode.FP_FREE_LOOK:
 			
 			# hide the spotlight
-			spotlight_handle.hide()
+			# spotlight_handle.hide()
 
 			if camera_raycast.get_collider():
 				
@@ -128,8 +126,9 @@ func _physics_process(delta):
 					examine_memory = null
 								
 				if 'display_text' in camera_raycast.get_collider() or 'takes_input' in camera_raycast.get_collider():
-					spotlight_handle.transform.origin = camera_raycast.get_collision_point() + (Vector3.UP * 3)
-					spotlight_handle.show()
+					pass
+					#spotlight_handle.transform.origin = camera_raycast.get_collision_point() + (Vector3.UP * 3)
+					#spotlight_handle.show()
 
 				# if the player is trying to interact with an interactible object in front of them, then change mode to text entry
 				if Input.is_action_pressed("interact") and 'takes_input' in camera_raycast.get_collider() and camera_raycast.get_collider().takes_input:
