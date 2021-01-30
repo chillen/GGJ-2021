@@ -19,7 +19,7 @@ var txt_frame_lft = 50
 var txt_frame_rgt = 110
 
 # this is a greyscale palette (representing the maximum possible "colour depth")
-var ascii_art_palette: String = "rJticlvsunzLIxoTajwCFZhSyekYfUVdbqpPAEHXmKGDgORWNBQM"
+var ascii_art_palette: String = "cahfahnaflmglwnafhhhahorsyhahahlegethngllllorazathsyhahnahhnghftephainghaahornahahmglwnafh"
 # var ascii_art_palette : String = "chthulhunaflfhtagn"
 
 # these values specify the fidelity of the ascii art representation to the actual first person view

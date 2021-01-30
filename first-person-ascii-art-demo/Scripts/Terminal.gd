@@ -17,10 +17,25 @@ var backspace_cooldown: int = 0
 var flashing_prompt_state: bool = false
 var flashing_prompt_timer: int = -1
 
+var rlyehian_queued_replacements = {}
+var english_to_rlyehian = {}
 
 func _ready():
+	
 	# maybe we could print a title using a sweet ASCII font?
 	print_to_terminal("Loss for Words")
+	
+	# populate the english to rlyehian dictionary
+	english_to_rlyehian["walk"] = "bugnah"
+	english_to_rlyehian["look"] = "mgrluh"
+	english_to_rlyehian["open"] = "mgahnnn"
+	english_to_rlyehian["help"] = "hafh"
+	english_to_rlyehian["take"] = "mggoka"
+	english_to_rlyehian["use"] = "ahuaaah"
+
+	# puzzle specific
+	english_to_rlyehian["light the way"] = "mgnghft h yogor"
+	
 
 
 func _process(delta):
@@ -32,7 +47,7 @@ func print_to_terminal(remaining_characters = ""):
 	screen_buffer_data.append(" ")
 
 	# convert the text to be printed to uppercase
-	remaining_characters = remaining_characters.to_upper() + " "
+	remaining_characters = remaining_characters.to_lower() + " "
 
 	# divide it into blocks of size screen_buffer_wide
 	while len(remaining_characters) > screen_buffer_wide:
@@ -56,12 +71,8 @@ func print_to_terminal(remaining_characters = ""):
 
 
 func text_entry(next_character):
-	next_character = next_character.to_upper()
-
-	if (
-		screen_buffer_data[last_buffered_row][0] == ">"
-		and len(screen_buffer_data[last_buffered_row]) < max_input_len + 2
-	):  #n.b., the +2 is because of the prompt and the trailing whitespace character
+	next_character = next_character.to_lower()
+	if ( screen_buffer_data[last_buffered_row][0] == ">" and len(screen_buffer_data[last_buffered_row]) < max_input_len + 2 ):  #n.b., the +2 is because of the prompt and the trailing whitespace character
 		screen_buffer_data[last_buffered_row][last_buffered_col] = next_character
 		screen_buffer_data[last_buffered_row] += " "
 		last_buffered_col = len(screen_buffer_data[last_buffered_row]) - 1
@@ -80,3 +91,14 @@ func backspace():
 		last_buffered_col = len(screen_buffer_data[last_buffered_row]) - 1
 		last_printed_col = last_buffered_col
 		backspace_cooldown = 6
+
+func replace_with_rlyehian(rlyehian_phrase):
+	rlyehian_queued_replacements[phrase_to_replace] = [last_buffered_row, rlyehian_phrase, 0]
+		
+func process_replacements():
+	for key in rlyehian_queued_replacements.keys():
+		value = rlyehian_queued_replacements[key]
+		row_num = value[0]
+		new_word = value[1]
+		curr_index = value[3]
+
