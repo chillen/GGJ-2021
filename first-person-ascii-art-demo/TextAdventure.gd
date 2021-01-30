@@ -201,8 +201,8 @@ func play(input_string):
 		pass
 
 	elif input_action == "TAKE":
-#				area_items[curr_area].erase(input_object)
-#				inventory.append(input_object)
+		area_items[curr_area].erase(input_object)
+		inventory.append(input_object)
 		# if you already have it say so
 		# if you dont already have it but it is in the room then take it
 		# if you cant take it but it is in the room say so
