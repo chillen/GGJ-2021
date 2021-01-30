@@ -52,7 +52,7 @@ func print_to_terminal(remaining_characters = ""):
 	screen_buffer_data.append(" ")
 
 	# convert the text to be printed to uppercase
-	remaining_characters = remaining_characters.to_lower() + " "
+	remaining_characters = remaining_characters.to_upper() + " "
 
 	# divide it into blocks of size screen_buffer_wide
 	while len(remaining_characters) > screen_buffer_wide:
@@ -76,7 +76,7 @@ func print_to_terminal(remaining_characters = ""):
 
 
 func text_entry(next_character):
-	next_character = next_character.to_lower()
+	next_character = next_character.to_upper()
 	if (
 		screen_buffer_data[last_buffered_row][0] == ">"
 		and len(screen_buffer_data[last_buffered_row]) < max_input_len + 2

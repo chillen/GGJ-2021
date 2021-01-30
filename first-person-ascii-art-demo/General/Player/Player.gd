@@ -73,10 +73,7 @@ func _physics_process(delta):
 	# clear the user input vector
 	var input = Vector2()
 
-	if (
-		user_input_state == UserInputMode.COMMAND_LINE
-		or user_input_state == UserInputMode.FP_TXT_ENTRY
-	):
+	if not (user_input_state == UserInputMode.FP_FREE_LOOK):
 		lineedit_handle.grab_focus()
 
 	else:

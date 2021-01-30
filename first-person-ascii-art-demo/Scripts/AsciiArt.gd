@@ -236,17 +236,22 @@ func _on_LineEdit_text_changed(new_text):
 	terminal_handle.flashing_prompt_timer = -1
 	terminal_handle.flashing_prompt_state = false
 
-	if (
-		player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE
-		or player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY
-	):
+#	if (
+#		player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE
+#		or player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY
+#	):
+
+	if player_handle.user_input_state != player_handle.UserInputMode.FP_FREE_LOOK:
 		terminal_handle.text_entry(new_text)
 	lineedit_handle.text = ""
 
 
 func _on_LineEdit_text_entered(new_text):
 	if terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] != " ":
-		if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE:
+		
+		#if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE:
+		
+		if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE or player_handle.user_input_state == player_handle.UserInputMode.FP_STILL_IMG:
 			textadventure_handle.play(
 				terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row]
 			)

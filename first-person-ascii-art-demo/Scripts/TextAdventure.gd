@@ -202,11 +202,6 @@ func _ready():
 
 
 func play(input_string):
-	# just for debugging purposes
-	print(input_string)
-	
-	if input_string in terminal_handle.english_to_rlyehian:
-		print("this should be replaced by", terminal_handle.english_to_rlyehian[input_string])
 	
 	# trim the unwanted characters from the string taken from the terminal
 	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ")
@@ -225,126 +220,157 @@ func play(input_string):
 	if len(input_string) > 1:
 		input_object = input_string[1]
 
-	if (input_action + " " + input_object) in area_exits[curr_area]:
-		# this needs to be its own function...
-		curr_area = area_exits[curr_area][input_action + " " + input_object]
+	var fail_encountered = false
+	var fail_text = ""
+	
+	if len(area_fails[curr_area]) > 0:
+		
+		for fail_details in area_fails[curr_area]:
+			if fail_details[0] == (input_action + " " + input_object).trim_suffix(" "):
+				fail_encountered = true
+				fail_text = fail_details[1]
+				break
+			
+#		if not fail_encountered:
+#
+#			for fail_details in area_fails[curr_area]:
+#				if fail_details[0] == "*":
+#					fail_encountered = true
+#					fail_text = fail_details[1]
+#					break
+		
+	if fail_encountered:
+		terminal_handle.print_to_terminal(fail_text)
+		
+	else:
 
-		var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
-		print(pos3d_ref)
-		if not (pos3d_ref == null):
-			player_handle.transform = pos3d_ref.transform
+		if (input_action + " " + input_object) in area_exits[curr_area]:
+			# this needs to be its own function...
+			curr_area = area_exits[curr_area][input_action + " " + input_object]
 
-	# this is the "update" stage of the text adventure game loop
-	elif input_action == "LOOK":
-		if input_object in area_items[curr_area]:
-			terminal_handle.print_to_terminal(item_descs[input_object])
-		elif input_object in inventory:
-			terminal_handle.print_to_terminal(item_descs[input_object])
+			var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
+			if not (pos3d_ref == null):
+				player_handle.transform = pos3d_ref.transform
 
-	elif input_action == "USE":
-		# if the object is in the players inventory
-		if input_object in inventory:
-			# check each of the "gates" in the area to see if one has been removed by this "use"
-			var had_effect = false
-			for gate_details in area_gates[curr_area]:
-				if gate_details[0] == input_action + " " + input_object:
-					had_effect = true
-					terminal_handle.print_to_terminal(gate_details[1])
-					if gate_details[2] != []:
-						area_exits[curr_area]
-						for fail_details in area_fails[curr_area]:
-							if fail_details[0] == input_action + " " + input_object:
-								area_fails[curr_area].erase(fail_details)
-								break
-
-			# if using this object doesn't do anything, say so
-			if had_effect == false:
-				terminal_handle.print_to_terminal("That doesn't accomplish anything.")
-
-		# otherwise, if the object is not in the player's inventory...
-		else:
-			# if it is in the room tell the player to pick it up (if portable) or ignore it
+		# this is the "update" stage of the text adventure game loop
+		elif input_action == "LOOK":
 			if input_object in area_items[curr_area]:
-				if "portable" in item_flags[input_object]:
+				terminal_handle.print_to_terminal(item_descs[input_object])
+			elif input_object in inventory:
+				terminal_handle.print_to_terminal(item_descs[input_object])
+
+		elif input_action == "USE":
+			# if the object is in the players inventory
+			if input_object in inventory:
+				
+				# check each of the "gates" in the area to see if one has been removed by this "use"
+				var had_effect = false
+				for gate_details in area_gates[curr_area]:
+					if gate_details[0] == input_action + " " + input_object:
+						had_effect = true
+						terminal_handle.print_to_terminal(gate_details[1])
+						
+#	area_gates["AREA_03"] = [
+#		[
+#			"USE KEY",
+#			"Finally reunited with the strange key, the lock snaps open. You should be able to OPEN the door now.",
+#			["OPEN DOOR", "AREA_04"]
+#		]
+#	]						
+						if gate_details[2] != []:
+							area_exits[curr_area][gate_details[2][0]] = gate_details[2][1]
+							for fail_details in area_fails[curr_area]:
+								if fail_details[0] == gate_details[2][0]:
+									area_fails[curr_area].erase(fail_details)
+									break
+
+				# if using this object doesn't do anything, say so
+				if had_effect == false:
+					terminal_handle.print_to_terminal("That doesn't accomplish anything.")
+
+			# otherwise, if the object is not in the player's inventory...
+			else:
+				# if it is in the room tell the player to pick it up (if portable) or ignore it
+				if input_object in area_items[curr_area]:
+					if "portable" in item_flags[input_object]:
+						terminal_handle.print_to_terminal(
+							(
+								"You will first need to TAKE the "
+								+ input_object
+								+ " if you intend to use it."
+							)
+						)
+					else:
+						terminal_handle.print_to_terminal(
+							"You won't be able to use the " + input_object + "."
+						)
+
+				# if it isn't in the room
+				else:
+					terminal_handle.print_to_terminal("You don't have any " + input_object + " to use.")
+
+		elif input_action == "DROP":
+			pass
+
+		elif input_action == "TAKE":
+			area_items[curr_area].erase(input_object)
+			inventory.append(input_object)
+
+		elif input_action == "INVENTORY":
+			match len(inventory):
+				0:
+					terminal_handle.print_to_terminal("You aren't carrying anything.")
+
+				1:
+					terminal_handle.print_to_terminal(
+						"You are carrying " + item_names[inventory[0]] + "."
+					)
+
+				2:
 					terminal_handle.print_to_terminal(
 						(
-							"You will first need to TAKE the "
-							+ input_object
-							+ " if you intend to use it."
+							"You are carrying "
+							+ item_names[inventory[0]]
+							+ " and "
+							+ item_names[inventory[1]]
+							+ "."
 						)
 					)
-				else:
+
+				_:  # obviously this needs to be rewritten, as it only works for a maximum of 3 items...
 					terminal_handle.print_to_terminal(
-						"You won't be able to use the " + input_object + "."
+						(
+							"You are carrying "
+							+ item_names[inventory[0]]
+							+ ", "
+							+ item_names[inventory[1]]
+							+ ", and "
+							+ item_names[inventory[2]]
+						),
+						"."
 					)
 
-			# if it isn't in the room
+		elif input_action in ["RUN", "NORTH", "SOUTH", "EAST", "WEST"]:
+			if input_action in area_exits[curr_area]:
+				curr_area = area_exits[curr_area][input_action]
+				var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
+				if not (pos3d_ref == null):
+					player_handle.position = pos3d_ref.position
+
+			elif input_action == "RUN":
+				terminal_handle.print_to_terminal("Where do you think you can run?")
+
 			else:
-				terminal_handle.print_to_terminal("You don't have any " + input_object + " to use.")
+				terminal_handle.print_to_terminal("You can't go in that direction.")
 
-	elif input_action == "DROP":
-		pass
+		elif input_action == "HELP":
+			terminal_handle.print_to_terminal("Haven't you ever played a text adventure game?")
 
-	elif input_action == "TAKE":
-		area_items[curr_area].erase(input_object)
-		inventory.append(input_object)
-
-	elif input_action == "INVENTORY":
-		match len(inventory):
-			0:
-				terminal_handle.print_to_terminal("You aren't carrying anything.")
-
-			1:
-				terminal_handle.print_to_terminal(
-					"You are carrying " + item_names[inventory[0]] + "."
-				)
-
-			2:
-				terminal_handle.print_to_terminal(
-					(
-						"You are carrying "
-						+ item_names[inventory[0]]
-						+ " and "
-						+ item_names[inventory[1]]
-						+ "."
-					)
-				)
-
-			_:  # obviously this needs to be rewritten, as it only works for a maximum of 3 items...
-				terminal_handle.print_to_terminal(
-					(
-						"You are carrying "
-						+ item_names[inventory[0]]
-						+ ", "
-						+ item_names[inventory[1]]
-						+ ", and "
-						+ item_names[inventory[2]]
-					),
-					"."
-				)
-
-	elif input_action in ["RUN", "NORTH", "SOUTH", "EAST", "WEST"]:
-		if input_action in area_exits[curr_area]:
-			curr_area = area_exits[curr_area][input_action]
-			var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
-			print(pos3d_ref)
-			if not (pos3d_ref == null):
-				player_handle.position = pos3d_ref.position
-
-		elif input_action == "RUN":
-			terminal_handle.print_to_terminal("Where do you think you can run?")
+		elif input_action == "EXIT":
+			terminal_handle.print_to_terminal("Are you even allowed to quit the game at this stage?")
 
 		else:
-			terminal_handle.print_to_terminal("You can't go in that direction.")
-
-	elif input_action == "HELP":
-		terminal_handle.print_to_terminal("Haven't you ever played a text adventure game?")
-
-	elif input_action == "EXIT":
-		terminal_handle.print_to_terminal("Are you even allowed to quit the game at this stage?")
-
-	else:
-		terminal_handle.print_to_terminal("I don't understand what you mean...")
+			terminal_handle.print_to_terminal("I don't understand what you mean...")
 
 	# this is the "render" stage of the text adventure game loop	
 	if not ("visited" in area_flags[curr_area]):

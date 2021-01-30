@@ -25,8 +25,8 @@ collision_mask = 2
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0 )
-visible = false
-omni_range = 15.0
+light_energy = 0.2
+omni_range = 30.0
 
 [node name="FootSteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
