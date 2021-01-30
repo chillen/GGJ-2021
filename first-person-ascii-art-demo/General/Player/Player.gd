@@ -174,8 +174,8 @@ func _physics_process(delta):
 				
 # Player calling interactable object to do task
 # called from AsciiArt
-func action(input,interactable):
-	interactable.interact(input,self)
+func action(input, interactable):
+	interactable.interact(input, self)
 
 # used by interactables to call to terminal
 func terminal_call(text):
