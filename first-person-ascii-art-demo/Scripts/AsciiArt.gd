@@ -250,9 +250,11 @@ func _on_LineEdit_text_entered(new_text):
 		if player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY:
 			player_handle.object_to_interact_with.interact("")
 			player_handle.object_to_interact_with = null
+			var phrase_entered = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row].trim_prefix(">").trim_suffix(" ")
+			if phrase_entered in terminal_handle.english_to_rlyehian:
+				terminal_handle.replace_with_rlyehian(terminal_handle.english_to_rlyehian[phrase_entered])
 			terminal_handle.print_to_terminal(">")
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
-
 
 func _on_LineEdit_gui_input(event):
 	if event is InputEventKey and event.scancode == KEY_BACKSPACE:

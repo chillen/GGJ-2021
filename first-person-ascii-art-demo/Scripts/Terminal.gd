@@ -26,7 +26,7 @@ func _ready():
 	print_to_terminal("Loss for Words")
 	
 	# populate the english to rlyehian dictionary
-	english_to_rlyehian["walk"] = "bugnah"
+	english_to_rlyehian["run"] = "bugnah" # actually "walk"
 	english_to_rlyehian["look"] = "mgrluh"
 	english_to_rlyehian["open"] = "mgahnnn"
 	english_to_rlyehian["help"] = "hafh"
@@ -35,12 +35,13 @@ func _ready():
 
 	# puzzle specific
 	english_to_rlyehian["light the way"] = "mgnghft h yogor"
-	
-
 
 func _process(delta):
+	
 	if backspace_cooldown > 0:
 		backspace_cooldown -= 1
+		
+	process_replacements()
 
 
 func print_to_terminal(remaining_characters = ""):
@@ -72,7 +73,10 @@ func print_to_terminal(remaining_characters = ""):
 
 func text_entry(next_character):
 	next_character = next_character.to_lower()
-	if ( screen_buffer_data[last_buffered_row][0] == ">" and len(screen_buffer_data[last_buffered_row]) < max_input_len + 2 ):  #n.b., the +2 is because of the prompt and the trailing whitespace character
+	if (
+		screen_buffer_data[last_buffered_row][0] == ">"
+		and len(screen_buffer_data[last_buffered_row]) < max_input_len + 2
+	):  #n.b., the +2 is because of the prompt and the trailing whitespace character
 		screen_buffer_data[last_buffered_row][last_buffered_col] = next_character
 		screen_buffer_data[last_buffered_row] += " "
 		last_buffered_col = len(screen_buffer_data[last_buffered_row]) - 1
@@ -93,12 +97,22 @@ func backspace():
 		backspace_cooldown = 6
 
 func replace_with_rlyehian(rlyehian_phrase):
-	rlyehian_queued_replacements[phrase_to_replace] = [last_buffered_row, rlyehian_phrase, 0]
-		
-func process_replacements():
-	for key in rlyehian_queued_replacements.keys():
-		value = rlyehian_queued_replacements[key]
-		row_num = value[0]
-		new_word = value[1]
-		curr_index = value[3]
+	var blank_spaces = "                                                            " # somedays I really miss Python...
+	if len(rlyehian_phrase) < screen_buffer_wide - 3:
+		rlyehian_phrase += blank_spaces.substr(0, screen_buffer_wide - 3 - len(rlyehian_phrase))
+	rlyehian_queued_replacements[last_buffered_row] = [rlyehian_phrase, 0]
 
+func process_replacements():
+	for row_number in rlyehian_queued_replacements.keys():
+		var replacement_phrase = rlyehian_queued_replacements[row_number][0]
+		var current_index = rlyehian_queued_replacements[row_number][1]
+		# if there is a character in screenbuffer at current index, overwrite
+		# if there isn't, then append
+		if current_index + 1 < len(screen_buffer_data[row_number]):
+			screen_buffer_data[row_number][current_index + 1] =  replacement_phrase[current_index]
+		else:
+			screen_buffer_data[row_number] += replacement_phrase[current_index]
+		current_index += 1
+		rlyehian_queued_replacements[row_number][1] = current_index
+		if current_index == len(replacement_phrase) - 1:
+			rlyehian_queued_replacements.erase(row_number)

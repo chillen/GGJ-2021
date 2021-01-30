@@ -198,7 +198,10 @@ func _ready():
 func play(input_string):
 	# just for debugging purposes
 	print(input_string)
-
+	
+	if input_string in terminal_handle.english_to_rlyehian:
+		print("this should be replaced by", terminal_handle.english_to_rlyehian[input_string])
+	
 	# trim the unwanted characters from the string taken from the terminal
 	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ")
 
