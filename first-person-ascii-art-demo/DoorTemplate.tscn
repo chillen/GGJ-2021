@@ -66,5 +66,4 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Hinge_Open = SubResource( 2 )
 anims/Hinge_Up = SubResource( 3 )
-
-[connection signal="interacted" from="Hinge/Interactable" to="." method="_on_Interactable_interacted"]
+[connection signal="interacted" from="Hinge/Interactable" to="." method="interaction"]
