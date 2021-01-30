@@ -88,7 +88,6 @@ __meta__ = {
 
 [node name="TextAdventure" type="Node" parent="."]
 script = ExtResource( 1 )
-
 [connection signal="timeout" from="MaskTimer" to="AsciiArt" method="_on_Timer_timeout"]
 [connection signal="text_changed" from="LineEdit" to="AsciiArt" method="_on_LineEdit_text_changed"]
 [connection signal="text_entered" from="LineEdit" to="AsciiArt" method="_on_LineEdit_text_entered"]
