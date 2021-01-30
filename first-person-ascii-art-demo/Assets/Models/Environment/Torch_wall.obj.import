@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Torch_wall.obj-40d4f23908bbf945c6e5f600c618a5cd.mesh"
+
+[deps]
+
+files=[ "res://.import/Torch_wall.obj-40d4f23908bbf945c6e5f600c618a5cd.mesh" ]
+
+source_file="res://Assets/Models/Environment/Torch_wall.obj"
+dest_files=[ "res://.import/Torch_wall.obj-40d4f23908bbf945c6e5f600c618a5cd.mesh", "res://.import/Torch_wall.obj-40d4f23908bbf945c6e5f600c618a5cd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/EntryRoom.obj-006d5f7888607233689d4dd4f2837b2b.mesh"
+
+[deps]
+
+files=[ "res://.import/EntryRoom.obj-006d5f7888607233689d4dd4f2837b2b.mesh" ]
+
+source_file="res://Assets/Models/Rooms/EntryRoom.obj"
+dest_files=[ "res://.import/EntryRoom.obj-006d5f7888607233689d4dd4f2837b2b.mesh", "res://.import/EntryRoom.obj-006d5f7888607233689d4dd4f2837b2b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

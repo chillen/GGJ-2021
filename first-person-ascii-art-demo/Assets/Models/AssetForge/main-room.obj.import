@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/main-room.obj-f40a36f61b9225a188fe1a53df4418e5.mesh"
+
+[deps]
+
+files=[ "res://.import/main-room.obj-f40a36f61b9225a188fe1a53df4418e5.mesh" ]
+
+source_file="res://Assets/Models/AssetForge/main-room.obj"
+dest_files=[ "res://.import/main-room.obj-f40a36f61b9225a188fe1a53df4418e5.mesh", "res://.import/main-room.obj-f40a36f61b9225a188fe1a53df4418e5.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -58,7 +58,7 @@ func _ready():
 	usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1	
 	
 	# loading the dynamic font (and note that the font size is magic_number_y)
-	dynamic_font.font_data = load("res://Font/iosevka-term-curly-slab-bold.ttf")
+	dynamic_font.font_data = load("res://Assets/Font/iosevka-term-curly-slab-bold.ttf")
 	dynamic_font.size = magic_number_y - 1
 
 	# this creates an empty mask (currently holding only 0s and 1s, but I will

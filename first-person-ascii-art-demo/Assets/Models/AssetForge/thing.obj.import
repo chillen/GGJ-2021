@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/thing.obj-7c5ac695abf083cfcb76d90b1474d337.mesh"
+
+[deps]
+
+files=[ "res://.import/thing.obj-7c5ac695abf083cfcb76d90b1474d337.mesh" ]
+
+source_file="res://Assets/Models/AssetForge/thing.obj"
+dest_files=[ "res://.import/thing.obj-7c5ac695abf083cfcb76d90b1474d337.mesh", "res://.import/thing.obj-7c5ac695abf083cfcb76d90b1474d337.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/woods.obj-1f2c73b78d0dde5d8cd12f7a0ec425bf.mesh"
+
+[deps]
+
+files=[ "res://.import/woods.obj-1f2c73b78d0dde5d8cd12f7a0ec425bf.mesh" ]
+
+source_file="res://Assets/Models/AssetForge/woods.obj"
+dest_files=[ "res://.import/woods.obj-1f2c73b78d0dde5d8cd12f7a0ec425bf.mesh", "res://.import/woods.obj-1f2c73b78d0dde5d8cd12f7a0ec425bf.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

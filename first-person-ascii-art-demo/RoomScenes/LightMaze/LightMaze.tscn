@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Models/Environment/maze.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/Models/Environment/maze.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://RoomScenes/LightMaze/LightMazeController.gd" type="Script" id=2]
 [ext_resource path="res://Interactables/Button.tscn" type="PackedScene" id=3]
 

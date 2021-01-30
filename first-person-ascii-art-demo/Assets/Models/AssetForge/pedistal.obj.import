@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/pedistal.obj-d925938c8a6bc19aa41be2466b8081c7.mesh"
+
+[deps]
+
+files=[ "res://.import/pedistal.obj-d925938c8a6bc19aa41be2466b8081c7.mesh" ]
+
+source_file="res://Assets/Models/AssetForge/pedistal.obj"
+dest_files=[ "res://.import/pedistal.obj-d925938c8a6bc19aa41be2466b8081c7.mesh", "res://.import/pedistal.obj-d925938c8a6bc19aa41be2466b8081c7.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

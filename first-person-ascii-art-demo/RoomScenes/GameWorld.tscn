@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://General/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://General/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RoomScenes/EntryRoom/EntryRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RoomScenes/MainRoom/MainRoom.tscn" type="PackedScene" id=3]
 [ext_resource path="res://RoomScenes/EntryWoods/EntryWoods.tscn" type="PackedScene" id=4]
