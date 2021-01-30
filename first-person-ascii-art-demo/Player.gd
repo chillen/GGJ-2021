@@ -76,7 +76,7 @@ func _physics_process(delta):
 	# clear the user input vector
 	var input = Vector2()
 
-	if user_input_state == UserInputMode.COMMAND_LINE:
+	if user_input_state == UserInputMode.COMMAND_LINE or user_input_state == UserInputMode.FP_TXT_ENTRY :
 		lineedit_handle.grab_focus()
 		
 	else:
@@ -135,11 +135,12 @@ func _physics_process(delta):
 				if Input.is_action_pressed("interact"):
 					
 					# my changes
-					# user_input_state = UserInputMode.FP_TXT_ENTRY
-					# object_to_interact_with = camera_raycast.get_collider()
+					user_input_state = UserInputMode.FP_TXT_ENTRY
+					object_to_interact_with = camera_raycast.get_collider()
+					terminal_handle.flashing_prompt_timer = 20
 					
 					# code that works but doesnt take input
-					camera_raycast.get_collider().interact("")
+					# camera_raycast.get_collider().interact("")
 					
 				# if the raycast collides with something that has a description, then change mode to show text
 				elif Input.is_action_pressed("examine") and 'display_text' in camera_raycast.get_collider() and examine_memory != camera_raycast.get_collider():
@@ -147,6 +148,7 @@ func _physics_process(delta):
 					# the raycast must "remember" the thing that it most recently interacted with to ensure that "triggers" don't happen every frame
 					examine_memory = camera_raycast.get_collider()
 					terminal_handle.print_to_terminal(camera_raycast.get_collider().display_text)
+					terminal_handle.print_to_terminal(">")
 
 				else:
 					user_input_state = UserInputMode.FP_FREE_LOOK

@@ -14,13 +14,19 @@ var last_buffered_col : int = 0
 
 var display_speed : int = 3
 var max_input_len : int = 32
+var backspace_cooldown : int = 0
+var flashing_prompt_state: bool = false
+var flashing_prompt_timer: int = -1
 
 func _ready():
 	
 	# maybe we could print a title using a sweet ASCII font?
 	print_to_terminal("Loss for Words")
 
-
+func _process(delta):
+	if backspace_cooldown > 0:
+		backspace_cooldown -= 1
+	
 func print_to_terminal(remaining_characters = ""):
 	
 	screen_buffer_data.append(" ")
@@ -57,3 +63,12 @@ func text_entry(next_character):
 		screen_buffer_data[last_buffered_row][last_buffered_col] = next_character
 		screen_buffer_data[last_buffered_row] += " "
 		last_buffered_col = len(screen_buffer_data[last_buffered_row]) - 1
+
+func backspace():
+	
+	if backspace_cooldown == 0 and screen_buffer_data[last_buffered_row][0] == ">" and len(screen_buffer_data[last_buffered_row]) > 2:
+		screen_buffer_data[last_buffered_row] = screen_buffer_data[last_buffered_row].substr(0, len(screen_buffer_data[last_buffered_row]) - 2)
+		screen_buffer_data[last_buffered_row] += " "
+		last_buffered_col = len(screen_buffer_data[last_buffered_row]) - 1
+		last_printed_col = last_buffered_col
+		backspace_cooldown = 6

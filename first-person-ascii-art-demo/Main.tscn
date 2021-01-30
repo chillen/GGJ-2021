@@ -90,5 +90,6 @@ __meta__ = {
 script = ExtResource( 1 )
 
 [connection signal="timeout" from="MaskTimer" to="AsciiArt" method="_on_Timer_timeout"]
+[connection signal="gui_input" from="LineEdit" to="AsciiArt" method="_on_LineEdit_gui_input"]
 [connection signal="text_changed" from="LineEdit" to="AsciiArt" method="_on_LineEdit_text_changed"]
 [connection signal="text_entered" from="LineEdit" to="AsciiArt" method="_on_LineEdit_text_entered"]

@@ -36,6 +36,8 @@ var usable_palette_size : int
 # from the particle system are added)
 var mask_array = []
 
+
+
 # handles to the various components that must be accessed
 onready var viewport_handle : Viewport = $"/root/Main/FirstPersonViewport"
 onready var player_handle : KinematicBody = $"/root/Main/FirstPersonViewport/GameWorld/Player"
@@ -104,7 +106,9 @@ func _draw():
 			# if the corresponding permanent mask location is transparent, draw it
 			# (it might not be necessary to add alpha here, but if we wanted to,
 			# then this would be where it would be added)
-			if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60) and (not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
+			
+			if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60):
+			# if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60) and (not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
 				
 				# get the pixel and compute it's luminance
 				var pixel_colour = viewport_image_data.get_pixel(x, y)
@@ -130,15 +134,7 @@ func _draw():
 		char_col = 0
 		char_row += 1
 	
-	
-	# NOTE TO SELF: THIS ROUTINE WILL DRAW THE TEXT ENTRY FRAME IN THE 3D VIEW
-
-	if player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY:
-		pass
-
-
 	# NOTE TO SELF: THIS ROUTINE DRAWS THE TERMINAL IN THE BOTTOM LEFT (AND SHOULD PROBABLY BE A FUNCTION OF ITS OWN)
-
 
 	var current_row = max(0, terminal_handle.last_printed_row - terminal_handle.screen_buffer_high)
 	var current_col = 0
@@ -160,6 +156,15 @@ func _draw():
 			if terminal_handle.last_printed_col == len(terminal_handle.screen_buffer_data[terminal_handle.last_printed_row]):
 				terminal_handle.last_printed_col = 0
 				terminal_handle.last_printed_row += 1
+
+	if terminal_handle.flashing_prompt_timer > -1:
+		if terminal_handle.flashing_prompt_timer == 0:
+			terminal_handle.flashing_prompt_timer = 20
+			terminal_handle.flashing_prompt_state = not terminal_handle.flashing_prompt_state
+		
+		terminal_handle.flashing_prompt_timer -= 1
+		if terminal_handle.flashing_prompt_state:
+			draw_char_by_row_col(topmost_row, lftmost_col + 1, "_", Color.red)		
 
 
 func _process(delta):
@@ -199,14 +204,29 @@ func _on_Timer_timeout():
 	masktimer_handle.wait_time = max(0.2, masktimer_handle.wait_time * 0.6)
 	maskparticles_handle.restart()
 
+
 func _on_LineEdit_text_changed(new_text):
-	terminal_handle.text_entry(new_text)
+	
+	terminal_handle.flashing_prompt_timer = -1
+	terminal_handle.flashing_prompt_state = false
+	
+	if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE or player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY:
+		terminal_handle.text_entry(new_text)
 	lineedit_handle.text = ""
 
+
 func _on_LineEdit_text_entered(new_text):
+	
 	if terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] != " ":
 		if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE:
 			textadventure_handle.play(terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row])
-		elif player_handle.user_input_state == player_handle.UserInputMode.FP_TEXT_ENTRY:
-			pass
+		if player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY:
+			player_handle.object_to_interact_with.interact("")
+			player_handle.object_to_interact_with = null
+			terminal_handle.print_to_terminal(">")
+			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 
+
+func _on_LineEdit_gui_input(event):
+	if event is InputEventKey and event.scancode == KEY_BACKSPACE:
+		terminal_handle.backspace()

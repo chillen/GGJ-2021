@@ -209,11 +209,6 @@ func play(input_string):
 	elif input_action == "TAKE":
 		area_items[curr_area].erase(input_object)
 		inventory.append(input_object)
-		# if you already have it say so
-		# if you dont already have it but it is in the room then take it
-		# if you cant take it but it is in the room say so
-		# if it isnt there say so
-		pass
 
 	elif input_action == "INVENTORY":
 
@@ -232,14 +227,14 @@ func play(input_string):
 
 		if input_action in area_exits[curr_area]:
 			curr_area = area_exits[curr_area][input_action]
-			
 			var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
 			print(pos3d_ref)
 			if not (pos3d_ref == null):
 				player_handle.position = pos3d_ref.position
-			
+
 		elif input_action == "RUN":
 			terminal_handle.print_to_terminal("Where do you think you can run?")
+			
 		else:
 			terminal_handle.print_to_terminal("You can't go in that direction.")
 
@@ -256,6 +251,7 @@ func play(input_string):
 	if not ("visited" in area_flags[curr_area]):
 		area_flags[curr_area].append("visited")
 		terminal_handle.print_to_terminal(area_descs[curr_area])
+		
 		if not area_hints[curr_area] == "":
 			terminal_handle.print_to_terminal(area_hints[curr_area])
 
