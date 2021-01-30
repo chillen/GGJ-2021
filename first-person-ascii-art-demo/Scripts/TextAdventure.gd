@@ -28,8 +28,8 @@ func _ready():
 	# a "desc" is a long description of an area
 	area_descs["AREA_00"] = "You are dimly aware of strange life all around you, but the angry snarl of a not so distant beast wrenches you from your stupor. You are in a dense forest, surrounded by the menacing shadows of twisted trees. As the savage sounds grow to a chorus and start to draw closer, you know that you are no longer safe here."
 	area_descs["AREA_01"] = "Hands outstretched, you race away from the howling darkness. Branches claw at your face and you nearly stumble on the thick roots, but you know that falling now will mean certain death."
-	area_descs["AREA_02"] = "Your heart hammers your chest as the blood roars through your veins. You can see fractured daylight through the trees ahead, but the thundering hoofbeats tell you that the beasts are nearly upon you."
-	area_descs["AREA_03"] = "You throw yourself into the clearing at the last moment and crawl into the sunlight. You can feel the hateful eyes at your back but it seems that they will not follow you out of the denser part of the forest. But as your eyes adjust to the light, your relief is replaced by bewilderment."
+	area_descs["AREA_02"] = "Your heart hammers your chest as the blood roars through your veins. You can see fractured moonlight through the trees ahead, but the thundering hoofbeats tell you that the beasts are nearly upon you."
+	area_descs["AREA_03"] = "You throw yourself into the clearing at the last moment. You can feel the hateful eyes at your back but it seems that they will not follow you out of the denser part of the forest. But as your eyes adjust to the light, your relief is replaced by a dread that you cannot explain."
 	area_descs["AREA_04"] = "You are inside the first room. Or you would be, at least, if this game was finished. But it isn't, so here is a picture of Rob. Something about his smug expression enrages you, and you have an irresistable urge to PUNCH him."
 	area_descs["AREA_05"] = "You are on the east side of the room."
 	area_descs["AREA_06"] = "You are on the west side of the room."
@@ -204,7 +204,10 @@ func _ready():
 func play(input_string):
 	# just for debugging purposes
 	print(input_string)
-
+	
+	if input_string in terminal_handle.english_to_rlyehian:
+		print("this should be replaced by", terminal_handle.english_to_rlyehian[input_string])
+	
 	# trim the unwanted characters from the string taken from the terminal
 	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ")
 
