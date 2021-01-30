@@ -253,8 +253,9 @@ func _on_LineEdit_text_entered(new_text):
 			var input = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row]
 			if terminal_handle.last_buffered_row > 0:
 				input = input.substr(1,len(input))
-			input = input.to_lower()
-			player_handle.object_to_interact_with.interact(input)
+			input = input.to_lower().trim_prefix(" ").trim_suffix(" ")
+			player_handle.action(input,player_handle.object_to_interact_with)
+			#player_handle.object_to_interact_with.interact(input)
 			
 			player_handle.object_to_interact_with = null
 			terminal_handle.print_to_terminal(">")
