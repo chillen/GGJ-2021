@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/TextAdventure.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Terminal.gd" type="Script" id=2]
 [ext_resource path="res://RoomScenes/GameWorld.tscn" type="PackedScene" id=3]
 [ext_resource path="res://General/Main/Main.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/AsciiArt.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Audio/Creeeeepy.ogg" type="AudioStream" id=6]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("FirstPersonViewport")
@@ -88,6 +89,11 @@ __meta__ = {
 
 [node name="TextAdventure" type="Node" parent="."]
 script = ExtResource( 1 )
+
+[node name="BGPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+bus = "BG Music"
 
 [connection signal="timeout" from="MaskTimer" to="AsciiArt" method="_on_Timer_timeout"]
 [connection signal="gui_input" from="LineEdit" to="AsciiArt" method="_on_LineEdit_gui_input"]
