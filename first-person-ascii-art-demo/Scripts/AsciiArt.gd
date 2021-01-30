@@ -248,7 +248,15 @@ func _on_LineEdit_text_entered(new_text):
 				terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row]
 			)
 		if player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY:
-			player_handle.object_to_interact_with.interact("")
+			# Get the input bugger, and transform it into the input string for the interaction object
+			# send interaction to interaction object that player is viewing
+			var input = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row]
+			if terminal_handle.last_buffered_row > 0:
+				input = input.substr(1,len(input))
+			input = input.to_lower().trim_prefix(" ").trim_suffix(" ")
+			player_handle.action(input,player_handle.object_to_interact_with)
+			#player_handle.object_to_interact_with.interact(input)
+			
 			player_handle.object_to_interact_with = null
 			var phrase_entered = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row].trim_prefix(">").trim_suffix(" ")
 			if phrase_entered in terminal_handle.english_to_rlyehian:

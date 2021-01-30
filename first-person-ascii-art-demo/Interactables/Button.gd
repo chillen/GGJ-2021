@@ -6,7 +6,7 @@ signal off
 var toggle = false
 
 
-func press(interaction_string):
+func press(interaction_string,interaction_caller):
 	toggle = ! toggle
 
 	if $AnimationPlayer.is_playing():

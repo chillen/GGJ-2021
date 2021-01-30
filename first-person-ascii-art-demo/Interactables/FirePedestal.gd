@@ -11,7 +11,7 @@ func _ready():
 	# animation_player.seek(0.0, true)
 
 
-func handle_command(command):
+func handle_command(command,interaction_caller):
 	# todo: probably can light the same pillar 3 times right now
 	if command == "light":
 		animation_player.play("Activated")
@@ -29,8 +29,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	black_board["activated_pillars"] -= 1
 
 
-func _on_Interactable_interacted(interaction_string):
-	handle_command("light")
+func _on_Interactable_interacted(interaction_string,interaction_caller):
+	handle_command("light",interaction_caller)
 
 
 func set_lit(val: bool):
