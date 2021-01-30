@@ -1,12 +1,12 @@
 extends Spatial
 
 onready var lights = [
-	[$"puzzle_lights/lightpair0/close", $"puzzle_lights/lightpair0/far"],
-	[$"puzzle_lights/lightpair1/close", $"puzzle_lights/lightpair1/far"],
-	[$"puzzle_lights/lightpair2/left", $"puzzle_lights/lightpair2/right"],
+	[$"puzzle_lights/lightpair0/far", $"puzzle_lights/lightpair0/close"],
+	[$"puzzle_lights/lightpair1/far", $"puzzle_lights/lightpair1/close"],
+	[$"puzzle_lights/lightpair2/right", $"puzzle_lights/lightpair2/left"],
 	[$"puzzle_lights/lightpair3/close", $"puzzle_lights/lightpair3/far"],
 	[$"puzzle_lights/lightpair4/left", $"puzzle_lights/lightpair4/right"],
-	[$"puzzle_lights/lightpair5/close", $"puzzle_lights/lightpair5/far"],
+	[$"puzzle_lights/lightpair5/far", $"puzzle_lights/lightpair5/close"],
 	[$"puzzle_lights/lightpair6/close", $"puzzle_lights/lightpair6/far"]
 ]
 
