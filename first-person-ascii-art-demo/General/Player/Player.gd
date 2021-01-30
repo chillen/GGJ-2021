@@ -51,8 +51,6 @@ func _ready():
 	# lock down the mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	initial_pitch = $FootSteps.pitch_scale
-	
-	$"/root/Main/TextAdventure".connect("cutscene", self, "_on_Cutscene_Request")
 
 
 func _physics_process(delta):
@@ -190,7 +188,3 @@ func _process(delta):
 
 	# clear the mouse movement vector each frame
 	mouse_movement = Vector2()
-
-func _on_Cutscene_Request(scene):
-	print("test")
-	# $PlayerAnimations.play("Intro walking")

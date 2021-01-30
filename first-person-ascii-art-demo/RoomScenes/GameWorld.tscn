@@ -1,15 +1,53 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://General/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RoomScenes/EntryRoom/EntryRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RoomScenes/MainRoom/MainRoom.tscn" type="PackedScene" id=3]
 [ext_resource path="res://RoomScenes/EntryWoods/EntryWoods.tscn" type="PackedScene" id=4]
 [ext_resource path="res://RoomScenes/LightMaze/LightMaze.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Interactables/Campfire.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/GameWorld.gd" type="Script" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Intro walking"
+length = 20.0
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 11.5, 20 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.48, 0, -52.746 ), Vector3( -0.619, 0, -24.242 ), Vector3( -0.536, 0, -6.774 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3.5, 4.7, 5.5, 7.4, 11.2, 12.8, 15.5 ),
+"transitions": PoolRealArray( 1, 0.535887, 2, 0.210224, 1, 0.5, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -180, 0 ), Vector3( 0, -180, 0 ), Vector3( 20.242, -150.301, 0 ), Vector3( 35.711, -123.085, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -180, 0 ) ]
+}
 
 [node name="World" type="Spatial"]
+script = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1, 0, 3.25841e-07, 0, 1, 0, -3.25841e-07, 0, -1, 0, 0, -17.4844 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.536, 0, -6.774 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
@@ -31,7 +69,22 @@ transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24305, 0, -7.61742 )
 
 [node name="EntryWoods" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.0075 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.10181 )
 
 [node name="LightMaze" parent="." instance=ExtResource( 5 )]
 transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.63937, -2.14191, 62.4491 )
+
+[node name="WorldItems" type="Spatial" parent="."]
+
+[node name="EntryDoorLightLeft" parent="WorldItems" instance=ExtResource( 6 )]
+transform = Transform( -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0, 0, 0.5, 1.07662, 2.12522, -4.44439 )
+
+[node name="EntryDoorLightRight" parent="WorldItems" instance=ExtResource( 6 )]
+transform = Transform( -0.5, 7.54979e-08, 0, -7.54979e-08, -0.5, 0, 0, 0, 0.5, -2.08861, 2.12522, -4.42694 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldItems"]
+transform = Transform( -0.994113, 1.11022e-16, 0.108346, 0.0168426, 0.987844, 0.154537, -0.107029, 0.155452, -0.982028, 0, 13.2806, -58.6623 )
+light_energy = 0.2
+
+[node name="PlayerAnimations" type="AnimationPlayer" parent="."]
+"anims/Intro walking" = SubResource( 1 )

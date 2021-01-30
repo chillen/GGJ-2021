@@ -204,7 +204,7 @@ func _ready():
 func play(input_string):
 	
 	# trim the unwanted characters from the string taken from the terminal
-	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ")
+	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ").to_upper()
 
 	# translate the input by using known synonyms and dropping words that are not important (i.e., the, that, a, etc.)
 	input_string = input_string.replace(" the ", " ")
@@ -385,7 +385,8 @@ func play(input_string):
 	if "trigger fp_still_image mode" in area_flags[curr_area]:
 		area_flags[curr_area].erase("trigger fp_still_image mode")
 		player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
-		masktimer_handle.start(4)
+		masktimer_handle.start(2)
+		emit_signal("cutscene", "intro_walking")
 
 	if "trigger fp_free_look mode" in area_flags[curr_area]:
 		area_flags[curr_area].erase("trigger fp_free_look mode")
