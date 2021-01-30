@@ -39,7 +39,9 @@ func _ready():
 	area_flags["AREA_00"] = []
 	area_flags["AREA_01"] = []
 	area_flags["AREA_02"] = []
-	area_flags["AREA_03"] = ["trigger fp_still_image mode"]
+	area_flags["AREA_03"] = [
+							"trigger fp_still_image mode",
+							"cutscene intro_walking"]
 	area_flags["AREA_04"] = []
 	area_flags["AREA_05"] = []
 	area_flags["AREA_06"] = []
@@ -381,13 +383,17 @@ func play(input_string):
 			terminal_handle.print_to_terminal(area_hints[curr_area])
 
 	terminal_handle.print_to_terminal(">")
-
-	if "trigger fp_still_image mode" in area_flags[curr_area]:
-		area_flags[curr_area].erase("trigger fp_still_image mode")
-		player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
-		masktimer_handle.start(2)
-		emit_signal("cutscene", "intro_walking")
-
-	if "trigger fp_free_look mode" in area_flags[curr_area]:
-		area_flags[curr_area].erase("trigger fp_free_look mode")
-		player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+	for command in area_flags[curr_area]:
+		var arguments = command.split(" ")
+		match arguments[0]:
+			"trigger":
+				match arguments[1]:
+					"fp_still_image":
+						player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
+						masktimer_handle.start(2)
+					"fp_free_look":
+						player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+						
+			"cutscene":
+				print("cutscene")
+				emit_signal("cutscene", arguments[1])

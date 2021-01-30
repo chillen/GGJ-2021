@@ -11,5 +11,6 @@ func _ready():
 	$"/root/Main/TextAdventure".connect("cutscene", self, "_on_Cutscene_Request")
 	
 func _on_Cutscene_Request(scene):
-	print("test")
-	$PlayerAnimations.play("Intro walking")
+	match scene:
+		"intro_walking":
+			$PlayerAnimations.play("Intro walking")

@@ -248,7 +248,6 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_LineEdit_text_entered(new_text):
 	if terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] != " ":
-		
 		#if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE:
 		
 		if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE or player_handle.user_input_state == player_handle.UserInputMode.FP_STILL_IMG:
