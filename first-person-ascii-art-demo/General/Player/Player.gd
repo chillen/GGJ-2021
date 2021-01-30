@@ -7,6 +7,7 @@ extends KinematicBody
 # view; in FP_FREE_LOOK, mouse look is enables and key presses are used to move about the scene
 enum UserInputMode { COMMAND_LINE, FP_STILL_IMG, FP_TXT_ENTRY, FP_FREE_LOOK }
 
+
 # this is the variable controlling the state of the game pertaining to user input
 var user_input_state = UserInputMode.COMMAND_LINE
 
@@ -43,6 +44,7 @@ onready var lineedit_handle: LineEdit = $"/root/Main/LineEdit"
 onready var examine_memory: Node
 onready var looking_memory: Node
 
+# used by AsciiArt
 var object_to_interact_with
 
 func _ready():
@@ -120,6 +122,7 @@ func _physics_process(delta):
 		if user_input_state == UserInputMode.FP_FREE_LOOK:
 			# hide the spotlight
 			# spotlight_handle.hide()
+			
 
 			if camera_raycast.get_collider():
 				if examine_memory != camera_raycast.get_collider():
@@ -139,6 +142,8 @@ func _physics_process(delta):
 					user_input_state = UserInputMode.FP_TXT_ENTRY
 					object_to_interact_with = camera_raycast.get_collider()
 					terminal_handle.flashing_prompt_timer = 20
+
+					
 
 					# code that works but doesnt take input
 					# camera_raycast.get_collider().interact("")
@@ -161,6 +166,21 @@ func _physics_process(delta):
 				examine_memory = null
 				user_input_state = UserInputMode.FP_FREE_LOOK
 
+func action(input,interactable):
+	#print(input)
+	#Dont know if I want a top level structure
+	if input == "take":
+		#print("Player : Pick Up?")
+		pass
+	elif input == "drop":
+		#print("Player : Drop")
+		pass
+	else:
+		interactable.interact(input,self)
+		pass
+	pass
+	
+	#player_handle.object_to_interact_with.interact(input)
 
 func _process(delta):
 	# using the mouse movement captured and passed down from main, rotate the camera (if permitted by the current state)
