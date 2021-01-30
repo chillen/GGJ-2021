@@ -15,14 +15,14 @@ var item_flags = {}
 var curr_area
 var inventory
 
-onready var terminal_handle : Node = $"/root/Main/Terminal"
-onready var player_handle : Node = $"/root/Main/FirstPersonViewport/GameWorld/Player"
-onready var masktimer_handle : Node = $"/root/Main/MaskTimer"
+onready var terminal_handle: Node = $"/root/Main/Terminal"
+onready var player_handle: Node = $"/root/Main/FirstPersonViewport/GameWorld/Player"
+onready var masktimer_handle: Node = $"/root/Main/MaskTimer"
 
 onready var is_debug_mode_on = get_node("/root/BlackBoard").DEBUG
 
+
 func _ready():
-	
 	# a "desc" is a long description of an area
 	area_descs["AREA_00"] = "You are dimly aware of strange life all around you, but the angry snarl of a not so distant beast wrenches you from your stupor. You are in a dense forest, surrounded by the menacing shadows of twisted trees. As the savage sounds grow to a chorus and start to draw closer, you know that you are no longer safe here."
 	area_descs["AREA_01"] = "Hands outstretched, you race away from the howling darkness. Branches claw at your face and you nearly stumble on the thick roots, but you know that falling now will mean certain death."
@@ -54,21 +54,84 @@ func _ready():
 	area_hints["AREA_07"] = ""
 
 	# an "exit" pairs a command with the identifier for the area that you will reach if you issue that command
-	area_exits["AREA_00"] = { "RUN": "AREA_01" }
-	area_exits["AREA_01"] = { "RUN": "AREA_02" }
-	area_exits["AREA_02"] = { "RUN": "AREA_03" }
-	area_exits["AREA_03"] = { "OPEN DOOR": "AREA_04" }
-	area_exits["AREA_04"] = { "W": "AREA_05" , "E": "AREA_06", "PUNCH ROB":"AREA_07" }
-	area_exits["AREA_05"] = { "E": "AREA_04" }
-	area_exits["AREA_06"] = { "W": "AREA_04" }
-	area_exits["AREA_07"] = { }
+	area_exits["AREA_00"] = {"RUN": "AREA_01"}
+	area_exits["AREA_01"] = {"RUN": "AREA_02"}
+	area_exits["AREA_02"] = {"RUN": "AREA_03"}
+	area_exits["AREA_03"] = {"OPEN DOOR": "AREA_04"}
+	area_exits["AREA_04"] = {"W": "AREA_05", "E": "AREA_06", "PUNCH ROB": "AREA_07"}
+	area_exits["AREA_05"] = {"E": "AREA_04"}
+	area_exits["AREA_06"] = {"W": "AREA_04"}
+	area_exits["AREA_07"] = {}
 
 	# a "fail" is a text entry displayed when the user does a specific command that, while normally valid, will not work for some reason
 	# a "fail" that is associated with a "gate" can be removed once the "gate" is opened
-	area_fails["AREA_00"] = [ ["*", "There's no time for that now."], ["NORTH", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["SOUTH", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["EAST", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["WEST", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."]]
-	area_fails["AREA_01"] = [ ["*", "There's no time for that now."], ["NORTH", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["SOUTH", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["EAST", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["WEST", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."]]
-	area_fails["AREA_02"] = [ ["*", "There's no time for that now."], ["NORTH", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["SOUTH", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["EAST", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."], ["WEST", "The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."]]
-	area_fails["AREA_03"] = [ ["OPEN DOOR", "Even with a crowbar you would not be able to force this lock. There is no way in without a KEY."], ["*", "You are thoroughly consumed by the need to OPEN this door, and you dare not return to the forest anyway..."] ]
+	area_fails["AREA_00"] = [
+		["*", "There's no time for that now."],
+		[
+			"NORTH",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"SOUTH",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"EAST",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"WEST",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		]
+	]
+	area_fails["AREA_01"] = [
+		["*", "There's no time for that now."],
+		[
+			"NORTH",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"SOUTH",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"EAST",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"WEST",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		]
+	]
+	area_fails["AREA_02"] = [
+		["*", "There's no time for that now."],
+		[
+			"NORTH",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"SOUTH",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"EAST",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		],
+		[
+			"WEST",
+			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
+		]
+	]
+	area_fails["AREA_03"] = [
+		[
+			"OPEN DOOR",
+			"Even with a crowbar you would not be able to force this lock. There is no way in without a KEY."
+		],
+		[
+			"*",
+			"You are thoroughly consumed by the need to OPEN this door, and you dare not return to the forest anyway..."
+		]
+	]
 	area_fails["AREA_04"] = []
 	area_fails["AREA_05"] = []
 	area_fails["AREA_06"] = []
@@ -80,7 +143,13 @@ func _ready():
 	area_gates["AREA_00"] = []
 	area_gates["AREA_01"] = []
 	area_gates["AREA_02"] = []
-	area_gates["AREA_03"] = [ [ "USE KEY", "Finally reunited with the strange key, the lock snaps open. You should be able to OPEN the door now.", ["OPEN DOOR", "AREA_04"] ] ]
+	area_gates["AREA_03"] = [
+		[
+			"USE KEY",
+			"Finally reunited with the strange key, the lock snaps open. You should be able to OPEN the door now.",
+			["OPEN DOOR", "AREA_04"]
+		]
+	]
 	area_gates["AREA_04"] = []
 	area_gates["AREA_05"] = []
 	area_gates["AREA_06"] = []
@@ -95,19 +164,19 @@ func _ready():
 	area_items["AREA_05"] = []
 	area_items["AREA_06"] = []
 	area_items["AREA_07"] = []
-	
+
 	# these are the short descriptions of the items, used for inventory (and upon changing areas)
 	item_names["DOOR"] = "a heavy wooden door"
 	item_names["KEY"] = "a silver key"
-	
+
 	# these are the long descriptions of the items, shown when the player "LOOKS" at the item
 	item_descs["DOOR"] = "Cast iron bands desperately grip this heavy oak door, and the curious sigil burned into the planks seems to beckon you inside. Unfortunately, it also bears an impressive warded lock."
 	item_descs["KEY"] = "The blade of this ancient silver key has been cut to resemble a glyph from some exotic alphabet. You seem to recall once reading something about a silver key, but this probably isn't it."
-	
+
 	# items can be portable (or not), and portable items are either consumed, retained, or discarded upon use
 	item_flags["DOOR"] = []
 	item_flags["KEY"] = ["portable", "consumed"]
-	
+
 	# initialize the important values for the "player"
 	curr_area = "AREA_00"
 	inventory = ["KEY"]
@@ -117,23 +186,22 @@ func _ready():
 	terminal_handle.print_to_terminal(area_descs[curr_area])
 	if not area_hints[curr_area] == "":
 		terminal_handle.print_to_terminal(area_hints[curr_area])
-	
+
 	# print the terminal prompt
 	terminal_handle.print_to_terminal(">")
-	
+
 	if is_debug_mode_on:
 		masktimer_handle.start(0)
 		player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 
 
 func play(input_string):
-
 	# just for debugging purposes
 	print(input_string)
 
 	# trim the unwanted characters from the string taken from the terminal
 	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ")
-	
+
 	# translate the input by using known synonyms and dropping words that are not important (i.e., the, that, a, etc.)
 	input_string = input_string.replace(" the ", " ")
 	input_string = input_string.replace(" a ", " ")
@@ -147,30 +215,26 @@ func play(input_string):
 	var input_object = ""
 	if len(input_string) > 1:
 		input_object = input_string[1]
-	
+
 	if (input_action + " " + input_object) in area_exits[curr_area]:
-		
 		# this needs to be its own function...
 		curr_area = area_exits[curr_area][input_action + " " + input_object]
-			
+
 		var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
 		print(pos3d_ref)
 		if not (pos3d_ref == null):
 			player_handle.transform = pos3d_ref.transform
-	
+
 	# this is the "update" stage of the text adventure game loop
 	elif input_action == "LOOK":
-		
 		if input_object in area_items[curr_area]:
 			terminal_handle.print_to_terminal(item_descs[input_object])
 		elif input_object in inventory:
 			terminal_handle.print_to_terminal(item_descs[input_object])
 
 	elif input_action == "USE":
-		
 		# if the object is in the players inventory
 		if input_object in inventory:
-			
 			# check each of the "gates" in the area to see if one has been removed by this "use"
 			var had_effect = false
 			for gate_details in area_gates[curr_area]:
@@ -183,26 +247,32 @@ func play(input_string):
 							if fail_details[0] == input_action + " " + input_object:
 								area_fails[curr_area].erase(fail_details)
 								break
-			
+
 			# if using this object doesn't do anything, say so
 			if had_effect == false:
 				terminal_handle.print_to_terminal("That doesn't accomplish anything.")
 
 		# otherwise, if the object is not in the player's inventory...
 		else:
-			
 			# if it is in the room tell the player to pick it up (if portable) or ignore it
 			if input_object in area_items[curr_area]:
-				
 				if "portable" in item_flags[input_object]:
-					terminal_handle.print_to_terminal("You will first need to TAKE the " + input_object + " if you intend to use it.")
+					terminal_handle.print_to_terminal(
+						(
+							"You will first need to TAKE the "
+							+ input_object
+							+ " if you intend to use it."
+						)
+					)
 				else:
-					terminal_handle.print_to_terminal("You won't be able to use the " + input_object + ".")
+					terminal_handle.print_to_terminal(
+						"You won't be able to use the " + input_object + "."
+					)
 
 			# if it isn't in the room
 			else:
 				terminal_handle.print_to_terminal("You don't have any " + input_object + " to use.")
-	
+
 	elif input_action == "DROP":
 		pass
 
@@ -211,20 +281,40 @@ func play(input_string):
 		inventory.append(input_object)
 
 	elif input_action == "INVENTORY":
-
 		match len(inventory):
+			0:
+				terminal_handle.print_to_terminal("You aren't carrying anything.")
 
-			0:	terminal_handle.print_to_terminal("You aren't carrying anything.")
+			1:
+				terminal_handle.print_to_terminal(
+					"You are carrying " + item_names[inventory[0]] + "."
+				)
 
-			1:	terminal_handle.print_to_terminal("You are carrying " + item_names[inventory[0]] + ".")
+			2:
+				terminal_handle.print_to_terminal(
+					(
+						"You are carrying "
+						+ item_names[inventory[0]]
+						+ " and "
+						+ item_names[inventory[1]]
+						+ "."
+					)
+				)
 
-			2:	terminal_handle.print_to_terminal("You are carrying " + item_names[inventory[0]] + " and " + item_names[inventory[1]] + ".")
-
-			_: # obviously this needs to be rewritten, as it only works for a maximum of 3 items...
-				terminal_handle.print_to_terminal("You are carrying " + item_names[inventory[0]] + ", " + item_names[inventory[1]] + ", and " + item_names[inventory[2]], ".")
+			_:  # obviously this needs to be rewritten, as it only works for a maximum of 3 items...
+				terminal_handle.print_to_terminal(
+					(
+						"You are carrying "
+						+ item_names[inventory[0]]
+						+ ", "
+						+ item_names[inventory[1]]
+						+ ", and "
+						+ item_names[inventory[2]]
+					),
+					"."
+				)
 
 	elif input_action in ["RUN", "NORTH", "SOUTH", "EAST", "WEST"]:
-
 		if input_action in area_exits[curr_area]:
 			curr_area = area_exits[curr_area][input_action]
 			var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
@@ -234,7 +324,7 @@ func play(input_string):
 
 		elif input_action == "RUN":
 			terminal_handle.print_to_terminal("Where do you think you can run?")
-			
+
 		else:
 			terminal_handle.print_to_terminal("You can't go in that direction.")
 
@@ -251,17 +341,17 @@ func play(input_string):
 	if not ("visited" in area_flags[curr_area]):
 		area_flags[curr_area].append("visited")
 		terminal_handle.print_to_terminal(area_descs[curr_area])
-		
+
 		if not area_hints[curr_area] == "":
 			terminal_handle.print_to_terminal(area_hints[curr_area])
 
 	terminal_handle.print_to_terminal(">")
-	
+
 	if "trigger fp_still_image mode" in area_flags[curr_area]:
 		area_flags[curr_area].erase("trigger fp_still_image mode")
 		player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
 		masktimer_handle.start(4)
-		
+
 	if "trigger fp_free_look mode" in area_flags[curr_area]:
 		area_flags[curr_area].erase("trigger fp_free_look mode")
 		player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK

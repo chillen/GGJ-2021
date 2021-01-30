@@ -5,13 +5,15 @@ var looking_at = false setget set_looking_at
 
 signal interacted(interaction_string)
 
+
 func _ready():
 	pass
 
+
 func interact(interaction_string):
 	emit_signal("interacted", interaction_string)
-	
+
+
 func set_looking_at(val: bool):
 	$OmniLight.visible = val
 	looking_at = val
-

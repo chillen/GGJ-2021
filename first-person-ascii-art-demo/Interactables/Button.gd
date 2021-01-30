@@ -11,18 +11,20 @@ var toggle = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass  # Replace with function body.
+
 
 #func _process(delta):
 #	if Input.is_action_just_pressed("ui_accept"):
 #		press()
 
+
 func press(interaction_string):
-	toggle = !toggle
+	toggle = ! toggle
 
 	if $AnimationPlayer.is_playing():
 		return
-		
+
 	if toggle:
 		emit_signal("on")
 		$AnimationPlayer.play("Button_Press")

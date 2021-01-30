@@ -16,11 +16,11 @@ func handle_command(command):
 	if command == "light":
 		animation_player.play("Activated")
 		self.lit = true
-		
+
 		black_board["activated_pillars"] += 1
 		if black_board["activated_pillars"] == 1:
 			print("test1")
-		
+
 		return true
 	return false
 
@@ -31,6 +31,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_Interactable_interacted(interaction_string):
 	handle_command("light")
+
 
 func set_lit(val: bool):
 	if val:

@@ -1,15 +1,13 @@
 extends Node2D
 
-
-onready var player_handle : KinematicBody = $"FirstPersonViewport/GameWorld/Player"
+onready var player_handle: KinematicBody = $"FirstPersonViewport/GameWorld/Player"
 
 
 func _input(event):
-
 	# for debugging purposes, since the mouse is locked, escape can be used to quit
 	if Input.is_action_pressed("debug_exit"):
 		get_tree().quit()
-		
+
 	# Give debug views with f keys
 	if Input.is_action_pressed("f1"):
 		$FirstPersonSprite.visible = true
