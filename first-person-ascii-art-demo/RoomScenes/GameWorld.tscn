@@ -22,7 +22,7 @@ spot_angle = 5.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516239, 0, 4.33803 )
 
 [node name="MainRoom" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, -0.709, 0, 26.297 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 59.6259, -0.00728798, 36.2073 )
 
 [node name="AREA_04" type="Position3D" parent="."]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.7325, 0, -14.844 )
@@ -34,4 +34,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24305, 0, -7.61742 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.0075 )
 
 [node name="LightMaze" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5895, 0.302872, -34.267 )
+transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.63937, -2.14191, 62.4491 )
