@@ -47,7 +47,7 @@ tracks/2/keys = {
 script = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.536, 0, -6.774 )
+transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.48, 0, -52.746 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
@@ -57,10 +57,10 @@ spot_range = 10.0
 spot_angle = 5.0
 
 [node name="EntryRoom" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516239, 0, 4.33803 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, -0.3, 4.344 )
 
 [node name="MainRoom" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 59.6259, -0.00728798, 36.2073 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 59.4498, -0.291376, 57.0022 )
 
 [node name="AREA_04" type="Position3D" parent="."]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.7325, 0, -14.844 )
@@ -72,7 +72,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24305, 0, -7.61742 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.10181 )
 
 [node name="LightMaze" parent="." instance=ExtResource( 5 )]
-transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.63937, -2.14191, 62.4491 )
+transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.81547, -2.426, 83.244 )
 
 [node name="WorldItems" type="Spatial" parent="."]
 

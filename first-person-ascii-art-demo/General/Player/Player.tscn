@@ -4,18 +4,18 @@
 [ext_resource path="res://Assets/Audio/Step.wav" type="AudioStream" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.5
-height = 1.5
+radius = 0.404162
+height = 1.09239
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.25, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.09952, 0 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.61078, 0 )
 
 [node name="Item" type="Spatial" parent="Camera"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.946406, -1.02596, -1.11808 )

@@ -30,15 +30,15 @@ func _ready():
 	print_to_terminal("Loss for Words")
 	
 	# populate the english to rlyehian dictionary
-	english_to_rlyehian["run"] = "bugnah" # actually "walk"
-	english_to_rlyehian["look"] = "mgrluh"
-	english_to_rlyehian["open"] = "mgahnnn"
-	english_to_rlyehian["help"] = "hafh"
-	english_to_rlyehian["take"] = "mggoka"
-	english_to_rlyehian["use"] = "ahuaaah"
+	english_to_rlyehian["RUN"] = "BUGNAH" # actually "walk"
+	english_to_rlyehian["LOOK"] = "MGRLUH"
+	english_to_rlyehian["OPEN"] = "MGAHNNN"
+	english_to_rlyehian["HELP"] = "HAFH"
+	english_to_rlyehian["TAKE"] = "MGGOKA"
+	english_to_rlyehian["USE"] = "AHUAAAH"
 
 	# puzzle specific
-	english_to_rlyehian["light the way"] = "mgnghft h yogor"
+	english_to_rlyehian["LIGHT THE WAY"] = "MGNGHFT H YOGOR"
 
 func _process(delta):
 	
@@ -100,11 +100,13 @@ func backspace():
 		last_printed_col = last_buffered_col
 		backspace_cooldown = 6
 
+
 func replace_with_rlyehian(rlyehian_phrase):
 	var blank_spaces = "                                                            " # somedays I really miss Python...
 	if len(rlyehian_phrase) < screen_buffer_wide - 3:
 		rlyehian_phrase += blank_spaces.substr(0, screen_buffer_wide - 3 - len(rlyehian_phrase))
 	rlyehian_queued_replacements[last_buffered_row] = [rlyehian_phrase, 0, 3]
+
 
 func process_replacements():
 	

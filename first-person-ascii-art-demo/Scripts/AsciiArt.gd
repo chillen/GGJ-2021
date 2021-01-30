@@ -19,8 +19,7 @@ var txt_frame_lft = 50
 var txt_frame_rgt = 110
 
 # this is a greyscale palette (representing the maximum possible "colour depth")
-var ascii_art_palette: String = "cahfahnaflmglwnafhhhahorsyhahahlegethngllllorazathsyhahnahhnghftephainghaahornahahmglwnafh"
-# var ascii_art_palette : String = "chthulhunaflfhtagn"
+var ascii_art_palette: String = "csrzetvIixayJhCfnYjuVblUXAdpMLqomSWOgZkwGFTQNEHPRKDB"
 
 # these values specify the fidelity of the ascii art representation to the actual first person view
 # they range between 0 and 1 (with 0 being almost completely unusable); experimentally, I think that
@@ -55,7 +54,7 @@ func _ready():
 	usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1
 
 	# loading the dynamic font (and note that the font size is magic_number_y)
-	dynamic_font.font_data = load("res://Assets/Font/iosevka-term-curly-slab-bold.ttf")
+	dynamic_font.font_data = load("res://Assets/Font/FoglihtenNo04-070.otf")
 	dynamic_font.size = magic_number_y - 1
 
 	# this creates an empty mask (currently holding only 0s and 1s, but I will
@@ -248,29 +247,33 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_LineEdit_text_entered(new_text):
 	if terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] != " ":
-		
 		#if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE:
 		
 		if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE or player_handle.user_input_state == player_handle.UserInputMode.FP_STILL_IMG:
 			textadventure_handle.play(
 				terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row]
 			)
+				
 		if player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY:
+			
 			# Get the input bugger, and transform it into the input string for the interaction object
 			# send interaction to interaction object that player is viewing
 			var input = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row]
 			if terminal_handle.last_buffered_row > 0:
 				input = input.substr(1,len(input))
 			input = input.to_lower().trim_prefix(" ").trim_suffix(" ")
-			player_handle.action(input,player_handle.object_to_interact_with)
-			#player_handle.object_to_interact_with.interact(input)
-			
-			player_handle.object_to_interact_with = null
+
 			var phrase_entered = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row].trim_prefix(">").trim_suffix(" ")
 			if phrase_entered in terminal_handle.english_to_rlyehian:
 				terminal_handle.replace_with_rlyehian(terminal_handle.english_to_rlyehian[phrase_entered])
+			
+			player_handle.action(input, player_handle.object_to_interact_with)
+			#player_handle.object_to_interact_with.interact(input)
+
 			terminal_handle.print_to_terminal(">")
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+			
+			player_handle.object_to_interact_with = null
 
 func _on_LineEdit_gui_input(event):
 	if event is InputEventKey and event.scancode == KEY_BACKSPACE:

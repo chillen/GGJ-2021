@@ -39,7 +39,9 @@ func _ready():
 	area_flags["AREA_00"] = []
 	area_flags["AREA_01"] = []
 	area_flags["AREA_02"] = []
-	area_flags["AREA_03"] = ["trigger fp_still_image mode"]
+	area_flags["AREA_03"] = [
+							"trigger fp_still_image mode",
+							"cutscene intro_walking"]
 	area_flags["AREA_04"] = []
 	area_flags["AREA_05"] = []
 	area_flags["AREA_06"] = []
@@ -203,6 +205,12 @@ func _ready():
 
 func play(input_string):
 	
+	# replace with rlyehian, even if we are just playing the text adventure
+	# n.b., we might not actually need this	
+	var phrase_entered = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row].trim_prefix(">").trim_suffix(" ")
+	if phrase_entered in terminal_handle.english_to_rlyehian:
+		terminal_handle.replace_with_rlyehian(terminal_handle.english_to_rlyehian[phrase_entered])
+	
 	# trim the unwanted characters from the string taken from the terminal
 	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ").to_upper()
 
@@ -270,13 +278,6 @@ func play(input_string):
 						had_effect = true
 						terminal_handle.print_to_terminal(gate_details[1])
 						
-#	area_gates["AREA_03"] = [
-#		[
-#			"USE KEY",
-#			"Finally reunited with the strange key, the lock snaps open. You should be able to OPEN the door now.",
-#			["OPEN DOOR", "AREA_04"]
-#		]
-#	]						
 						if gate_details[2] != []:
 							area_exits[curr_area][gate_details[2][0]] = gate_details[2][1]
 							for fail_details in area_fails[curr_area]:
@@ -376,18 +377,40 @@ func play(input_string):
 	if not ("visited" in area_flags[curr_area]):
 		area_flags[curr_area].append("visited")
 		terminal_handle.print_to_terminal(area_descs[curr_area])
-
+		
 		if not area_hints[curr_area] == "":
 			terminal_handle.print_to_terminal(area_hints[curr_area])
 
+		if len(area_items[curr_area]) > 0:
+			var items_in_area = []
+			for item in area_items[curr_area]:
+				items_in_area.append(item_names[item])
+			terminal_handle.print_to_terminal(list_to_nice_string(items_in_area))
+
 	terminal_handle.print_to_terminal(">")
+	
+	for command in area_flags[curr_area]:
+		var arguments = command.split(" ")
+		match arguments[0]:
+			"trigger":
+				match arguments[1]:
+					"fp_still_image":
+						player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
+						masktimer_handle.start(2)
+					"fp_free_look":
+						player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+						
+			"cutscene":
+				print("cutscene")
+				emit_signal("cutscene", arguments[1])
 
-	if "trigger fp_still_image mode" in area_flags[curr_area]:
-		area_flags[curr_area].erase("trigger fp_still_image mode")
-		player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
-		masktimer_handle.start(2)
-		emit_signal("cutscene", "intro_walking")
-
-	if "trigger fp_free_look mode" in area_flags[curr_area]:
-		area_flags[curr_area].erase("trigger fp_free_look mode")
-		player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+func list_to_nice_string(list):
+	if len(list) == 1:
+		return list[0]
+	elif len(list) == 2:
+		return list[0] + " and " + list[1]
+	else:
+		var nice_string = ""
+		for i in range(len(list) - 1):
+			nice_string += list[i] + ", "
+		return nice_string + "and " + list[len(list) - 1]
