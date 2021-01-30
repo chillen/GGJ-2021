@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/themaze_floor.obj-fc21d554bb9a7b1fe7315dbabcdfe014.mesh"
+
+[deps]
+
+files=[ "res://.import/themaze_floor.obj-fc21d554bb9a7b1fe7315dbabcdfe014.mesh" ]
+
+source_file="res://Assets/Models/Environment/themaze_floor.obj"
+dest_files=[ "res://.import/themaze_floor.obj-fc21d554bb9a7b1fe7315dbabcdfe014.mesh", "res://.import/themaze_floor.obj-fc21d554bb9a7b1fe7315dbabcdfe014.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
