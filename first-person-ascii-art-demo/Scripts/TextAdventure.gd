@@ -21,6 +21,8 @@ onready var masktimer_handle: Node = $"/root/Main/MaskTimer"
 
 onready var is_debug_mode_on = get_node("/root/BlackBoard").DEBUG
 
+signal cutscene
+
 
 func _ready():
 	# a "desc" is a long description of an area
@@ -193,6 +195,9 @@ func _ready():
 	if is_debug_mode_on:
 		masktimer_handle.start(0)
 		player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+		
+	print("here")
+	emit_signal("cutscene", "intro_walking")
 
 
 func play(input_string):

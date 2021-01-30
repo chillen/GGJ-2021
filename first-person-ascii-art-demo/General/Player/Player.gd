@@ -45,11 +45,12 @@ onready var looking_memory: Node
 
 var object_to_interact_with
 
-
 func _ready():
 	# lock down the mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	initial_pitch = $FootSteps.pitch_scale
+	
+	$"/root/Main/TextAdventure".connect("cutscene", self, "_on_Cutscene_Request")
 
 
 func _physics_process(delta):
@@ -108,7 +109,7 @@ func _physics_process(delta):
 			global_transform.basis.x * input.x
 			+ global_transform.basis.z * input.y
 		)
-
+		
 		# compute the components of the velocity vector and pass to move_and_slide 
 		velocity.x = relative_direction.x * movement_speed
 		velocity.z = relative_direction.z * movement_speed
@@ -172,3 +173,7 @@ func _process(delta):
 
 	# clear the mouse movement vector each frame
 	mouse_movement = Vector2()
+
+func _on_Cutscene_Request(scene):
+	print("test")
+	$PlayerAnimations.play("Intro walking")
