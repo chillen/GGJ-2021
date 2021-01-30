@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://DoorTemplate.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 4, 0.1 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 2, 0.09 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 1, 2, 0.09 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Draw_Bridge_Open"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Hinge:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 90, 0, 0 ) ]
+}
+
+[node name="DrawBridge" instance=ExtResource( 1 )]
+animation_open = "Draw_Bridge_Open"
+
+[node name="Hinge" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0 )
+
+[node name="CSGMesh" parent="Hinge" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 0 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape" parent="Hinge/CSGMesh/StaticBody" index="0"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="CollisionShape2" parent="Hinge/Interactable" index="1"]
+transform = Transform( 0.121788, 0, 0.992558, 0, 1, 0, -0.992558, 0, 0.121788, -0.871, 1, -1 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+anims/Draw_Bridge_Open = SubResource( 4 )
