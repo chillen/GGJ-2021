@@ -1,13 +1,13 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Tree.gd" type="Script" id=1]
-[ext_resource path="res://Ground.gd" type="Script" id=2]
+[ext_resource path="res://Interactables/Tree.gd" type="Script" id=1]
+[ext_resource path="res://Interactables/Ground.gd" type="Script" id=2]
 [ext_resource path="res://Models/Environment/Ground.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Models/Environment/Tree_1.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Textures/Particles/star_06.png" type="Texture" id=5]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://General/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Models/AssetForge/thing.obj" type="ArrayMesh" id=7]
-[ext_resource path="res://FirePedestal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Interactables/FirePedestal.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Models/AssetForge/main-room.obj" type="ArrayMesh" id=9]
 
 

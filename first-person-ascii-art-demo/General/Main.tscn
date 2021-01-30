@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://TextAdventure.gd" type="Script" id=1]
-[ext_resource path="res://Main.gd" type="Script" id=3]
-[ext_resource path="res://AsciiArt.gd" type="Script" id=5]
-[ext_resource path="res://Terminal.gd" type="Script" id=6]
-[ext_resource path="res://GameWorld.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/TextAdventure.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Terminal.gd" type="Script" id=2]
+[ext_resource path="res://RoomScenes/GameWorld.tscn" type="PackedScene" id=3]
+[ext_resource path="res://General/Main.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/AsciiArt.gd" type="Script" id=5]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("FirstPersonViewport")
@@ -23,7 +23,7 @@ viewport_path = NodePath("MaskViewport")
 
 [node name="Main" type="Node2D"]
 light_mask = 3
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="FirstPersonViewport" type="Viewport" parent="."]
 size = Vector2( 1280, 720 )
@@ -32,7 +32,7 @@ handle_input_locally = false
 hdr = false
 render_target_update_mode = 3
 
-[node name="GameWorld" parent="FirstPersonViewport" instance=ExtResource( 12 )]
+[node name="GameWorld" parent="FirstPersonViewport" instance=ExtResource( 3 )]
 
 [node name="FirstPersonSprite" type="Sprite" parent="."]
 visible = false
@@ -50,7 +50,7 @@ light_mask = 2
 script = ExtResource( 5 )
 
 [node name="Terminal" type="Node" parent="."]
-script = ExtResource( 6 )
+script = ExtResource( 2 )
 
 [node name="MaskViewport" type="Viewport" parent="."]
 size = Vector2( 160, 45 )

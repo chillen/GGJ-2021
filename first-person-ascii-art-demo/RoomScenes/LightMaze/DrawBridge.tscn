@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://DoorTemplate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interactables/DoorTemplate.tscn" type="PackedScene" id=1]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 2, 4, 0.1 )
@@ -29,9 +29,6 @@ tracks/0/keys = {
 
 [node name="DrawBridge" instance=ExtResource( 1 )]
 animation_open = "Draw_Bridge_Open"
-
-[node name="Hinge" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0 )
 
 [node name="CSGMesh" parent="Hinge" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 0 )

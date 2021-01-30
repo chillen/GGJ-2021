@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://SoundObjectTemplate.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/SoundObjectTemplate.gd" type="Script" id=1]
 [ext_resource path="res://SoundObjectTemplate/Sounds/fil_1.wav" type="AudioStream" id=2]
 [ext_resource path="res://SoundObjectTemplate/Sounds/fil_2.wav" type="AudioStream" id=3]
 
