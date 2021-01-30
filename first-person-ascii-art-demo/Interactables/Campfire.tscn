@@ -29,7 +29,7 @@ color = Color( 0.960784, 0.686275, 0.0862745, 1 )
 [sub_resource type="QuadMesh" id=3]
 
 [node name="Campfire" type="Particles"]
-transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 15, 1, -10 )
+transform = Transform( -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0 )
 material_override = SubResource( 1 )
 visibility_aabb = AABB( -4, 0, -4, 8, 8, 8 )
 process_material = SubResource( 2 )

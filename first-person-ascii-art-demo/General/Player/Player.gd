@@ -41,8 +41,11 @@ onready var camera_raycast: RayCast = $"Camera/RayCast"
 onready var terminal_handle: Node = $"/root/Main/Terminal"
 onready var lineedit_handle: LineEdit = $"/root/Main/LineEdit"
 
+
 onready var examine_memory: Node
 onready var looking_memory: Node
+
+
 
 # used by AsciiArt
 var object_to_interact_with
@@ -134,6 +137,7 @@ func _physics_process(delta):
 				# if the player is trying to interact with an interactible object in front of them, then change mode to text entry
 				if Input.is_action_pressed("interact"):
 					# my changes
+					
 					user_input_state = UserInputMode.FP_TXT_ENTRY
 					object_to_interact_with = camera_raycast.get_collider()
 					terminal_handle.flashing_prompt_timer = 10
@@ -156,27 +160,56 @@ func _physics_process(delta):
 
 				else:
 					user_input_state = UserInputMode.FP_FREE_LOOK
-
+			# If we have an item equiped, the interact with item though terminal
+			elif $Camera/Item/Right.get_child_count() > 0 and Input.is_action_pressed("interact"):
+				
+				user_input_state = UserInputMode.FP_TXT_ENTRY
+				object_to_interact_with = $Camera/Item/Right.get_child(0).find_node("Interactable")
+				terminal_handle.flashing_prompt_timer = 20
+				
+				
 			else:
 				examine_memory = null
 				user_input_state = UserInputMode.FP_FREE_LOOK
-
+				
+# Player calling interactable object to do task
+# called from AsciiArt
 func action(input,interactable):
-	#print(input)
-	#Dont know if I want a top level structure
-	if input == "take":
-		#print("Player : Pick Up?")
-		pass
-	elif input == "drop":
-		#print("Player : Drop")
-		pass
-	else:
-		interactable.interact(input,self)
-		pass
-	pass
-	
-	#player_handle.object_to_interact_with.interact(input)
+	interactable.interact(input,self)
 
+# used by interactables to call to terminal
+func terminal_call(text):
+	terminal_handle.print_to_terminal(text)
+	
+# checks if no other items are equipted
+# equipts the item
+func equip_item(item):
+	if $Camera/Item/Right.get_child_count() > 0:
+		return false
+	var parent = item.get_parent()
+	parent.remove_child(item)
+	$Camera/Item/Right.add_child(item)
+	item.set_owner($Camera/Item/Right)
+	
+	return true
+
+# checks if interaction item, is item in hand
+# check if I ahve any items
+# drops item at player position
+func de_equip_item(item_inter):
+	print("de-equip")
+	var item = $Camera/Item/Right.get_child(0)
+	if $Camera/Item/Right.get_child_count() <= 0 or not item_inter == item:
+		return false
+		
+	
+	$Camera/Item/Right.remove_child(item)
+	self.get_parent().add_child(item)
+	item.set_owner(self.get_parent())
+	item.translation = self.translation
+	
+	return true
+	
 func _process(delta):
 	# using the mouse movement captured and passed down from main, rotate the camera (if permitted by the current state)
 	if user_input_state == UserInputMode.FP_FREE_LOOK:
