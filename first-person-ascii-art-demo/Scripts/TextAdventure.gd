@@ -196,8 +196,9 @@ func _ready():
 		masktimer_handle.start(0)
 		player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 		
-	print("here")
-	emit_signal("cutscene", "intro_walking")
+	# This is an example of emitting a cutscene request to player,
+	# it will allow for different animations to be called from the text adveture if needed
+	# emit_signal("cutscene", "intro_walking")
 
 
 func play(input_string):
