@@ -19,6 +19,8 @@ margin_right = 256.0
 margin_bottom = 256.0
 
 [node name="MapViewport" type="Viewport" parent="MapContainer"]
+handle_input_locally = false
+render_target_update_mode = 3
 
 [node name="Camera" type="Camera" parent="MapContainer/MapViewport"]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0 )
