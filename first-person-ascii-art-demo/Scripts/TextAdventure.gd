@@ -203,6 +203,13 @@ func _ready():
 
 func play(input_string):
 	
+	# replace with rlyehian, even if we are just playing the text adventure
+	# n.b., we might not actually need this	
+	var phrase_entered = terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row].trim_prefix(">").trim_suffix(" ")
+	if phrase_entered in terminal_handle.english_to_rlyehian:
+		terminal_handle.replace_with_rlyehian(terminal_handle.english_to_rlyehian[phrase_entered])
+			
+	
 	# trim the unwanted characters from the string taken from the terminal
 	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ").to_upper()
 

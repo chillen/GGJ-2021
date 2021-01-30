@@ -101,12 +101,15 @@ func backspace():
 		backspace_cooldown = 6
 
 func replace_with_rlyehian(rlyehian_phrase):
+	print("replacing *", rlyehian_phrase, "*")
 	var blank_spaces = "                                                            " # somedays I really miss Python...
 	if len(rlyehian_phrase) < screen_buffer_wide - 3:
 		rlyehian_phrase += blank_spaces.substr(0, screen_buffer_wide - 3 - len(rlyehian_phrase))
 	rlyehian_queued_replacements[last_buffered_row] = [rlyehian_phrase, 0, 3]
 
 func process_replacements():
+	
+	print(rlyehian_queued_replacements)
 	
 	for row_number in rlyehian_queued_replacements.keys():
 		var replacement_phrase = rlyehian_queued_replacements[row_number][0]
