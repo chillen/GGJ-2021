@@ -1,0 +1,26 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl Sandstone_Trim(Clone)
+Kd 0.871 0.765 0.647
+
+newmtl Sandstone_Floor(Clone)
+Kd 0.945 0.898 0.851
+
+newmtl Burlap(Clone)
+Kd 0.769 0.694 0.569
+
+newmtl Wood_Dark(Clone)
+Kd 0.518 0.42 0.333
+
+newmtl Wood_Light(Clone)
+Kd 0.737 0.631 0.463
+
+newmtl stone(Clone)
+Kd 0.571 0.559 0.736
+
+newmtl Dirt(Clone)
+Kd 0.769 0.686 0.561
+
+newmtl Water(Clone)
+Kd 0.2 0.588 0.82
+
