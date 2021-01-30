@@ -20,8 +20,8 @@ var txt_frame_lft = 50
 var txt_frame_rgt = 110
 
 # this is a greyscale palette (representing the maximum possible "colour depth")
-# var ascii_art_palette : String = ".:-=+*#%@"
-var ascii_art_palette : String = "chthulhunaflfhtagn"
+var ascii_art_palette : String = "rJticlvsunzLIxoTajwCFZhSyekYfUVdbqpPAEHXmKGDgORWNBQM"
+# var ascii_art_palette : String = "chthulhunaflfhtagn"
 
 # these values specify the fidelity of the ascii art representation to the actual first person view
 # they range between 0 and 1 (with 0 being almost completely unusable); experimentally, I think that
@@ -205,5 +205,8 @@ func _on_LineEdit_text_changed(new_text):
 
 func _on_LineEdit_text_entered(new_text):
 	if terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] != " ":
-		textadventure_handle.play(terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row])
+		if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE:
+			textadventure_handle.play(terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row])
+		elif player_handle.user_input_state == player_handle.UserInputMode.FP_TEXT_ENTRY:
+			pass
 

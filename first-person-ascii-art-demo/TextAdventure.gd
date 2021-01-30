@@ -19,6 +19,8 @@ onready var terminal_handle : Node = $"/root/Main/Terminal"
 onready var player_handle : Node = $"/root/Main/FirstPersonViewport/GameWorld/Player"
 onready var masktimer_handle : Node = $"/root/Main/MaskTimer"
 
+onready var is_debug_mode_on = get_node("/root/BlackBoard").DEBUG
+
 func _ready():
 	
 	# a "desc" is a long description of an area
@@ -118,6 +120,10 @@ func _ready():
 	
 	# print the terminal prompt
 	terminal_handle.print_to_terminal(">")
+	
+	if is_debug_mode_on:
+		masktimer_handle.start(0)
+		player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 
 
 func play(input_string):

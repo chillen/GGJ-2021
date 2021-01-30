@@ -48,6 +48,7 @@ onready var lineedit_handle : LineEdit = $"/root/Main/LineEdit"
 onready var examine_memory : Node
 onready var looking_memory : Node
 
+var object_to_interact_with
 
 func _ready():
 	
@@ -131,10 +132,15 @@ func _physics_process(delta):
 					#spotlight_handle.show()
 
 				# if the player is trying to interact with an interactible object in front of them, then change mode to text entry
-				if Input.is_action_pressed("interact") and 'takes_input' in camera_raycast.get_collider() and camera_raycast.get_collider().takes_input:
+				if Input.is_action_pressed("interact"):
+					
+					# my changes
 					# user_input_state = UserInputMode.FP_TXT_ENTRY
-					pass
-
+					# object_to_interact_with = camera_raycast.get_collider()
+					
+					# code that works but doesnt take input
+					camera_raycast.get_collider().interact("")
+					
 				# if the raycast collides with something that has a description, then change mode to show text
 				elif Input.is_action_pressed("examine") and 'display_text' in camera_raycast.get_collider() and examine_memory != camera_raycast.get_collider():
 					
