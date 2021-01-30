@@ -17,6 +17,9 @@ func _ready():
 #	pass
 #	pass
 
+func _on_Interactable_interacted(interaction_string):
+	open()
+
 func open():
 	$AnimationPlayer.play(animation_open)
 	emit_signal("open")

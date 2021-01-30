@@ -8,3 +8,5 @@ extends Node
 var bb = {
 	"activated_pillars": 0
 }
+
+var DEBUG = true

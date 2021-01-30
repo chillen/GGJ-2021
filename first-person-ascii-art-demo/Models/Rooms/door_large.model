@@ -1,0 +1,12 @@
+# Made using Asset Forge (2.1.2)
+
+:materials
+
+[name:Green_Stone_-_Dark;color:RGBA(0.177, 0.384, 0.337, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Sandstone_6;color:RGBA(0.761, 0.561, 0.337, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Sandstone_4;color:RGBA(0.835, 0.698, 0.545, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Sandstone_Trim;color:RGBA(0.871, 0.765, 0.647, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+
+:models
+
+[name:;collection:Modular Temple;type:Wall_Straight_Door_Large_Pocket;position:(0.0000, 0.0000, -1.0000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Green_Stone_-_Dark+Sandstone_6+Sandstone_4+Sandstone_Trim;]

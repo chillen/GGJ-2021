@@ -4,7 +4,7 @@
 [ext_resource path="res://Interactable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Torch.gd" type="Script" id=3]
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.192384, 0.238018, 0.853122 )
 
 [sub_resource type="CapsuleShape" id=2]
@@ -24,7 +24,7 @@ material/2 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0.171538, 0.0353027 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Interactable" parent="." instance=ExtResource( 2 )]
 display_text = "It appears to be a torch."
