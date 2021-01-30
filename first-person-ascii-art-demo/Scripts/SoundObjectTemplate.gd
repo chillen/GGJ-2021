@@ -12,6 +12,7 @@ var initial_pitch = 0
 func _ready():
 	initial_pitch = $AudioStream.pitch_scale
 
+
 # gets state of object entering
 # plays audio snippet
 # randomizes pitch
