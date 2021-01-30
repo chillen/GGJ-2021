@@ -141,7 +141,7 @@ func _physics_process(delta):
 					# my changes
 					user_input_state = UserInputMode.FP_TXT_ENTRY
 					object_to_interact_with = camera_raycast.get_collider()
-					terminal_handle.flashing_prompt_timer = 20
+					terminal_handle.flashing_prompt_timer = 10
 
 					
 
@@ -196,4 +196,4 @@ func _process(delta):
 
 func _on_Cutscene_Request(scene):
 	print("test")
-	$PlayerAnimations.play("Intro walking")
+	# $PlayerAnimations.play("Intro walking")

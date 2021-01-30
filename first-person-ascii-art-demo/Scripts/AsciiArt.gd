@@ -179,12 +179,15 @@ func _draw():
 
 	if terminal_handle.flashing_prompt_timer > -1:
 		if terminal_handle.flashing_prompt_timer == 0:
-			terminal_handle.flashing_prompt_timer = 20
-			terminal_handle.flashing_prompt_state = not terminal_handle.flashing_prompt_state
+			terminal_handle.flashing_prompt_timer = 10
+			# terminal_handle.flashing_prompt_state = not terminal_handle.flashing_prompt_state
+			terminal_handle.flashing_prompt_index = (terminal_handle.flashing_prompt_index + 1) % 4			
 
 		terminal_handle.flashing_prompt_timer -= 1
-		if terminal_handle.flashing_prompt_state:
-			draw_char_by_row_col(topmost_row, lftmost_col + 1, "_", Color.red)
+		# if terminal_handle.flashing_prompt_state:
+			#draw_char_by_row_col(topmost_row, lftmost_col + 1, "_", Color.red)
+		draw_char_by_row_col(topmost_row, lftmost_col + 1, "-\\|/"[terminal_handle.flashing_prompt_index], Color.red)
+
 
 
 func _process(delta):
