@@ -5,15 +5,6 @@ var display_text = "This is a really awesome tree"
 
 onready var emitter: Particles = $"/root/Main/Viewport/Spatial/Tree/Particles"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass  # Replace with function body.
-
 
 func handle_command(command):
 	if command == "flip":
@@ -26,7 +17,3 @@ func handle_command(command):
 		return true
 
 	return false
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
