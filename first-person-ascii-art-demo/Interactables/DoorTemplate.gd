@@ -16,7 +16,7 @@ func _ready():
 	pass  # Replace with function body.
 
 
-func interaction(interaction):
+func interaction(interaction,interaction_caller):
 	if locked:
 		# print something to terminal
 		# play sound that might sugest locked

@@ -7,6 +7,7 @@ extends KinematicBody
 # view; in FP_FREE_LOOK, mouse look is enables and key presses are used to move about the scene
 enum UserInputMode { COMMAND_LINE, FP_STILL_IMG, FP_TXT_ENTRY, FP_FREE_LOOK }
 
+
 # this is the variable controlling the state of the game pertaining to user input
 var user_input_state = UserInputMode.COMMAND_LINE
 
@@ -164,6 +165,21 @@ func _physics_process(delta):
 				examine_memory = null
 				user_input_state = UserInputMode.FP_FREE_LOOK
 
+func action(input,interactable):
+	#print(input)
+	#Dont know if I want a top level structure
+	if input == "take":
+		#print("Player : Pick Up?")
+		pass
+	elif input == "drop":
+		#print("Player : Drop")
+		pass
+	else:
+		interactable.interact(input,self)
+		pass
+	pass
+	
+	#player_handle.object_to_interact_with.interact(input)
 
 func _process(delta):
 	# using the mouse movement captured and passed down from main, rotate the camera (if permitted by the current state)
