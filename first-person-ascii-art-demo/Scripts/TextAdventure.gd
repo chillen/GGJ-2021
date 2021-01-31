@@ -50,29 +50,32 @@ func _ready():
 	area_hints["FOREST_01"] = [
 		2,
 		"You have no choice but to run.",
-		"You should run!",
-		"Try typing 'run'"
+		"There is nothing you can do right now... other than running for your life.",
+		"Try typing 'run'."
 	]
 	area_hints["FOREST_02"] = [
 		2,
 		"You have no choice but to run.",
-		"You should run!",
-		"Try typing 'run'"
+		"You are not out of the forest yet. You need to keep running.",
+		"Try typing 'run'."
 	]
 	area_hints["FOREST_03"] = [
 		2,
 		"You have no choice but to run.",
-		"You should run!",
-		"Try typing 'run'"
+		"You have almost escaped the forest, but you need to keep running.",
+		"Try typing 'run'."
 	]
 	area_hints["EXT_DOOR"] = [
 		2,
-		"You should open your inventory",
-		"Try typing 'open inventory'",
-		"There is a page in your inventory, what does it say?",
-		"Try typing 'read page'",
-		"Hmm, the door is still locked. Maybe we should ask nicely for it to open?",
-		"Try typing 'say please' and then 'open door'",
+		"But first you need to try and open it.",
+		"If you have a closer look at the locked door you might find a clue.",
+		"Try typing 'look door'.",
+		"Something in your inventory might help you unlock the door.",
+		"Try typing 'open inventory'.",
+		"There is a page in your inventory. Perhaps you should read it?",
+		"Try typing 'read page'.",
+		"The door is still closed, but the page from your inventory mentions 'asking nicely'. Maybe it is as simple as saying please?",
+		"Try typing 'say please' and then 'open door'.",
 	]
 	area_hints["ANTE_CAMP"] = [
 		2,
