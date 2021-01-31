@@ -12,7 +12,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_enter(body_id, body, body_shape, local_shape):
-	print("test")
 	# todo: if player
 	if true:
 		player_obj = body
@@ -20,7 +19,6 @@ func _on_enter(body_id, body, body_shape, local_shape):
 		
 
 func _on_exit(body_id, body, body_shape, local_shape):
-	print("test")
 	# todo: if player
 	if true:
 		player_obj = null
@@ -28,4 +26,4 @@ func _on_exit(body_id, body, body_shape, local_shape):
 
 func _physics_process(delta):
 	if player_obj:
-		player_obj.move_and_collide(Vector3(move_velocity,0,0))
+		player_obj.move_and_collide(Vector3(-move_velocity,0,0))
