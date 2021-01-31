@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/drawbridge.obj-df8d25eda5340fb961760a35599bbe36.mesh"
+
+[deps]
+
+files=[ "res://.import/drawbridge.obj-df8d25eda5340fb961760a35599bbe36.mesh" ]
+
+source_file="res://Assets/Models/Rooms/drawbridge.obj"
+dest_files=[ "res://.import/drawbridge.obj-df8d25eda5340fb961760a35599bbe36.mesh", "res://.import/drawbridge.obj-df8d25eda5340fb961760a35599bbe36.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

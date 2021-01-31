@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://General/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RoomScenes/EntryRoom/EntryRoom.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://RoomScenes/LightMaze/LightMaze.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/Campfire.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/GameWorld.gd" type="Script" id=7]
+[ext_resource path="res://Interactables/TorchHolder.tscn" type="PackedScene" id=8]
+[ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Intro walking"
@@ -43,6 +45,9 @@ tracks/2/keys = {
 "values": [ Vector3( 0, -180, 0 ), Vector3( 0, -180, 0 ), Vector3( 20.242, -150.301, 0 ), Vector3( 35.711, -123.085, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -180, 0 ) ]
 }
 
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.32968, 1, 1 )
+
 [node name="World" type="Spatial"]
 script = ExtResource( 7 )
 
@@ -57,10 +62,10 @@ spot_range = 10.0
 spot_angle = 5.0
 
 [node name="EntryRoom" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.516239, 0, 4.33803 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.638443, -0.32129, 4.26719 )
 
 [node name="MainRoom" parent="." instance=ExtResource( 3 )]
-transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 59.6259, -0.00728798, 36.2073 )
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 59.4498, -0.291376, 57.0022 )
 
 [node name="AREA_04" type="Position3D" parent="."]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.7325, 0, -14.844 )
@@ -69,10 +74,10 @@ transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24305, 0, -7.61742 )
 
 [node name="EntryWoods" parent="." instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.10181 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.54793, -8.10181 )
 
 [node name="LightMaze" parent="." instance=ExtResource( 5 )]
-transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.63937, -2.14191, 62.4491 )
+transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.81547, -2.426, 83.244 )
 
 [node name="WorldItems" type="Spatial" parent="."]
 
@@ -88,3 +93,51 @@ light_energy = 0.2
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="."]
 "anims/Intro walking" = SubResource( 1 )
+
+[node name="Torch" parent="." instance=ExtResource( 8 )]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 6.52149, 2.89455, -0.0414686 )
+
+[node name="TorchPair1" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 17.9585 )
+
+[node name="TorchP1" parent="TorchPair1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 1.33878e-09, -3.72529e-09, -2.85218e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair1" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
+[node name="TorchPair2" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 27.9585 )
+
+[node name="TorchP1" parent="TorchPair2" instance=ExtResource( 8 )]
+transform = Transform( 1, -9.31323e-10, 0, -9.31323e-10, 1, 1.33878e-09, -7.45058e-09, -8.82428e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair2" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
+[node name="TorchPair3" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 37.9585 )
+
+[node name="TorchP1" parent="TorchPair3" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 1.33878e-09, -3.72529e-09, -2.85218e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair3" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
+[node name="TorchPair4" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 47.9585 )
+
+[node name="TorchP1" parent="TorchPair4" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 1.33878e-09, -3.72529e-09, -2.85218e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair4" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
+[node name="AreaEnter" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65262, 10.5234, 5.83062 )
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape" type="CollisionShape" parent="AreaEnter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01512, -8.73102, -1.03342 )
+shape = SubResource( 2 )

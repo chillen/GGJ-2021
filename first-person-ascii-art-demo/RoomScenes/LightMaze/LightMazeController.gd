@@ -10,6 +10,9 @@ onready var lights = [
 	[$"puzzle_lights/lightpair6/close", $"puzzle_lights/lightpair6/far"]
 ]
 
+onready var draw_bridge = $DrawBridge
+onready var invisible_wall = $InvisibleWall
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,11 +20,9 @@ func _ready():
 		light_pair[0].show()
 		light_pair[1].hide()
 
-
 func _on_button_on(button_id):
 	lights[button_id][0].hide()
 	lights[button_id][1].show()
-
 
 func _on_button_off(button_id):
 	lights[button_id][0].show()

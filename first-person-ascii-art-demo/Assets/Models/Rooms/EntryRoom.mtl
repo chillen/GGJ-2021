@@ -1,17 +1,59 @@
 # Created by Kenney (www.kenney.nl)
 
-newmtl Sandstone_Trim(Clone)
-Kd 0.871 0.765 0.647
+newmtl Sandstone_4(Clone)
+Kd 0.835 0.698 0.545
 
-newmtl Sandstone_Floor(Clone)
-Kd 0.945 0.898 0.851
+newmtl Sandstone_6(Clone)
+Kd 0.761 0.561 0.337
 
 newmtl Sandstone_5(Clone)
 Kd 0.8 0.628 0.439
 
+newmtl Sandstone_Floor(Clone)
+Kd 0.945 0.898 0.851
+
+newmtl custom5(Clone)
+Kd 0.414 0.414 0.414
+map_Kd Textures/custom5(Clone).png
+
+newmtl custom6(Clone)
+Kd 0.566 0.397 0.278
+map_Kd Textures/custom6(Clone).png
+
+newmtl Sandstone_Trim(Clone)
+Kd 0.871 0.765 0.647
+
+newmtl custom7(Clone)
+Kd 0.8 0.628 0.439
+map_Kd Textures/custom7(Clone).png
+
+newmtl foliage(Clone)
+Kd 0 0.655 0.486
+
 newmtl Gray(Clone)
 Kd 0.706 0.671 0.671
 
-newmtl Sandstone_4(Clone)
-Kd 0.835 0.698 0.545
+newmtl stoneDark(Clone)
+Kd 0.403 0.39 0.594
+
+newmtl Gold(Clone)
+Kd 0.64 0.306 0.052
+
+newmtl Glass(Clone)
+Kd 0.64 0.64 0.64
+
+newmtl Brown(Clone)
+Kd 0.11 0.06 0.041
+
+newmtl DarkRed(Clone)
+Kd 1 1 1
+
+newmtl Black(Clone)
+Kd 0.015 0.015 0.015
+
+newmtl Grey(Clone)
+Kd 0.114 0.114 0.114
+
+newmtl DarkWood(Clone)
+Kd 0.113907 0.06979501 0.035405
 
