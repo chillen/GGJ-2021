@@ -23,9 +23,10 @@ export var char_colour : float = 1
 # this code is adapted from a first-person shooter in Godot tutorial that I was
 # working through the other day... it could probably use some refinement... :)
 
-var movement_speed: float = 5.0
-var jumping_force: float = 5.0
-var gravity_force: float = 12.0
+var running = false
+var walk_speed: float = 5.0
+var run_speed: float = 12.0
+var gravity_force: float = 60.0
 
 var velocity: Vector3 = Vector3()
 
@@ -96,8 +97,10 @@ func _physics_process(delta):
 				input.x -= 1
 			if Input.is_action_pressed("move_rgt"):
 				input.x += 1
-			if Input.is_action_pressed("move_jmp") and is_on_floor():
-				velocity.y = jumping_force
+			if Input.is_action_pressed("run"):
+				running = true
+			else:
+				running = false
 
 			# normalize it (so that diagonal movement is not faster)
 			input = input.normalized()
@@ -119,8 +122,12 @@ func _physics_process(delta):
 		)
 		
 		# compute the components of the velocity vector and pass to move_and_slide 
-		velocity.x = relative_direction.x * movement_speed
-		velocity.z = relative_direction.z * movement_speed
+		if running:
+			velocity.x = relative_direction.x * run_speed
+			velocity.z = relative_direction.z * run_speed
+		else:
+			velocity.x = relative_direction.x * walk_speed
+			velocity.z = relative_direction.z * walk_speed
 		velocity.y -= gravity_force * delta
 		velocity = move_and_slide(velocity, Vector3.UP)
 

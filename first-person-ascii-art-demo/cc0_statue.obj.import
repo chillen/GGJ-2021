@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/cc0_statue.obj-1968503446ed2fa9ecc1ba83a1b5d2c0.mesh"
+
+[deps]
+
+files=[ "res://.import/cc0_statue.obj-1968503446ed2fa9ecc1ba83a1b5d2c0.mesh" ]
+
+source_file="res://cc0_statue.obj"
+dest_files=[ "res://.import/cc0_statue.obj-1968503446ed2fa9ecc1ba83a1b5d2c0.mesh", "res://.import/cc0_statue.obj-1968503446ed2fa9ecc1ba83a1b5d2c0.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

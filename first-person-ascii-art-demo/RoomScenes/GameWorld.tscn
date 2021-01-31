@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://General/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RoomScenes/EntryRoom/EntryRoom.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://RoomScenes/LightMaze/LightMaze.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/Campfire.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/GameWorld.gd" type="Script" id=7]
+[ext_resource path="res://cc0_statue.obj" type="ArrayMesh" id=8]
+[ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://RoomScenes/AmbientLight.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
@@ -164,10 +166,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1, 2.5, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 4.09782e-08, 1, 2.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 152.27, -2.17126, 61.0024 ), Vector3( 150.12, -2.18153, 57.8075 ), Vector3( 148.025, -3.21886, 57.8075 ) ]
+"values": [ Vector3( 155.065, 0.18312, 61.9813 ), Vector3( 152.27, -2.17126, 61.0024 ), Vector3( 150.12, -2.18153, 57.8075 ), Vector3( 148.025, -3.21886, 57.8075 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Player:rotation_degrees")
@@ -176,17 +178,24 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1, 2.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 90, 0 ), Vector3( -30, 90, 0 ) ]
+"values": [ Vector3( 10, -90, 0 ), Vector3( 0, 90, 0 ), Vector3( -30, 90, 0 ) ]
 }
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 1.32968, 1, 1 )
+
+[sub_resource type="CapsuleShape" id=6]
+radius = 0.534032
+height = 2.51186
 
 [node name="World" type="Spatial"]
 script = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.217036, 0, 0.976163, 0, 1, 0, -0.976164, 0, -0.217036, -0.542, 0, -2.132 )
+transform = Transform( -1.62921e-07, -0.173648, -0.984807, 0, 0.984808, -0.173648, 1, -2.82909e-08, -1.60445e-07, 155.065, 0.18312, 61.9813 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
@@ -214,7 +223,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.98091, 0, 2.42827 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.54793, -8.10181 )
 
 [node name="LightMaze" parent="." instance=ExtResource( 5 )]
-transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.81547, -2.426, 83.244 )
+transform = Transform( -0.999983, 0, -0.00584672, 0, 1, 0, 0.00584672, 0, -0.999983, -5.81547, -2.426, 83.6999 )
 
 [node name="WorldItems" type="Spatial" parent="."]
 
@@ -234,3 +243,21 @@ anims/Ascension = SubResource( 1 )
 anims/EnterTemple = SubResource( 2 )
 "anims/Intro walking" = SubResource( 3 )
 anims/ThrowOff = SubResource( 4 )
+
+[node name="AreaEnter" parent="." instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65262, 10.5234, 5.83062 )
+
+[node name="CollisionShape" type="CollisionShape" parent="AreaEnter"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01512, -8.73102, -1.03342 )
+shape = SubResource( 5 )
+
+[node name="cc0_statue" type="MeshInstance" parent="."]
+transform = Transform( -1.50089, 0, -0.899902, 0, 1.75, 0, 0.899902, 0, -1.50089, -0.641609, 0.579906, 4.5 )
+mesh = ExtResource( 8 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="cc0_statue"]
+
+[node name="CollisionShape" type="CollisionShape" parent="cc0_statue/StaticBody"]
+transform = Transform( 1, 2.98023e-08, 0, 0, -1.62921e-07, -1, -2.98023e-08, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 6 )
