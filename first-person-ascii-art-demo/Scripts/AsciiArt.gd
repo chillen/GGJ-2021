@@ -54,7 +54,7 @@ func _ready():
 	usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1
 
 	# loading the dynamic font (and note that the font size is magic_number_y)
-	dynamic_font.font_data = load("res://Assets/Font/FoglihtenNo04-070.otf")
+	dynamic_font.font_data = load("res://Assets/Font/iosevka-curly-slab-regular.ttf")
 	dynamic_font.size = magic_number_y - 1
 
 	# this creates an empty mask (currently holding only 0s and 1s, but I will
@@ -249,7 +249,8 @@ func _on_LineEdit_text_changed(new_text):
 
 
 func _on_LineEdit_text_entered(new_text):
-	if terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] != " ":
+
+	if not (terminal_handle.screen_buffer_data[terminal_handle.last_buffered_row] in ["", " ", "> "]):
 		#if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE:
 		
 		if player_handle.user_input_state == player_handle.UserInputMode.COMMAND_LINE or player_handle.user_input_state == player_handle.UserInputMode.FP_STILL_IMG:

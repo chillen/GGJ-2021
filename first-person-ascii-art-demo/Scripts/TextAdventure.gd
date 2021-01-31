@@ -216,7 +216,7 @@ func play(input_string):
 
 	# translate the input by using known synonyms and dropping words that are not important (i.e., the, that, a, etc.)
 	var punctuation_marks = [".", ",", "!", "\"", "'"]
-	var junk_words = ["AT", "THE", "A", "AN", "TO", "TOWARDS", "AWAY", "FROM", "MY", "OUT", "FOREST"]
+	var junk_words = ["AT", "THE", "A", "AN", "TO", "TOWARDS", "AWAY", "FROM", "MY", "OUT", "FOREST", "CLOSELY", "AROUND"]
 	var synonyms = [
 		["LEAVE", "RUN"],
 		["EXIT", "RUN"],
@@ -276,9 +276,13 @@ func play(input_string):
 
 	var fail_encountered = false
 	var fail_text = ""
+
+	if input_action == "OPEN" and input_object == "":
+		input_object = "DOOR"
 	
 	if len(area_fails[curr_area]) > 0:
-		
+
+					
 		for fail_details in area_fails[curr_area]:
 			if fail_details[0] == (input_action + " " + input_object).trim_suffix(" "):
 				fail_encountered = true
@@ -290,9 +294,6 @@ func play(input_string):
 		
 	else:
 
-		if input_action == "OPEN" and input_object == "":
-			input_object = "DOOR"
-			
 		if (input_action + " " + input_object).trim_suffix(" ") in area_exits[curr_area]:
 
 			var selected_exit = area_exits[curr_area][(input_action + " " + input_object).trim_suffix(" ")]
@@ -316,6 +317,8 @@ func play(input_string):
 				terminal_handle.print_to_terminal(item_descs[input_object])
 			elif input_object in inventory:
 				terminal_handle.print_to_terminal(item_descs[input_object])
+			else:
+				terminal_handle.print_to_terminal("WHAT DO YOU WANT TO LOOK AT?")
 
 		elif input_action == "SAY" or input_action == "PLEASE":
 			
