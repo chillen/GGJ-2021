@@ -11,7 +11,7 @@ var last_printed_col : int = 0
 var last_buffered_row : int = 0
 var last_buffered_col : int = 0
 
-var display_speed : int = 3
+var display_speed : int = 7
 var max_input_len : int = 32
 
 var backspace_cooldown : int = 0

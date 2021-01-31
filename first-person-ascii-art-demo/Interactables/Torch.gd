@@ -21,7 +21,8 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 		self.rotation_degrees = Vector3(0,0, 0)
 		self.translation = Vector3(0,0,0)
 		state = 1
-		interaction_caller.terminal_call("You pick up the torch, it is greased in oil.")
+		interaction_caller.terminal_call("You pick up the lit torche.")
+		interaction_caller.terminal_call("Maybe I can Light Something with this?")
 	if interaction_string == "drop":
 		interaction_caller.de_equip_item(self)
 	if interaction_string == "use" or state == 1:
@@ -29,7 +30,6 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 			$TorchLight.hide()
 		else:
 			$TorchLight.show()
-			interaction_caller.terminal_call("You take the Flint in your pocket and light the torch.")
 		on = !on
 		# on = !on
 		state = 2
