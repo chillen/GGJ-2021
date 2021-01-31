@@ -8,3 +8,4 @@ var bb = {"activated_pillars": 0}
 var ambient_light_enabled = true
 var DEBUG = false
 
+var beat_matt_maze = false

@@ -9,6 +9,8 @@ script/source = "extends Spatial
 var read_once = false
 var teleported_away = false
 onready var interactable = $Interactable
+onready var black_board = get_node(\"/root/BlackBoard\")
+onready var player_handle = $\"/root/Main/FirstPersonViewport/GameWorld/PlayerAnimations\"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,12 +31,11 @@ func _on_Interactable_interacted(interaction_string, interaction_caller):
 	if interaction_string in valid_commands or 1==1:
 		read_once = true
 		interaction_caller.terminal_call(out_text)
-		$\"/root/Main/FirstPersonViewport/GameWorld/PlayerAnimations\".play(\"Ascension\")
-		yield($PlayerAnimations, \"animation_finished\")
-		get_tree().quit()
 		
-		
-	
+		if black_board.beat_matt_maze == true:
+			player_handle.play(\"Ascension\")
+			yield(player_handle, \"animation_finished\")
+			get_tree().quit()
 "
 
 [sub_resource type="SphereShape" id=2]
