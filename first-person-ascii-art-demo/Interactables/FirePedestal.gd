@@ -12,8 +12,8 @@ signal off
 
 
 func _ready():
-	pass
-	# animation_player.seek(0.0, true)
+	if lit:
+		particles.emitting = true
 
 
 func handle_command(command,interaction_caller):
@@ -22,21 +22,21 @@ func handle_command(command,interaction_caller):
 		return false
 
 	print(interaction_caller.item_in_inventory)
+	# If player has a torch
 	if (command == "light" or 1 == 1) and \
 		not interaction_caller.item_in_inventory == null and \
-		interaction_caller.item_in_inventory.is_in_group("fire") and \
-		interaction_caller.item_in_inventory.get("on") == true:
+		interaction_caller.item_in_inventory.is_in_group("fire"):
 			
-		animation_player.play("Activated")
-		self.lit = true
-		
-		emit_signal("on")
-		
-		#black_board["activated_pillars"] += 1
-		#if black_board["activated_pillars"] == 1:
-		#	print("test1")
-		
-		return true
+		if interaction_caller.item_in_inventory.on == true:
+			#animation_player.play("Activated")
+			self.lit = true
+			emit_signal("on")
+			return true
+		elif self.lit:
+			interaction_caller.item_in.inventory.on = true
+			return true
+
+	
 	return false
 
 

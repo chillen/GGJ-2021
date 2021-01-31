@@ -1,7 +1,8 @@
 extends Spatial
 
-export var on = false
+export var on = false setget set_on
 
+onready var torchlight = $TorchLight
 var state = 0
 
 
@@ -23,7 +24,7 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 	if interaction_string == "drop":
 		interaction_caller.de_equip_item(self)
 	if interaction_string == "use" or state == 1:
-		if on and 0 == 1:
+		if not on:
 			$TorchLight.hide()
 		else:
 			$TorchLight.show()
@@ -31,7 +32,13 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 		state = 2
 	
 	
-
-
+func set_on(val):
+	if torchlight:
+		if val:
+			$TorchLight.show()
+		else:
+			$TorchLight.hide()
+	on = val
+			
 func _on_RandomTimer_timeout():
 	pass # Replace with function body.

@@ -241,7 +241,7 @@ anims/EnterTemple = SubResource( 2 )
 anims/ThrowOff = SubResource( 4 )
 
 [node name="TorchPair1" type="Spatial" parent="."]
-transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 17.9585 )
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.49538, 1.89455, 17.9638 )
 
 [node name="TorchP1" parent="TorchPair1" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 1.33878e-09, -3.72529e-09, -2.85218e-08, 1, 0, 0, 0 )
