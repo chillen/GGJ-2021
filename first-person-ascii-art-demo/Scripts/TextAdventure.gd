@@ -26,11 +26,11 @@ signal cutscene
 
 func _ready():
 	# a "desc" is a long description of an area
-	area_descs["FOREST_01"] = "I am dimly aware of strange life all around you, but the angry snarl of a not so distant beast wrenches me from your stupor. I'm in a dense forest, surrounded by the menacing shadows of twisted trees. As the savage sounds grow to a chorus and start to draw closer, I know that I am no longer safe here."
-	area_descs["FOREST_02"] = "Hands outstretched, I race away from the howling darkness. Branches claw at your face and I nearly stumble on the thick roots, but I know that falling now will mean certain death."
-	area_descs["FOREST_03"] = "Your heart hammers your chest as the blood roars through your veins. I can see fractured moonlight through the trees ahead, but the thundering hoofbeats tell me that the beasts are nearly upon you."
-	area_descs["EXT_DOOR"] = "I throw yourself into the clearing at the last moment. Even though I can still feel hateful eyes at your back, it seems that my pursuers will not follow me out of the denser part of the forest. But your relief is quickly overshadowed by the building that looms before you. A voice from your own forgotten history tells me that it has been constructed in the style of the ancient lemurians. I do not dare to try to explain its presence here, far from the shifting sands. Perhaps it is the fear of this monument to a forgotten age that keeps the beasts of the forest at bay. Even still, I would feel more comfortable with that heavy door between myself and the night."
-	area_descs["ANTE_CAMP"] = "The warmth exhaled from the antechamber banishes the chill in the night air. Much of the detail on the statue here has been consumed by time, but I am still able to recognize the winged being that was depicted here. Faint wisps of smoke rise from the torches on either side, suggesting that they were hastily extinguished only a short time ago. Not wanting to disturb the site, I make your way towards one corner of the room, suddenly finding yourself standing in the remains of a small basecamp."
+	area_descs["FOREST_01"] = "I am dimly aware of strange life all around me, but the angry snarl of a not so distant beast wrenches me from my stupor. I'm in a dense forest, surrounded by the menacing shadows of twisted trees. As the savage sounds grow to a chorus and start to draw closer, I know that I am no longer safe here."
+	area_descs["FOREST_02"] = "Hands outstretched, I race away from the howling darkness. Branches claw at my face and I nearly stumble on the thick roots, but I know that falling now will mean certain death."
+	area_descs["FOREST_03"] = "my heart hammers my chest as the blood roars through my veins. I can see fractured moonlight through the trees ahead, but the thundering hoofbeats tell me that the beasts are nearly upon you."
+	area_descs["EXT_DOOR"] = "I throw myself into the clearing at the last moment. Even though I can still feel hateful eyes at my back, it seems that my pursuers will not follow me out of the denser part of the forest. But my relief is quickly overshadowed by the building that looms before you. A voice from my own forgotten history tells me that it has been constructed in the style of the ancient lemurians. I do not dare to try to explain its presence here, far from the shifting sands. Perhaps it is the fear of this monument to a forgotten age that keeps the beasts of the forest at bay. Even still, I would feel more comfortable with that heavy door between myself and the night."
+	area_descs["ANTE_CAMP"] = "The warmth exhaled from the antechamber banishes the chill in the night air. Much of the detail on the statue here has been consumed by time, but I am still able to recognize the winged being that was depicted here. Faint wisps of smoke rise from the torches on either side, suggesting that they were hastily extinguished only a short time ago. Not wanting to disturb the site, I make my way towards one corner of the room, suddenly finding myself standing in the remains of a small basecamp."
 	area_descs["ANTE_W_BRAZIER"] = "The cast iron brazier before I can barely contain its crackling flames, and the fact that the brazier is lit at all suggests that I'm not alone in this temple. The other brazier is on the eastern side of the room, and the camp is against the southern wall by the entrance."
 	area_descs["ANTE_E_BRAZIER"] = "It would appear that this brazier was hastily extinguished only a short while ago. I can see a tin-plated canteen half buried in the still warm coals, but I have little use for an empty canteen. The other brazier  is on the western side of the room, and the camp is against the southern wall by the entrance."
 
@@ -50,7 +50,7 @@ func _ready():
 	area_hints["FOREST_01"] = [
 		2,
 		"I have no choice but to run.",
-		"There is nothing I can do right now... other than running for your life.",
+		"There is nothing I can do right now... other than running for my life.",
 		"Try typing 'run'."
 	]
 	area_hints["FOREST_02"] = [
@@ -70,16 +70,16 @@ func _ready():
 		"But first I need to try and open it.",
 		"If I have a closer look at the locked door I might find a clue.",
 		"Try typing 'look door'.",
-		"Something in your inventory might help if I unlock the door.",
+		"Something in my inventory might help if I unlock the door.",
 		"Try typing 'open inventory'.",
-		"There is a page in your inventory. Perhaps I should read it?",
+		"There is a page in my inventory. Perhaps I should read it?",
 		"Try typing 'read page'.",
-		"The door is still closed, but the page from your inventory mentions 'asking nicely'. Maybe it is as simple as saying please?",
+		"The door is still closed, but the page from my inventory mentions 'asking nicely'. Maybe it is as simple as saying please?",
 		"Try typing 'say please' and then 'open door'.",
 	]
 	area_hints["ANTE_CAMP"] = [
 		2,
-		"I now realize that I have been moving as though in a deep trance. Taking a few deep breaths, I force your limbs to relax. (Use your mouse to look around, WASD to move, and left-click to interact.)"
+		"I now realize that I have been moving as though in a deep trance. Taking a few deep breaths, I force my limbs to relax. (Use my mouse to look around, WASD to move, and left-click to interact.)"
 	]
 	area_hints["ANTE_W_BRAZIER"] = []
 	area_hints["ANTE_E_BRAZIER"] = []
@@ -99,53 +99,53 @@ func _ready():
 		["*", "There's no time for that now."],
 		[
 			"NORTH",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"SOUTH",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"EAST",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"WEST",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		]
 	]
 	area_fails["FOREST_02"] = [
 		["*", "There's no time for that now."],
 		[
 			"NORTH",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"SOUTH",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"EAST",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"WEST",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		]
 	]
 	area_fails["FOREST_03"] = [
 		["*", "There's no time for that now."],
 		[
 			"NORTH",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"SOUTH",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"EAST",
-			"The only direction I am concerned about right now is the one that takes me from your pursuers. I need to RUN."
+			"The only direction I am concerned about right now is the one that takes me from my pursuers. I need to RUN."
 		],
 		[
 			"WEST",
@@ -175,7 +175,7 @@ func _ready():
 	area_gates["EXT_DOOR"] = [
 		[
 			"SAY PLEASE",
-			"As Ishape your lips to speak, your mouth suddenly goes dry and Ifeel the curious sensation of insects crawling over your tongue. Although it was your intention to plead for entry, your ears heard only the word \"ahlloigehye\" in a voice that Ino longer recognize as your own. But the guardian of this temple seems satisfied, and Isuspect that Iwill now be able to open the door.",
+			"As I shape my lips to speak, my mouth suddenly goes dry and Ifeel the curious sensation of insects crawling over my tongue. Although it was my intention to plead for entry, my ears heard only the word \"ahlloigehye\" in a voice that Ino longer recognize as my own. But the guardian of this temple seems satisfied, and Isuspect that Iwill now be able to open the door.",
 			["OPEN DOOR", ["ANTE_CAMP", "ext_door_to_ante_camp"]]
 		]
 	]
@@ -199,8 +199,8 @@ func _ready():
 	item_names["LITTORCH"] = "a lit torch"
 	
 	# these are the long descriptions of the items, shown when the player "LOOKS" at the item
-	item_descs["DOOR"] = "There are telltale signs of the crude tools once used to cut this great stone door, but Ican find no evidence of a lock or hinges. As Iinspect more closely, your gaze is drawn inexplicably to the green stone in the center. A hush falls over the forest, and Icannot help but feel that the stone is... Listening... There is a familiarity to this scene that Icannot explain, and Isuspect that Imay have something in your inventory that might help."
-	item_descs["PAGE"] = "It was not unreasonable to hope that this page held some clue to your lost identity, but this was not the case. It appears to be a page torn from an expedition journal. The tone is academic, and most of the details recorded would be of little use, but one passage in particular echoes in your mind. \"Their savage rituals notwithstanding, the woshippers of the H' ahf' Mggoka were always strangely courteous with outsiders. When i bore this in mind, it became quite clear why the warden stone paid no heed to words like open or unlock. All I needed to do was to remember my manners and ask nicely.\""
+	item_descs["DOOR"] = "There are telltale signs of the crude tools once used to cut this great stone door, but Ican find no evidence of a lock or hinges. As Iinspect more closely, my gaze is drawn inexplicably to the green stone in the center. A hush falls over the forest, and Icannot help but feel that the stone is... Listening... There is a familiarity to this scene that Icannot explain, and Isuspect that Imay have something in my inventory that might help."
+	item_descs["PAGE"] = "It was not unreasonable to hope that this page held some clue to my lost identity, but this was not the case. It appears to be a page torn from an expedition journal. The tone is academic, and most of the details recorded would be of little use, but one passage in particular echoes in my mind. \"Their savage rituals notwithstanding, the woshippers of the H' ahf' Mggoka were always strangely courteous with outsiders. When i bore this in mind, it became quite clear why the warden stone paid no heed to words like open or unlock. All I needed to do was to remember my manners and ask nicely.\""
 	item_descs["UNLITTORCH"] = "There are flakes of burnt parchment throughout the area, and Isuspect this torch to be the culprit. It is not currently lit."
 	item_descs["LITTORCH"] = "The torch is burning brightly now."
 
