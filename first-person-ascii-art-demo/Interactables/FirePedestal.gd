@@ -44,7 +44,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_Interactable_interacted(interaction_string,interaction_caller):
-	handle_command("light",interaction_caller)
+	handle_command(interaction_string,interaction_caller)
 
 
 func set_lit(val: bool):
