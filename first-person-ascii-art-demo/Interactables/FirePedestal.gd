@@ -13,14 +13,15 @@ func _ready():
 
 func handle_command(command,interaction_caller):
 	# todo: probably can light the same pillar 3 times right now
-	if command == "light":
+	print(interaction_caller.item_in_inventory)
+	if command == "light" and not interaction_caller.item_in_inventory == null and interaction_caller.item_in_inventory.is_in_group("fire"):
 		animation_player.play("Activated")
 		self.lit = true
 
 		black_board["activated_pillars"] += 1
 		if black_board["activated_pillars"] == 1:
 			print("test1")
-
+		
 		return true
 	return false
 
