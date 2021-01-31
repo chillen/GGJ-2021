@@ -15,6 +15,8 @@ func press(interaction_string,interaction_caller):
 	if toggle:
 		emit_signal("on")
 		$AnimationPlayer.play("Button_Press")
+		interaction_caller.terminal_call("It looks like this device lit up a different section of the platform.")
 	else:
 		emit_signal("off")
 		$AnimationPlayer.play_backwards("Button_Press")
+		interaction_caller.terminal_call("It looks like this device lit up a different section of the platform.")
