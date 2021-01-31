@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Assets/Models/Environment/mazeview.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://RoomScenes/LightMaze/LightMazeController.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://RoomScenes/LightMaze/HiddenDoors.gd" type="Script" id=15]
 [ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Audio/ghostbreath.ogg" type="AudioStream" id=17]
+[ext_resource path="res://NoteWall.tscn" type="PackedScene" id=18]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 14 )
@@ -522,6 +523,7 @@ shape = SubResource( 9 )
 
 [node name="AudioStream" type="AudioStreamPlayer" parent="BottomFloor"]
 stream = ExtResource( 17 )
+bus = "SFX"
 
 [node name="Area" type="Area" parent="."]
 collision_layer = 4
@@ -686,6 +688,9 @@ multiple_enter = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.345596, 0, -0.171951 )
 shape = SubResource( 23 )
 
+[node name="Notes" parent="." instance=ExtResource( 18 )]
+transform = Transform( -0.203915, 0.978989, 0, -0.978989, -0.203915, 0, 0, 0, 1, -169.912, 4.39952, 20.668 )
+
 [connection signal="off" from="buttons/button0" to="." method="_on_button_off" binds= [ 0 ]]
 [connection signal="on" from="buttons/button0" to="." method="_on_button_on" binds= [ 0 ]]
 [connection signal="off" from="buttons/button1" to="." method="_on_button_off" binds= [ 1 ]]
@@ -700,10 +705,10 @@ shape = SubResource( 23 )
 [connection signal="on" from="buttons/button5" to="." method="_on_button_on" binds= [ 5 ]]
 [connection signal="off" from="buttons/button6" to="." method="_on_button_off" binds= [ 6 ]]
 [connection signal="on" from="buttons/button6" to="." method="_on_button_on" binds= [ 6 ]]
-[connection signal="off" from="buttons/bridgebutton" to="DrawBridge" method="open"]
 [connection signal="off" from="buttons/bridgebutton" to="InvisibleWall" method="remove"]
-[connection signal="on" from="buttons/bridgebutton" to="DrawBridge" method="open"]
+[connection signal="off" from="buttons/bridgebutton" to="DrawBridge" method="open"]
 [connection signal="on" from="buttons/bridgebutton" to="InvisibleWall" method="remove"]
+[connection signal="on" from="buttons/bridgebutton" to="DrawBridge" method="open"]
 [connection signal="body_shape_entered" from="BottomFloor/Area" to="BottomFloor" method="_on_enter"]
 [connection signal="body_shape_exited" from="BottomFloor/Area" to="BottomFloor" method="_on_exit"]
 [connection signal="body_shape_entered" from="Area" to="." method="_on_enter"]

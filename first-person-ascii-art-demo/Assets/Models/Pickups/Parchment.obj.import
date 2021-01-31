@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Parchment.obj-9cb7055d7566b946f2db8bb2f228415f.mesh"
+
+[deps]
+
+files=[ "res://.import/Parchment.obj-9cb7055d7566b946f2db8bb2f228415f.mesh" ]
+
+source_file="res://Assets/Models/Pickups/Parchment.obj"
+dest_files=[ "res://.import/Parchment.obj-9cb7055d7566b946f2db8bb2f228415f.mesh", "res://.import/Parchment.obj-9cb7055d7566b946f2db8bb2f228415f.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

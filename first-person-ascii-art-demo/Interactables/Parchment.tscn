@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Models/Pickups/Parchment.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Interactables/Interactable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Interactables/Parchment.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Audio/pageflip.wav" type="AudioStream" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.972549, 1, 0.658824, 1 )
+metallic = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color( 0.843137, 0.4, 0.203922, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereShape" id=2]
+radius = 0.946495
+
+[node name="Parchment" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Parchment" type="MeshInstance" parent="."]
+transform = Transform( -0.308916, 0.557083, -0.0966526, -0.0970192, 0.250149, 0.944299, 0.500853, 0.466204, 0.0356526, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 1 )
+
+[node name="Interactable" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="Interactable"]
+shape = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"
+
+[connection signal="interacted" from="Interactable" to="." method="_on_Interactable_interacted"]
