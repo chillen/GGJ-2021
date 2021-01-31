@@ -52,6 +52,7 @@ onready var anime : AnimationPlayer = $FidelityAnimation
 onready var examine_memory: Node
 onready var looking_memory: Node
 
+var last_terminal_text = ""
 
 var hidden_torch = null
 onready var item_in_inventory = null
@@ -194,7 +195,9 @@ func action(input, interactable):
 
 # used by interactables to call to terminal
 func terminal_call(text):
-	terminal_handle.print_to_terminal(text)
+	if not text == "" and not text == last_terminal_text:
+		terminal_handle.print_to_terminal(text)
+		last_terminal_text = text
 	
 # checks if no other items are equipted
 # equipts the item
