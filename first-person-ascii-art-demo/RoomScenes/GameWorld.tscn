@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://General/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RoomScenes/EntryRoom/EntryRoom.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://RoomScenes/LightMaze/LightMaze.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/Campfire.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/GameWorld.gd" type="Script" id=7]
+[ext_resource path="res://cc0_statue.obj" type="ArrayMesh" id=8]
 [ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://RoomScenes/AmbientLight.gd" type="Script" id=10]
 
@@ -186,6 +187,10 @@ tracks/2/keys = {
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 1.32968, 1, 1 )
 
+[sub_resource type="CapsuleShape" id=6]
+radius = 0.534032
+height = 2.51186
+
 [node name="World" type="Spatial"]
 script = ExtResource( 7 )
 
@@ -245,3 +250,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65262, 10.5234, 5.83062 )
 [node name="CollisionShape" type="CollisionShape" parent="AreaEnter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01512, -8.73102, -1.03342 )
 shape = SubResource( 5 )
+
+[node name="cc0_statue" type="MeshInstance" parent="."]
+transform = Transform( -1.50089, 0, -0.899902, 0, 1.75, 0, 0.899902, 0, -1.50089, -0.641609, 0.579906, 4.5 )
+mesh = ExtResource( 8 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="cc0_statue"]
+
+[node name="CollisionShape" type="CollisionShape" parent="cc0_statue/StaticBody"]
+transform = Transform( 1, 2.98023e-08, 0, 0, -1.62921e-07, -1, -2.98023e-08, 1, -1.62921e-07, 0, 0, 0 )
+shape = SubResource( 6 )

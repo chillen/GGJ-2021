@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/possible_statue.obj-4b3abcb829c0c782adde44bd13c05dff.mesh"
+
+[deps]
+
+files=[ "res://.import/possible_statue.obj-4b3abcb829c0c782adde44bd13c05dff.mesh" ]
+
+source_file="res://possible_statue.obj"
+dest_files=[ "res://.import/possible_statue.obj-4b3abcb829c0c782adde44bd13c05dff.mesh", "res://.import/possible_statue.obj-4b3abcb829c0c782adde44bd13c05dff.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
