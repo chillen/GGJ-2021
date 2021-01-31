@@ -21,6 +21,7 @@ func _on_Interactable_interacted(interaction_string, interaction_caller):
 		light_maze.turn_on()
 		interaction_caller.jump_off()
 		black_board.beat_matt_maze = true
+		interaction_caller.anime.play("Fidelity_Increase")
 		return
 	if (interaction_string == 'take' or interaction_string == 'grab' or 1 == 1) and torch_placed:
 		hidden_torch.hide()

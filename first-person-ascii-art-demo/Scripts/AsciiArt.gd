@@ -19,7 +19,7 @@ var txt_frame_lft = 50
 var txt_frame_rgt = 110
 
 # this is a greyscale palette (representing the maximum possible "colour depth")
-var ascii_art_palette: String = "csrzetvIixayJhCfnYjuVblUXAdpMLqomSWOgZkwGFTQNEHPRKDB"
+var ascii_art_palette: String = ".csrzetvIixayJhCfnYjuVblUXAdpMLqomSWOgZkwGFTQNEHPRKDB"
 
 # these values specify the fidelity of the ascii art representation to the actual first person view
 # they range between 0 and 1 (with 0 being almost completely unusable); experimentally, I think that
@@ -201,7 +201,10 @@ func _process(delta):
 		palette_usage = max(0, palette_usage - 0.01)
 		usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1
 		colour_fidelity = max(0, colour_fidelity - 0.01)
-
+	
+	#if randf() < 0.01:
+	#	print(colour_fidelity)
+	#	print(palette_usage)
 	# required for continually recreating the ASCII art view
 	update()
 

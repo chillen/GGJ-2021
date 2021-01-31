@@ -17,6 +17,9 @@ func _ready():
 func _on_WalkAwayTrigger_body_shape_entered(body_id, body, body_shape, local_shape):
 	if lectern.read_once and not boulders_removed:
 		body.global_transform = tp_pose.global_transform
+		body.anime.play_backwards("Fidelity_Increase")
+		#body.ascii_art.colour_fidelity = 0.25
+		#body.ascii_art.palette_usage = 0
 		boulders_removed = true
 		boulders.visible = false
 		body.terminal_call("What.. happened. I read the book and.. Its all.. Hazy... Different.")

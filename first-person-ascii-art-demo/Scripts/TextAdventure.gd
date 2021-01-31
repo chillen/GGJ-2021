@@ -51,7 +51,7 @@ func _ready():
 	area_hints["FOREST_02"] = "You have no choice but to run."
 	area_hints["FOREST_03"] = "You have no choice but to run."
 	area_hints["EXT_DOOR"] = ""
-	area_hints["ANTE_CAMP"] = ""
+	area_hints["ANTE_CAMP"] = "You suddenly realize that you have been moving as though in a deep trance. Taking a few deep breaths, you force your limbs to relax. You feel like you have better control now."
 	area_hints["ANTE_W_BRAZIER"] = ""
 	area_hints["ANTE_E_BRAZIER"] = ""
 
@@ -248,7 +248,8 @@ func play(input_string):
 		["PAGES", "PAGE"],
 		["HEAVY DOOR", "DOOR"],
 		["HEAVY STONE DOOR", "DOOR"],
-		["STONE DOOR", "DOOR"]
+		["STONE DOOR", "DOOR"],
+		["OPEN INVENTORY", "INVENTORY"]
 	]
 	
 	for punctuation_mark in punctuation_marks:
@@ -289,6 +290,9 @@ func play(input_string):
 		
 	else:
 
+		if input_action == "OPEN" and input_object == "":
+			input_object = "DOOR"
+			
 		if (input_action + " " + input_object).trim_suffix(" ") in area_exits[curr_area]:
 
 			var selected_exit = area_exits[curr_area][(input_action + " " + input_object).trim_suffix(" ")]
@@ -450,13 +454,14 @@ func play(input_string):
 		if not area_hints[curr_area] == "":
 			terminal_handle.print_to_terminal(area_hints[curr_area])
 
-		if len(area_items[curr_area]) > 0:
-			var items_in_area = []
-			for item in area_items[curr_area]:
-				if "portable" in item_flags[item]:
-					items_in_area.append(item_names[item])
-			if len(items_in_area) > 0: 
-				terminal_handle.print_to_terminal(list_to_nice_string(items_in_area))
+# I don't need to describe items in the scene any more
+#		if len(area_items[curr_area]) > 0:
+#			var items_in_area = []
+#			for item in area_items[curr_area]:
+#				if "portable" in item_flags[item]:
+#					items_in_area.append(item_names[item])
+#			if len(items_in_area) > 0: 
+#				terminal_handle.print_to_terminal(list_to_nice_string(items_in_area))
 
 		for command in area_flags[curr_area]:
 			var arguments = command.split(" ")

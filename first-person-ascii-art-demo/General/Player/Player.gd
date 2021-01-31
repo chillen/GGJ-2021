@@ -17,12 +17,16 @@ export var audio_state = 1
 export var pitch_deviance = 0.2
 var initial_pitch = 1
 
+export var fidelity_colour : float = 1
+export var char_colour : float = 1
+
 # this code is adapted from a first-person shooter in Godot tutorial that I was
 # working through the other day... it could probably use some refinement... :)
 
-var movement_speed: float = 5.0
-var jumping_force: float = 5.0
-var gravity_force: float = 12.0
+var running = false
+var walk_speed: float = 5.0
+var run_speed: float = 12.0
+var gravity_force: float = 60.0
 
 var velocity: Vector3 = Vector3()
 
@@ -40,6 +44,9 @@ onready var camera_handle: Camera = $"Camera"
 onready var camera_raycast: RayCast = $"Camera/RayCast"
 onready var terminal_handle: Node = $"/root/Main/Terminal"
 onready var lineedit_handle: LineEdit = $"/root/Main/LineEdit"
+onready var ascii_art: Sprite = $"/root/Main/AsciiArt"
+
+onready var anime : AnimationPlayer = $FidelityAnimation
 
 
 onready var examine_memory: Node
@@ -90,8 +97,10 @@ func _physics_process(delta):
 				input.x -= 1
 			if Input.is_action_pressed("move_rgt"):
 				input.x += 1
-			if Input.is_action_pressed("move_jmp") and is_on_floor():
-				velocity.y = jumping_force
+			if Input.is_action_pressed("run"):
+				running = true
+			else:
+				running = false
 
 			# normalize it (so that diagonal movement is not faster)
 			input = input.normalized()
@@ -113,8 +122,12 @@ func _physics_process(delta):
 		)
 		
 		# compute the components of the velocity vector and pass to move_and_slide 
-		velocity.x = relative_direction.x * movement_speed
-		velocity.z = relative_direction.z * movement_speed
+		if running:
+			velocity.x = relative_direction.x * run_speed
+			velocity.z = relative_direction.z * run_speed
+		else:
+			velocity.x = relative_direction.x * walk_speed
+			velocity.z = relative_direction.z * walk_speed
 		velocity.y -= gravity_force * delta
 		velocity = move_and_slide(velocity, Vector3.UP)
 
@@ -236,7 +249,9 @@ func jump_off():
 	$"../PlayerAnimations".play("ThrowOff")
 	
 
+
 func _process(delta):
+	ascii_art.colour_fidelity = fidelity_colour
 	# using the mouse movement captured and passed down from main, rotate the camera (if permitted by the current state)
 	if user_input_state == UserInputMode.FP_FREE_LOOK:
 		camera_handle.rotation_degrees.x -= mouse_movement.y * mouse_sensitivity * delta
