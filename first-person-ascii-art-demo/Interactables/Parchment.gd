@@ -3,6 +3,7 @@ extends Spatial
 
 export var interact_text = ""
 
+signal parchment_taken
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,3 +19,4 @@ func _on_Interactable_interacted(interaction_string, interaction_caller):
 	$AudioStreamPlayer.play()
 	hide()
 	interaction_caller.terminal_call(interact_text)
+	emit_signal("parchment_taken", interaction_caller)

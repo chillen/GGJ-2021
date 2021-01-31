@@ -22,6 +22,8 @@ onready var hidden_doors = $HiddenDoors
 onready var env_lights = $env_lights
 onready var puzzle_lights = $puzzle_lights
 
+onready var notes = $Notes
+
 onready var blackboard = $"/root/BlackBoard"
 
 var is_on = false
@@ -41,6 +43,7 @@ func turn_on():
 	hidden_doors.hide()
 	for door in hidden_door_collisions:
 		door.disabled = true
+	notes.show()
 
 func turn_off():
 	is_on = false
