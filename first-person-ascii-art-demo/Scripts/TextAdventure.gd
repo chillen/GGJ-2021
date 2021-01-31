@@ -212,17 +212,59 @@ func play(input_string):
 		terminal_handle.replace_with_rlyehian(terminal_handle.english_to_rlyehian[phrase_entered])
 	
 	# trim the unwanted characters from the string taken from the terminal
-	input_string = input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ").to_upper()
+	input_string = " " + input_string.trim_prefix(">").trim_prefix(" ").trim_suffix(" ").to_upper() + " "
 
 	# translate the input by using known synonyms and dropping words that are not important (i.e., the, that, a, etc.)
-	input_string = input_string.replace(" the ", " ")
-	input_string = input_string.replace(" a ", " ")
-	input_string = input_string.replace(" to ", " ")
-	input_string = input_string.replace(" towards ", " ")
-	input_string = input_string.replace(" away ", " ")
-	input_string = input_string.replace(" from ", " ")
+	var punctuation_marks = [".", ",", "!", "\"", "'"]
+	var junk_words = ["AT", "THE", "A", "AN", "TO", "TOWARDS", "AWAY", "FROM"]
+	var synonyms = [
+		["WALK", "RUN"],
+		["MOVE", "RUN"],
+		["ESCAPE", "RUN"],
+		["FLEE", "RUN"],
+		["N", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["E", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["S", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["W", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["NORTH", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["EAST", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["SOUTH", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["WEST", "RUN"], # this would need to be removed if we end up using the text adventure interface for the torch puzzles
+		["EXAMINE", "LOOK"],
+		["INSPECT", "LOOK"],
+		["LOOK SELF", "INVENTORY"],
+		["LOOK INVENTORY", "INVENTORY"],
+		["CHECK INVENTORY", "INVENTORY"],
+		["CHECK EQUIPMENT", "INVENTORY"],
+		["READ", "LOOK"],
+		["PLEASE", "SAY PLEASE"],
+		["SPEAK", "SAY"],
+		["YELL", "SAY"],
+		["ASK", "SAY"],
+		["TORN JOURNAL PAGE", "PAGE"],
+		["TORN PAGE", "PAGE"],
+		["JOURNAL PAGE", "PAGE"],
+		["JOURNAL", "PAGE"],
+		["PAGES", "PAGE"],
+		["HEAVY DOOR", "DOOR"],
+		["HEAVY STONE DOOR", "DOOR"],
+		["STONE DOOR", "DOOR"]
+	]
+	
+	for punctuation_mark in punctuation_marks:
+		input_string = input_string.replace(punctuation_mark, "")
+		
+	for junk_word in junk_words:
+		input_string = input_string.replace(" " + junk_word + " ", " ")
+		
+	for synonym_pair in synonyms:
+		var synonym = synonym_pair[0]
+		var replacement = synonym_pair[1]
+		input_string = input_string.replace(" " + synonym + " ", replacement)
 
+	input_string = input_string.trim_prefix(" ").trim_suffix(" ")
 	input_string = input_string.split(" ", false, 1)
+		
 	var input_action = input_string[0]
 	var input_object = ""
 	if len(input_string) > 1:
