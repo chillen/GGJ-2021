@@ -17,6 +17,8 @@ export var audio_state = 1
 export var pitch_deviance = 0.2
 var initial_pitch = 1
 
+export var fidelity_colour : float = 1
+
 # this code is adapted from a first-person shooter in Godot tutorial that I was
 # working through the other day... it could probably use some refinement... :)
 
@@ -40,6 +42,9 @@ onready var camera_handle: Camera = $"Camera"
 onready var camera_raycast: RayCast = $"Camera/RayCast"
 onready var terminal_handle: Node = $"/root/Main/Terminal"
 onready var lineedit_handle: LineEdit = $"/root/Main/LineEdit"
+onready var ascii_art: Sprite = $"/root/Main/AsciiArt"
+
+onready var anime : AnimationPlayer = $FidelityAnimation
 
 
 onready var examine_memory: Node
@@ -236,7 +241,9 @@ func jump_off():
 	$"../PlayerAnimations".play("ThrowOff")
 	
 
+
 func _process(delta):
+	ascii_art.colour_fidelity = fidelity_colour
 	# using the mouse movement captured and passed down from main, rotate the camera (if permitted by the current state)
 	if user_input_state == UserInputMode.FP_FREE_LOOK:
 		camera_handle.rotation_degrees.x -= mouse_movement.y * mouse_sensitivity * delta

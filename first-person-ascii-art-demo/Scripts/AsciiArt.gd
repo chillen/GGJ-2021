@@ -201,7 +201,10 @@ func _process(delta):
 		palette_usage = max(0, palette_usage - 0.01)
 		usable_palette_size = int(palette_usage * (ascii_art_palette.length() - 1)) + 1
 		colour_fidelity = max(0, colour_fidelity - 0.01)
-
+	
+	#if randf() < 0.01:
+	#	print(colour_fidelity)
+	#	print(palette_usage)
 	# required for continually recreating the ASCII art view
 	update()
 
