@@ -24,6 +24,8 @@ onready var puzzle_lights = $puzzle_lights
 
 onready var blackboard = $"/root/BlackBoard"
 
+var is_on = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	turn_off()
@@ -33,6 +35,7 @@ func _ready():
 		light_pair[1].hide()
 		
 func turn_on():
+	is_on = true
 	puzzle_lights.show()
 	env_lights.show()
 	hidden_doors.hide()
@@ -40,6 +43,7 @@ func turn_on():
 		door.disabled = true
 
 func turn_off():
+	is_on = false
 	puzzle_lights.hide()
 	env_lights.hide()
 	hidden_doors.show()
