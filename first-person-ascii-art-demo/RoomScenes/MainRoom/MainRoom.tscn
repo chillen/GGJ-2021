@@ -17,7 +17,7 @@ data = PoolVector3Array( 1.2358, -0.662, 0.3766, 1.3272, -0.7066, 0.5349, 1.1761
 extents = Vector3( 1.87393, 0.575526, 1.74408 )
 
 [sub_resource type="SphereShape" id=4]
-radius = 2.2129
+radius = 2.0
 
 [sub_resource type="BoxShape" id=5]
 extents = Vector3( 5.591, 0.353608, 5.71425 )
@@ -94,6 +94,15 @@ multiple_enter = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65724, 0.464952, 0.515694 )
 shape = SubResource( 4 )
 
+[node name="PotsMessage" parent="Messages" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.66761, -2.03303, -72.3304 )
+text = "Some Clay Pots, nothing useful"
+multiple_enter = false
+
+[node name="CollisionShape" type="CollisionShape" parent="Messages/PotsMessage"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65724, 0.464952, 0.515694 )
+shape = SubResource( 4 )
+
 [node name="Lectern" parent="." instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.90282, 0.807761, -59.7749 )
 
@@ -110,4 +119,5 @@ shape = SubResource( 5 )
 transform = Transform( -0.0547058, 0, 0.998502, 0, 1, 0, -0.998502, 0, -0.0547058, 41.4979, 1.97124, -60.1117 )
 
 [connection signal="body_shape_entered" from="Messages/BoulderObserve" to="." method="_on_BoulderObserve_body_shape_entered"]
+[connection signal="body_shape_entered" from="Messages/PotsMessage" to="." method="_on_BoulderObserve_body_shape_entered"]
 [connection signal="body_shape_entered" from="WalkAwayTrigger" to="." method="_on_WalkAwayTrigger_body_shape_entered"]
