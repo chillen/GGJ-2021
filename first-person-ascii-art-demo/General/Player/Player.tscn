@@ -47,7 +47,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.35, 1 ]
+"values": [ 0.65, 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:char_colour")
