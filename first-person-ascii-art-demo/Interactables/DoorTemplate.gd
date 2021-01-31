@@ -28,9 +28,11 @@ func interaction(interaction,interaction_caller):
 	if is_open and interaction == "close":
 		close()
 		interaction_caller.terminal_call(close_text)
+		
 	elif not is_open and interaction == "open":
 		open()
 		interaction_caller.terminal_call(open_text)
+		
 
 
 func open():
@@ -38,7 +40,6 @@ func open():
 		return
 	if $AnimationPlayer.is_playing():
 		return
-
 	$AnimationPlayer.play(animation_open)
 	is_open = true
 	emit_signal("open")

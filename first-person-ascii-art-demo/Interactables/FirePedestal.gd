@@ -7,6 +7,9 @@ onready var particles = get_node("PedestalParticles")
 
 export var lit = false setget set_lit
 
+signal on
+signal off
+
 
 func _ready():
 	pass
@@ -17,18 +20,31 @@ func handle_command(command,interaction_caller):
 	# todo: probably can light the same pillar 3 times right now
 
 	print(interaction_caller.item_in_inventory)
-	if command == "light" and not interaction_caller.item_in_inventory == null and interaction_caller.item_in_inventory.is_in_group("fire"):
+	if command == "light" and \
+		not interaction_caller.item_in_inventory == null and \
+		interaction_caller.item_in_inventory.is_in_group("fire") and \
+		interaction_caller.item_in_inventory.get("on") == true:
+			
+		animation_player.play("Activated")
 		self.lit = true
+		
+		emit_signal("on")
+		
+		#black_board["activated_pillars"] += 1
+		#if black_board["activated_pillars"] == 1:
+		#	print("test1")
+		
 		return true
 	return false
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	black_board["activated_pillars"] -= 1
+	#black_board["activated_pillars"] -= 1
+	emit_signal("off")
 
 
 func _on_Interactable_interacted(interaction_string,interaction_caller):
-	handle_command("light",interaction_caller)
+	handle_command(interaction_string,interaction_caller)
 
 
 func set_lit(val: bool):

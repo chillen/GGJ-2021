@@ -169,9 +169,6 @@ anims/EnterTemple = SubResource( 1 )
 "anims/Intro walking" = SubResource( 2 )
 anims/ThrowOff = SubResource( 3 )
 
-[node name="Torch" parent="." instance=ExtResource( 8 )]
-transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 6.52149, 2.89455, -0.0414686 )
-
 [node name="TorchPair1" type="Spatial" parent="."]
 transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 17.9585 )
 
