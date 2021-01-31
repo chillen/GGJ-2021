@@ -5,7 +5,7 @@ extends KinematicBody
 # terminal display in the bottom left; in FP_SHOW_TEXT mode mouse look is disabled and the
 # player cannot move but their key presses are used in the text entry frame in the first person
 # view; in FP_FREE_LOOK, mouse look is enables and key presses are used to move about the scene
-enum UserInputMode { COMMAND_LINE, FP_STILL_IMG, FP_TXT_ENTRY, FP_FREE_LOOK }
+enum UserInputMode { COMMAND_LINE, FP_STILL_IMG, FP_TXT_ENTRY, FP_FREE_LOOK, FP_NONE }
 
 
 # this is the variable controlling the state of the game pertaining to user input
