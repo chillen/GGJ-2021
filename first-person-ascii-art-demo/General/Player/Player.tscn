@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://General/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/Step.wav" type="AudioStream" id=2]
@@ -7,11 +7,28 @@
 radius = 0.5
 height = 1.5
 
+[sub_resource type="Animation" id=2]
+resource_name = "Fidelity_Increase"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:fidelity_colour")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.35, 1 ]
+}
+
 [node name="Player" type="KinematicBody"]
 transform = Transform( -1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -0.613274, 0, -23.0369 )
 collision_layer = 5
 collision_mask = 5
 script = ExtResource( 1 )
+fidelity_colour = 0.861014
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.09952, 0 )
@@ -41,3 +58,6 @@ omni_range = 30.0
 
 [node name="FootSteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+
+[node name="FidelityAnimation" type="AnimationPlayer" parent="."]
+anims/Fidelity_Increase = SubResource( 2 )
