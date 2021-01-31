@@ -387,22 +387,23 @@ func play(input_string):
 				items_in_area.append(item_names[item])
 			terminal_handle.print_to_terminal(list_to_nice_string(items_in_area))
 
+		for command in area_flags[curr_area]:
+			var arguments = command.split(" ")
+			match arguments[0]:
+				"trigger":
+					match arguments[1]:
+						"fp_still_image":
+							player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
+							masktimer_handle.start(2)
+						"fp_free_look":
+							player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+							
+				"cutscene":
+					print("cutscene")
+					emit_signal("cutscene", arguments[1])
+					
 	terminal_handle.print_to_terminal(">")
 	
-	for command in area_flags[curr_area]:
-		var arguments = command.split(" ")
-		match arguments[0]:
-			"trigger":
-				match arguments[1]:
-					"fp_still_image":
-						player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
-						masktimer_handle.start(2)
-					"fp_free_look":
-						player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
-						
-			"cutscene":
-				print("cutscene")
-				emit_signal("cutscene", arguments[1])
 
 func list_to_nice_string(list):
 	if len(list) == 1:
