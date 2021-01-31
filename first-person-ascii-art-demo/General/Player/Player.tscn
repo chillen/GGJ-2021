@@ -4,8 +4,8 @@
 [ext_resource path="res://Assets/Audio/Step.wav" type="AudioStream" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.5
-height = 1.5
+radius = 0.601843
+height = 1.3985
 
 [sub_resource type="Animation" id=2]
 resource_name = "Fidelity_Increase"
