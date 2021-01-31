@@ -60,7 +60,7 @@ transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.197,
 [node name="Torch" parent="DoorTemplate" instance=ExtResource( 7 )]
 transform = Transform( -1.62921e-07, -0.258819, -0.965926, 0, 0.965926, -0.258819, 1, -4.2167e-08, -1.57369e-07, 6.72901, 1.19253, -3.00878 )
 
-[connection signal="off" from="FirePedestal" to="." method="switch_signal" binds= [ -1 ]]
-[connection signal="on" from="FirePedestal" to="." method="switch_signal" binds= [ 1 ]]
-[connection signal="off" from="FirePedestal2" to="." method="switch_signal" binds= [ -1 ]]
-[connection signal="on" from="FirePedestal2" to="." method="switch_signal" binds= [ 1 ]]
+[connection signal="off" from="FirePedestal" to="." method="_on_FirePedestal_off"]
+[connection signal="on" from="FirePedestal" to="." method="_on_FirePedestal_on"]
+[connection signal="off" from="FirePedestal2" to="." method="_on_FirePedestal2_off"]
+[connection signal="on" from="FirePedestal2" to="." method="_on_FirePedestal2_on"]

@@ -2,6 +2,8 @@ extends Spatial
 
 export var number_of_switches_on = 2
 var num_current_on = 0
+var  a = false
+var  b = false
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -16,14 +18,20 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
+
+		
 #	pass
-func switch_signal(on_off_number):
-	num_current_on += on_off_number
-	if num_current_on == number_of_switches_on:
+func check_door():
+	print("here")
+	if a and b :
+		a = false
+		b = false
 		$WallDoor.open()
-	else:
+		yield(get_tree().create_timer(10),"timeout")
 		$WallDoor.close()
-	print(on_off_number)
+
+	
+
 	#if on_off_number == -1 :
 	#	print("close")
 	#	$DoorTemplate2.close()
@@ -42,3 +50,21 @@ func switch_signal(on_off_number):
 	#else:
 	#	$WallDoor.close()
 	#	print("close")
+
+
+func _on_FirePedestal_off():
+	a = false
+
+
+func _on_FirePedestal_on():
+	a = true
+	check_door()
+
+
+func _on_FirePedestal2_off():
+	b = false
+
+
+func _on_FirePedestal2_on():
+	b = true
+	check_door()
