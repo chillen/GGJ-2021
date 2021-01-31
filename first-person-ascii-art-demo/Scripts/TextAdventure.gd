@@ -165,7 +165,7 @@ func _ready():
 
 	# these are the short descriptions of the items, used for inventory (and upon changing areas)
 	item_names["DOOR"] = "a heavy wooden door"
-	item_names["PAGE"] = "a page torn from a journal"
+	item_names["PAGE"] = "a page that was torn from a journal"
 	item_names["UNLITTORCH"] = "an unlit torch"
 	item_names["LITTORCH"] = "a lit torch"
 	
@@ -216,8 +216,10 @@ func play(input_string):
 
 	# translate the input by using known synonyms and dropping words that are not important (i.e., the, that, a, etc.)
 	var punctuation_marks = [".", ",", "!", "\"", "'"]
-	var junk_words = ["AT", "THE", "A", "AN", "TO", "TOWARDS", "AWAY", "FROM"]
+	var junk_words = ["AT", "THE", "A", "AN", "TO", "TOWARDS", "AWAY", "FROM", "MY", "OUT", "FOREST"]
 	var synonyms = [
+		["LEAVE", "RUN"],
+		["EXIT", "RUN"],
 		["WALK", "RUN"],
 		["MOVE", "RUN"],
 		["ESCAPE", "RUN"],
@@ -237,10 +239,8 @@ func play(input_string):
 		["CHECK INVENTORY", "INVENTORY"],
 		["CHECK EQUIPMENT", "INVENTORY"],
 		["READ", "LOOK"],
-		["PLEASE", "SAY PLEASE"],
+		["ASK NICELY", "SAY PLEASE"],
 		["SPEAK", "SAY"],
-		["YELL", "SAY"],
-		["ASK", "SAY"],
 		["TORN JOURNAL PAGE", "PAGE"],
 		["TORN PAGE", "PAGE"],
 		["JOURNAL PAGE", "PAGE"],
@@ -256,15 +256,18 @@ func play(input_string):
 		
 	for junk_word in junk_words:
 		input_string = input_string.replace(" " + junk_word + " ", " ")
-		
+	print(input_string)
 	for synonym_pair in synonyms:
 		var synonym = synonym_pair[0]
 		var replacement = synonym_pair[1]
-		input_string = input_string.replace(" " + synonym + " ", replacement)
+		input_string = input_string.replace(" " + synonym + " ", " " + replacement + " ")
+	print(input_string)
 
 	input_string = input_string.trim_prefix(" ").trim_suffix(" ")
 	input_string = input_string.split(" ", false, 1)
-		
+	
+	print(input_string)
+	
 	var input_action = input_string[0]
 	var input_object = ""
 	if len(input_string) > 1:
@@ -310,13 +313,15 @@ func play(input_string):
 			elif input_object in inventory:
 				terminal_handle.print_to_terminal(item_descs[input_object])
 
-		elif input_action == "SAY":
+		elif input_action == "SAY" or input_action == "PLEASE":
 			
+			if input_action == "PLEASE":
+				input_action = "SAY"
+				input_object = "PLEASE"
+					
 			# check each of the "gates" in the area to see if one has been removed by this "use"
 			var had_effect = false
 			for gate_details in area_gates[curr_area]:
-				
-				print(gate_details)
 				
 				if gate_details[0] == input_action + " " + input_object:
 					had_effect = true
@@ -329,11 +334,11 @@ func play(input_string):
 								area_fails[curr_area].erase(fail_details)
 								break
 
-		elif input_action == "LIGHT" and input_object == "TORCH":
-			# if the object is in the players inventory
-			if "UNLITTORCH" in inventory and curr_area == "ANTE_W_BRAZIER":
-				inventory.erase("UNLITTORCH")
-				inventory.append("LITTORCH")
+#		elif input_action == "LIGHT" and input_object == "TORCH":
+#			# if the object is in the players inventory
+#			if "UNLITTORCH" in inventory and curr_area == "ANTE_W_BRAZIER":
+#				inventory.erase("UNLITTORCH")
+#				inventory.append("LITTORCH")
 				
 		elif input_action == "USE":
 			# if the object is in the players inventory
