@@ -14,6 +14,10 @@ func _ready():
 func _on_enter(body_id, body, body_shape, local_shape):
 	# todo: if player
 	if true:
+		if not $AudioStream.playing:
+			$AudioStream.play()
+		
+		body.terminal_call("This magical energy seems to be carrying me back to the start.")
 		player_obj = body
 		particles.emitting = true
 		
@@ -21,6 +25,8 @@ func _on_enter(body_id, body, body_shape, local_shape):
 func _on_exit(body_id, body, body_shape, local_shape):
 	# todo: if player
 	if true:
+		if not $AudioStream.playing:
+			$AudioStream.stop()
 		player_obj = null
 		particles.emitting = false
 
