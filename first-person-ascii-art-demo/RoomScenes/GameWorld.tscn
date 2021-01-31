@@ -81,7 +81,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-length = 6.0
+length = 12.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Player")
 tracks/0/interp = 1
@@ -186,7 +186,7 @@ tracks/2/keys = {
 script = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.99999, 0.00404656, -0.00189494, 0, 0.424089, 0.90562, 0.00446828, 0.905612, -0.424084, -0.44, 1.97, 61.615 )
+transform = Transform( -0.217036, 0, 0.976163, 0, 1, 0, -0.976164, 0, -0.217036, -0.542, 0, -2.132 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )

@@ -29,6 +29,7 @@ func handle_command(command,interaction_caller):
 			
 		animation_player.play("Activated")
 		self.lit = true
+		interaction_caller.terminal_call("You light a fire with your torch. It crackles as it roars to life.")
 		
 		emit_signal("on")
 		
