@@ -246,7 +246,7 @@ anims/ThrowOff = SubResource( 4 )
 
 [node name="StatueDescription" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65262, 10.5234, 5.25135 )
-text = "You see a statue."
+text = "I see a statue."
 
 [node name="CollisionShape" type="CollisionShape" parent="StatueDescription"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01512, -8.73102, -1.03342 )

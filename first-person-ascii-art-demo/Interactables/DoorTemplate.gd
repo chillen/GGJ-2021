@@ -2,8 +2,8 @@ extends Spatial
 
 export var animation_open = "Hinge_Open"
 export var locked_text = "Does not seem to budge."
-export var open_text = "You hear creaking as it opens"
-export var close_text = "You hear creaking as it closes"
+export var open_text = "I hear creaking as it opens"
+export var close_text = "I hear creaking as it closes"
 export var is_open = false
 export var locked = false
 
