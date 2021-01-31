@@ -22,11 +22,11 @@ func _ready():
 		
 #	pass
 func check_door():
-	print("here")
 	if a and b :
 		a = false
 		b = false
 		$WallDoor.open()
+		$WallDescription.queue_free()
 		yield(get_tree().create_timer(10),"timeout")
 		$WallDoor.close()
 

@@ -83,7 +83,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-length = 6.0
+length = 12.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Player")
 tracks/0/interp = 1

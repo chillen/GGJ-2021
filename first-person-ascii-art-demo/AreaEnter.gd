@@ -20,6 +20,8 @@ func _ready():
 
 
 func _on_Object_body_shape_entered(body_id, body, body_shape, local_shape):
+	if text ==   "":
+		return
 	if not inital_enter :
 		body.terminal_call(text)
 		inital_enter = not inital_enter
