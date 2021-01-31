@@ -5,5 +5,6 @@ extends Node
 # accessed across scenes.
 
 var bb = {"activated_pillars": 0}
-
+var ambient_light_enabled = true
 var DEBUG = false
+
