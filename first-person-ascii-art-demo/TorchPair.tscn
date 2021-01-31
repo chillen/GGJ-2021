@@ -5,7 +5,7 @@
 [ext_resource path="res://RoomScenes/TorchPair.gd" type="Script" id=5]
 
 [sub_resource type="BoxShape" id=1]
-extents = Vector3( 3.97154, 2.30071, 4.07982 )
+extents = Vector3( 7.6643, 2.30071, 8.60978 )
 
 [node name="TorchPair" type="Spatial"]
 transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 17.9585 )

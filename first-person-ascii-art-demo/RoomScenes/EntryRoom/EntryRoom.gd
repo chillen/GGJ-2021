@@ -21,16 +21,18 @@ func _ready():
 
 		
 #	pass
-func check_door():
+func check_door_open():
 	if a and b :
-		a = false
-		b = false
 		$WallDoor.open_non_interaction()
-		$WallDescription.queue_free()
-		yield(get_tree().create_timer(10),"timeout")
-		$WallDoor.close_non_interaction()
+		$WallDescsription.queue_free()
+		#yield(get_tree().create_timer(10),"timeout")
+		
 
-	
+
+func check_door_close():
+	if not a and not b:
+		$WallDoor.close_non_interaction()
+		
 
 	#if on_off_number == -1 :
 	#	print("close")
@@ -54,17 +56,27 @@ func check_door():
 
 func _on_FirePedestal_off():
 	a = false
+	check_door_close()
 
 
 func _on_FirePedestal_on():
 	a = true
-	check_door()
+	check_door_open()
 
 
 func _on_FirePedestal2_off():
 	b = false
+	check_door_close()
 
 
 func _on_FirePedestal2_on():
 	b = true
-	check_door()
+	check_door_open()
+
+
+func _on_Hallway_body_shape_entered(body_id, body, body_shape, local_shape):
+	print("test")
+	a = false
+	b = false
+	check_door_close()
+	pass # Replace with function body.

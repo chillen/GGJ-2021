@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://General/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Audio/Step.wav" type="AudioStream" id=2]
@@ -8,7 +8,34 @@ radius = 0.601843
 height = 1.3985
 
 [sub_resource type="Animation" id=2]
-resource_name = "Fidelity_Increase"
+resource_name = "Fidelity_Decrease"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:fidelity_colour")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:char_colour")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5 ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:fidelity_colour")
@@ -73,4 +100,5 @@ stream = ExtResource( 2 )
 bus = "SFX"
 
 [node name="FidelityAnimation" type="AnimationPlayer" parent="."]
-anims/Fidelity_Increase = SubResource( 2 )
+anims/Fidelity_Decrease = SubResource( 2 )
+anims/Fidelity_Increase = SubResource( 3 )
