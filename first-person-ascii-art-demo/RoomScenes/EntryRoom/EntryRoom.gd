@@ -24,7 +24,6 @@ func _ready():
 func check_door_open():
 	if a and b :
 		$WallDoor.open_non_interaction()
-		$WallDescsription.queue_free()
 		#yield(get_tree().create_timer(10),"timeout")
 		
 

@@ -423,14 +423,14 @@ spot_angle = 12.3357
 transform = Transform( -1, -6.31008e-05, 0.000307949, 0, 0.979645, 0.200736, -0.000314347, 0.200736, -0.979645, -96.009, 9.67303, -0.983393 )
 light_color = Color( 0.568627, 0, 1, 1 )
 light_energy = 7.69
-spot_range = 30.9879
+spot_range = 24.8962
 spot_angle = 11.3834
 
 [node name="SpotLight5" type="SpotLight" parent="env_lights"]
 transform = Transform( -1, -6.31008e-05, 0.000307949, -4.47427e-05, 0.998243, 0.0592541, -0.000311147, 0.0592541, -0.998243, -96.2634, 7.41831, -13.1173 )
 light_color = Color( 0.568627, 0, 1, 1 )
 light_energy = 8.76
-spot_range = 30.9879
+spot_range = 29.1745
 spot_angle = 11.3834
 
 [node name="SpotLight7" type="SpotLight" parent="env_lights"]
@@ -444,7 +444,7 @@ spot_angle = 8.56053
 transform = Transform( 0.669954, -0.742324, -0.010824, -0.593107, -0.54394, 0.593594, -0.446526, -0.391261, -0.804692, -96.0901, 10.2895, 37.8612 )
 light_color = Color( 0.568627, 0, 1, 1 )
 light_energy = 5.54
-spot_range = 11.4036
+spot_range = 11.299
 spot_angle = 23.4397
 
 [node name="OmniLight14" type="OmniLight" parent="env_lights"]
@@ -454,7 +454,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4993, -0.417412, 13.7022 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -43.4993, -0.417412, 26.5997 )
 
 [node name="SpotLight2" type="SpotLight" parent="env_lights"]
-transform = Transform( 1, 0, 0, 0, 0.175985, 0.984393, 0, -0.984393, 0.175985, -97.6797, 8.50853, 36.4548 )
+transform = Transform( 1, 0, 0, 0, -0.00263576, 0.999997, 0, -0.999997, -0.00263576, -96.9982, 8.50853, 36.2193 )
+light_color = Color( 0.313726, 1, 0, 1 )
+spot_range = 5.18037
+spot_angle = 29.9694
 
 [node name="buttons" type="Spatial" parent="."]
 
@@ -484,7 +487,7 @@ transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -97.7066, 6.05664, 36.35
 
 [node name="DrawBridge" parent="." instance=ExtResource( 5 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -97.1918, 5.66064, 43.5614 )
-locked_text = ""
+locked_text = "Maybe there's a way to lower this."
 open_text = "The bridge lowered!"
 close_text = ""
 locked = true
@@ -705,10 +708,10 @@ transform = Transform( -0.203915, 0.978989, 0, -0.978989, -0.203915, 0, 0, 0, 1,
 [connection signal="on" from="buttons/button5" to="." method="_on_button_on" binds= [ 5 ]]
 [connection signal="off" from="buttons/button6" to="." method="_on_button_off" binds= [ 6 ]]
 [connection signal="on" from="buttons/button6" to="." method="_on_button_on" binds= [ 6 ]]
-[connection signal="off" from="buttons/bridgebutton" to="InvisibleWall" method="remove"]
 [connection signal="off" from="buttons/bridgebutton" to="DrawBridge" method="open"]
-[connection signal="on" from="buttons/bridgebutton" to="InvisibleWall" method="remove"]
+[connection signal="off" from="buttons/bridgebutton" to="InvisibleWall" method="remove"]
 [connection signal="on" from="buttons/bridgebutton" to="DrawBridge" method="open"]
+[connection signal="on" from="buttons/bridgebutton" to="InvisibleWall" method="remove"]
 [connection signal="body_shape_entered" from="BottomFloor/Area" to="BottomFloor" method="_on_enter"]
 [connection signal="body_shape_exited" from="BottomFloor/Area" to="BottomFloor" method="_on_exit"]
 [connection signal="body_shape_entered" from="Area" to="." method="_on_enter"]
