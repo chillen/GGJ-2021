@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://General/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://RoomScenes/EntryRoom/EntryRoom.tscn" type="PackedScene" id=2]
@@ -12,7 +12,41 @@
 [ext_resource path="res://RoomScenes/AmbientLight.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Intro walking"
+resource_name = "EnterTemple"
+length = 6.0
+tracks/0/type = "transform"
+tracks/0/path = NodePath("Player")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = PoolRealArray(  )
+tracks/1/type = "value"
+tracks/1/path = NodePath("Player:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 3.7 ),
+"transitions": PoolRealArray( 1.6245, 1 ),
+"update": 0,
+"values": [ Vector3( -0.739519, 0, -6.30172 ), Vector3( -0.542, 0, -2.132 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Player:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.1, 3.2, 3.8, 5.6 ),
+"transitions": PoolRealArray( 2.2974, 1, 0.196146, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 180, 0 ), Vector3( 0, 230, 0 ), Vector3( 0, 230, 0 ), Vector3( 0, 102.535, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
 length = 20.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Player")
@@ -46,8 +80,7 @@ tracks/2/keys = {
 "values": [ Vector3( 0, -180, 0 ), Vector3( 0, -180, 0 ), Vector3( 20.242, -150.301, 0 ), Vector3( 35.711, -123.085, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -180, 0 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "ThrowOff"
+[sub_resource type="Animation" id=3]
 length = 3.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Player")
@@ -81,15 +114,14 @@ tracks/2/keys = {
 "values": [ Vector3( 0, 90, 0 ), Vector3( -30, 90, 0 ) ]
 }
 
-[sub_resource type="BoxShape" id=3]
+[sub_resource type="BoxShape" id=4]
 extents = Vector3( 1.32968, 1, 1 )
-
 
 [node name="World" type="Spatial"]
 script = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -1.62921e-07, -0.00574699, 0.999983, 0, 0.999983, 0.00574699, -1, 9.36303e-10, -1.62918e-07, -1.99452, 0, -45.3102 )
+transform = Transform( -0.217036, 0, 0.976163, 0, 1, 0, -0.976164, 0, -0.217036, -0.542, 0, -2.132 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
@@ -133,8 +165,9 @@ light_energy = 0.2
 script = ExtResource( 10 )
 
 [node name="PlayerAnimations" type="AnimationPlayer" parent="."]
-"anims/Intro walking" = SubResource( 1 )
-anims/ThrowOff = SubResource( 2 )
+anims/EnterTemple = SubResource( 1 )
+"anims/Intro walking" = SubResource( 2 )
+anims/ThrowOff = SubResource( 3 )
 
 [node name="Torch" parent="." instance=ExtResource( 8 )]
 transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 6.52149, 2.89455, -0.0414686 )
@@ -180,4 +213,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65262, 10.5234, 5.83062 )
 
 [node name="CollisionShape" type="CollisionShape" parent="AreaEnter"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01512, -8.73102, -1.03342 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )

@@ -16,9 +16,10 @@ func _on_Cutscene_Request(scene):
 			$PlayerAnimations.play("Intro walking")
 		
 		"ext_door_to_ante_camp":
-			print($"Player".transform)
-			print($"ANTE_CAMP".transform)
-			$"Player".transform = $"ANTE_CAMP".transform
+			$PlayerAnimations.play("EnterTemple")
+			yield($PlayerAnimations, "animation_finished")
+			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/DoorTemplate".close()
 			
 		"ante_camp_to_ante_w_brazier":
 			$"Player".transform = $"ANTE_W_BRAZIER".transform
