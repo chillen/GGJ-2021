@@ -7,7 +7,7 @@ onready var collision_shape : CollisionShape = $StaticBody/CollisionShape
 func _ready():
 	pass # Replace with function body.
 
-func remove():
+func remove(interaction_caller):
 	if is_removed == true:
 		return
 	
