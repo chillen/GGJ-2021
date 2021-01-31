@@ -70,6 +70,7 @@ omni_range = 30.0
 
 [node name="FootSteps" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "SFX"
 
 [node name="FidelityAnimation" type="AnimationPlayer" parent="."]
 anims/Fidelity_Increase = SubResource( 2 )

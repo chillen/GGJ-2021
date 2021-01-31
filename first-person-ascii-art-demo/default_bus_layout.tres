@@ -5,7 +5,7 @@ resource_name = "Reverb"
 
 [sub_resource type="AudioEffectReverb" id=2]
 resource_name = "Reverb"
-room_size = 0.89
+room_size = 0.66
 
 [resource]
 bus/0/volume_db = 6.02

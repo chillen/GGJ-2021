@@ -519,6 +519,7 @@ shape = SubResource( 9 )
 
 [node name="AudioStream" type="AudioStreamPlayer" parent="BottomFloor"]
 stream = ExtResource( 17 )
+bus = "SFX"
 
 [node name="Area" type="Area" parent="."]
 collision_layer = 4
