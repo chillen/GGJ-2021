@@ -50,13 +50,21 @@ func turn_off():
 	for door in hidden_door_collisions:
 		door.disabled = false
 
-func _on_button_on(button_id):
+func _on_button_on(interaction_caller, button_id):
 	lights[button_id][0].hide()
 	lights[button_id][1].show()
+	if is_on:
+		interaction_caller.terminal_call("It looks like this device lit up a different section of the platform.")
+	else:
+		interaction_caller.terminal_call("It doesn't look like anything happened. I should continue. Maybe I'll come back later.")
 
-func _on_button_off(button_id):
+func _on_button_off(interaction_caller, button_id):
 	lights[button_id][0].show()
 	lights[button_id][1].hide()
+	if is_on:
+		interaction_caller.terminal_call("It looks like this device lit up a different section of the platform.")
+	else:
+		interaction_caller.terminal_call("It doesn't look like anything happened. I should continue. Maybe I'll come back later.")
 
 func _on_enter(body_id, body, body_shape, local_shape):
 	blackboard.ambient_light_enabled = false

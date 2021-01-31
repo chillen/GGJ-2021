@@ -30,28 +30,28 @@ func interaction(interaction,interaction_caller):
 		# play sound that might sugest locked
 		return
 	if is_open and interaction == "close":
-		close()
-		interaction_caller.terminal_call(close_text)
+		close(interaction_caller)
 		
 	elif not is_open and interaction == "open":
-		open()
-		interaction_caller.terminal_call(open_text)
+		open(interaction_caller)
+		
 		
 
 
-func open():
+func open(interaction_caller):
 	if is_open:
 		return
 	if $AnimationPlayer.is_playing():
 		return
 	$AnimationPlayer.play(animation_open)
 	is_open = true
+	interaction_caller.terminal_call(open_text)
 	emit_signal("open")
 	$OpeningNoise.play()
 	pass
 
 
-func close():
+func close(interaction_caller):
 	if not is_open:
 		return
 	if $AnimationPlayer.is_playing():
@@ -59,6 +59,7 @@ func close():
 
 	$AnimationPlayer.play_backwards(animation_open)
 	emit_signal("closed")
+	interaction_caller.terminal_call(close_text)
 	is_open = false
 	$OpeningNoise.play()
 	pass
