@@ -12,7 +12,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_Interactable_interacted(interaction_string, interaction_caller):
-	if (interaction_string == 'put' or interaction_string == 'place') and not torch_placed:
+	if (interaction_string == 'put' or interaction_string == 'place' or 1 == 1) and not torch_placed:
 		hidden_torch.show()
 		torchlight.show()
 		interaction_caller.unequip_torch_to_holder()
@@ -20,7 +20,7 @@ func _on_Interactable_interacted(interaction_string, interaction_caller):
 		light_maze.turn_on()
 		interaction_caller.jump_off()
 		return
-	if (interaction_string == 'take' or interaction_string == 'grab') and torch_placed:
+	if (interaction_string == 'take' or interaction_string == 'grab' or 1 == 1) and torch_placed:
 		hidden_torch.hide()
 		interaction_caller.equip_torch_from_holder()
 		torch_placed = false
