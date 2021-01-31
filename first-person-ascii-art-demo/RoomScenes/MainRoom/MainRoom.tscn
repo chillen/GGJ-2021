@@ -106,6 +106,7 @@ shape = SubResource( 4 )
 [node name="LecturnMessage" parent="Messages" instance=ExtResource( 5 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.33239, -0.03303, -60.3304 )
 text = "There Seems to Be a book here, may be I can read it?"
+multiple_enter = false
 
 [node name="CollisionShape" type="CollisionShape" parent="Messages/LecturnMessage"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65724, 0.464952, 0.515694 )

@@ -419,19 +419,19 @@ func play(input_string):
 				else:
 					terminal_handle.print_to_terminal("You don't have any " + input_object + " to use.")
 
-		elif input_action == "MATT":
+		elif input_action == "MATT" and is_debug_mode_on == true:
 			masktimer_handle.start(0.01)
 			player_handle.transform.origin = Vector3(155.58,0,54.084)
 			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/Torch"._on_Interactable_interacted("take", player_handle)
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 
-		elif input_action == "CONNOR":
+		elif input_action == "CONNOR" and is_debug_mode_on == true:
 			masktimer_handle.start(0.01)
 			player_handle.transform.origin = Vector3(-.1, 0, 50)
 			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/Torch"._on_Interactable_interacted("take", player_handle)
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 			
-		elif input_action == "ENTRY":
+		elif input_action == "ENTRY" and is_debug_mode_on == true:
 			masktimer_handle.start(0.01)
 			player_handle.transform.origin = Vector3(0, 0, 0)
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK

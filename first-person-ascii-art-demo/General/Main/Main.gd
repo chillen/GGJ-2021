@@ -12,6 +12,7 @@ func _input(event):
 	if black_board.DEBUG == true:
 		if Input.is_action_pressed("f1"):
 			$FirstPersonSprite.visible = true
+			$FirstPersonSprite.visible = true
 			$AsciiArt.visible = false
 			$FirstPersonViewport.set_debug_draw(0)
 		elif Input.is_action_pressed("f2"):

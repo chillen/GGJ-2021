@@ -195,7 +195,7 @@ height = 2.51186
 script = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.99999, 0.00404656, -0.00189494, 0, 0.424089, 0.90562, 0.00446828, 0.905612, -0.424084, -2.48, 0, -52.746 )
+transform = Transform( -0.99999, 0.00435807, -0.0009841, 0, 0.220265, 0.975439, 0.0044678, 0.975431, -0.220263, -0.44, 4.35805, 61.615 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )

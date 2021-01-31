@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://new_dynamicfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://new_dynamicfontBIG.tres" type="DynamicFont" id=2]
+[ext_resource path="res://small.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Credits.gd" type="Script" id=4]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_bottom = 720.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 30.0
+custom_fonts/normal_font = ExtResource( 1 )
+text = "Credits
+
+- Developers -
+Christopher Blackman
+Connor Hillen
+Forest Anderson
+Matt Diener
+Robert Collier
+
+- Playtesters -
+Jason Huang
+Moriah Ellis"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 21.0
+margin_top = 576.027
+margin_right = -17.0
+margin_bottom = -23.9729
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_text = "The papers I gathered had a banishing ritual written in some strange language. I read them aloud and the world faded out from under me. The words felt so familiar, as if this weren't the first time they left my mouth. As my mind flew from my body I saw it - that... thing.. I can't seem to recall what it looks like. Or where I am. Or how I got here. As I look around the forest, I can feel a terrible life watching me. I must run. But there's a door in the distance. I'd feel much better with that door between me and the forest."
+text = "The papers I gathered had a banishing ritual written in some strange language. I read them aloud and the world faded out from under me. The words felt so familiar, as if this weren't the first time they left my mouth. As my mind flew from my body I saw it - that... thing.. I can't seem to recall what it looks like. Or where I am. Or how I got here. As I look around the forest, I can feel a terrible life watching me. I must run. But there's a door in the distance. I'd feel much better with that door between me and the forest."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 600.0
+margin_top = 30.0
+custom_fonts/normal_font = ExtResource( 2 )
+text = "Loss
+  For 
+    Words"
+__meta__ = {
+"_edit_use_anchors_": false
+}
