@@ -7,6 +7,8 @@ export var close_text = "You hear creaking as it closes"
 export var is_open = false
 export var locked = false
 
+export var audio: AudioStream = null
+
 signal open
 signal closed
 
@@ -17,6 +19,8 @@ func _ready():
 	else:
 		$AnimationPlayer.play_backwards(animation_open)
 	pass  # Replace with function body.
+	
+	$OpeningNoise.stream = audio
 
 
 func interaction(interaction,interaction_caller):
@@ -43,6 +47,7 @@ func open():
 	$AnimationPlayer.play(animation_open)
 	is_open = true
 	emit_signal("open")
+	$OpeningNoise.play()
 	pass
 
 
@@ -55,4 +60,5 @@ func close():
 	$AnimationPlayer.play_backwards(animation_open)
 	emit_signal("closed")
 	is_open = false
+	$OpeningNoise.play()
 	pass

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/CreakingNoise.wav-ab88837c07fff8b6f86c421f09cbee09.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/CreakingNoise.wav"
+dest_files=[ "res://.import/CreakingNoise.wav-ab88837c07fff8b6f86c421f09cbee09.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

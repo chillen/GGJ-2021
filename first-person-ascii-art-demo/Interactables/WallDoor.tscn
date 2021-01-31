@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Interactables/DoorTemplate.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Models/Environment/EntryRoomWall.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/Audio/CreakingNoise.wav" type="AudioStream" id=3]
 
 [sub_resource type="ConcavePolygonShape" id=1]
 data = PoolVector3Array( -0.6, 6.4493, 2.9901, -0.4, 6.4493, -2.9901, -0.4, 6.4493, 2.9901, -0.6, 6.4493, -2.9901, -0.4, 6.4493, -2.9901, -0.6, 6.4493, 2.9901, -0.6, 6.4493, 2.9901, -0.6, 0, 2.9901, -0.6, 6.4493, -2.9901, -0.6, 0, 2.9901, -0.6, 0, -2.9901, -0.6, 6.4493, -2.9901, -0.6, 0, 2.9901, -0.6, 6.4493, 2.9901, -0.4, 0, 2.9901, -0.6, 6.4493, 2.9901, -0.4, 6.4493, 2.9901, -0.4, 0, 2.9901, -0.4, 0, 2.9901, -0.4, 6.4493, 2.9901, -0.4, 0, -2.9901, -0.4, 6.4493, 2.9901, -0.4, 6.4493, -2.9901, -0.4, 0, -2.9901, -0.6, 0, -2.9901, -0.6, 0, 2.9901, -0.4, 0, -2.9901, -0.6, 0, 2.9901, -0.4, 0, 2.9901, -0.4, 0, -2.9901, -0.6, 6.4493, -2.9901, -0.6, 0, -2.9901, -0.4, 6.4493, -2.9901, -0.6, 0, -2.9901, -0.4, 0, -2.9901, -0.4, 6.4493, -2.9901 )
@@ -39,6 +40,7 @@ tracks/0/keys = {
 [node name="WallDoor" type="Spatial"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 script = ExtResource( 1 )
+audio = ExtResource( 3 )
 
 [node name="Hinge" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0 )
@@ -57,3 +59,5 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Hinge_Open = SubResource( 2 )
 anims/Hinge_Up = SubResource( 3 )
+
+[node name="OpeningNoise" type="AudioStreamPlayer" parent="."]

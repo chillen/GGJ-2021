@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Interactables/Button.gd" type="Script" id=1]
 [ext_resource path="res://Interactables/Interactable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Audio/Click.wav" type="AudioStream" id=3]
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 0.5
@@ -46,6 +47,7 @@ tracks/1/keys = {
 
 [node name="Button" type="Spatial"]
 script = ExtResource( 1 )
+audio = ExtResource( 3 )
 
 [node name="CSGMesh" type="CSGMesh" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
@@ -76,5 +78,7 @@ anims/Button_Press = SubResource( 5 )
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93209, 3.97159 )
 visible = false
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
 
 [connection signal="interacted" from="Interactable" to="." method="press"]
