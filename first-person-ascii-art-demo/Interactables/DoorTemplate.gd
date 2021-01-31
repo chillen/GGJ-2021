@@ -36,8 +36,17 @@ func interaction(interaction,interaction_caller):
 		open(interaction_caller)
 		
 		
-
-
+func open_non_interaction():
+	if is_open:
+		return
+	if $AnimationPlayer.is_playing():
+		return
+	$AnimationPlayer.play(animation_open)
+	is_open = true
+	emit_signal("open")
+	$OpeningNoise.play()
+	pass
+	
 func open(interaction_caller):
 	if is_open:
 		return
@@ -50,6 +59,17 @@ func open(interaction_caller):
 	$OpeningNoise.play()
 	pass
 
+func close_non_interaction():
+	if not is_open:
+		return
+	if $AnimationPlayer.is_playing():
+		return
+
+	$AnimationPlayer.play_backwards(animation_open)
+	emit_signal("closed")
+	is_open = false
+	$OpeningNoise.play()
+	pass	
 
 func close(interaction_caller):
 	if not is_open:

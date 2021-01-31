@@ -330,7 +330,7 @@ func play(input_string):
 			# and now it gets klugey...
 			
 			if cutscene_title == "ext_door_to_ante_camp":
-				$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/DoorTemplate".open()
+				$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/DoorTemplate".open_non_interaction()
 			
 			
 

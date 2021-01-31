@@ -19,7 +19,7 @@ func _on_Cutscene_Request(scene):
 			$PlayerAnimations.play("EnterTemple")
 			yield($PlayerAnimations, "animation_finished")
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
-			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/DoorTemplate".close()
+			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/DoorTemplate".close_non_interaction()
 			
 		"ante_camp_to_ante_w_brazier":
 			$"Player".transform = $"ANTE_W_BRAZIER".transform

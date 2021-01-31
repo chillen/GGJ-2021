@@ -61,3 +61,4 @@ anims/Hinge_Open = SubResource( 2 )
 anims/Hinge_Up = SubResource( 3 )
 
 [node name="OpeningNoise" type="AudioStreamPlayer" parent="."]
+bus = "SFX"

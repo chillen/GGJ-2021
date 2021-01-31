@@ -25,10 +25,10 @@ func check_door():
 	if a and b :
 		a = false
 		b = false
-		$WallDoor.open()
+		$WallDoor.open_non_interaction()
 		$WallDescription.queue_free()
 		yield(get_tree().create_timer(10),"timeout")
-		$WallDoor.close()
+		$WallDoor.close_non_interaction()
 
 	
 

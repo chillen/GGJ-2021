@@ -80,5 +80,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93209, 3.97159 )
 visible = false
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+bus = "SFX"
 
 [connection signal="interacted" from="Interactable" to="." method="press"]
