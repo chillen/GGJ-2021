@@ -74,7 +74,10 @@ func _ready():
 		"Hmm, the door is still locked. Maybe we should ask nicely for it to open?",
 		"Try typing 'say please' and then 'open door'",
 	]
-	area_hints["ANTE_CAMP"] = "You now realize that you have been moving as though in a deep trance. Taking a few deep breaths, you force your limbs to relax. (Use your mouse to look around, WASD to move, and left-click to interact.) "
+	area_hints["ANTE_CAMP"] = [
+		2,
+		"You now realize that you have been moving as though in a deep trance. Taking a few deep breaths, you force your limbs to relax. (Use your mouse to look around, WASD to move, and left-click to interact.)"
+	]
 	area_hints["ANTE_W_BRAZIER"] = []
 	area_hints["ANTE_E_BRAZIER"] = []
 
@@ -486,6 +489,9 @@ func play(input_string):
 	if not ("visited" in area_flags[curr_area]):
 		area_flags[curr_area].append("visited")
 		terminal_handle.print_to_terminal(area_descs[curr_area])
+
+		if not area_hints[curr_area] == []:
+			terminal_handle.print_to_terminal(area_hints[curr_area][1])
 
 # I don't need to describe items in the scene any more
 #		if len(area_items[curr_area]) > 0:
