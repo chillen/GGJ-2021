@@ -18,6 +18,8 @@ func _ready():
 
 func handle_command(command,interaction_caller):
 	# todo: probably can light the same pillar 3 times right now
+	if animation_player.is_playing():
+		return false
 
 	print(interaction_caller.item_in_inventory)
 	if (command == "light" or 1 == 1) and \
