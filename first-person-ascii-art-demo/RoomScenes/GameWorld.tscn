@@ -117,7 +117,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-length = 20.0
+length = 14.0
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Player")
 tracks/0/interp = 1
@@ -132,7 +132,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 11.5, 20 ),
+"times": PoolRealArray( 0, 11.5, 14 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector3( -2.48, 0, -52.746 ), Vector3( -0.619, 0, -24.242 ), Vector3( -0.536, 0, -6.774 ) ]
@@ -144,7 +144,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 3.5, 4.7, 5.5, 7.4, 11.2, 12.8, 15.5 ),
+"times": PoolRealArray( 3.5, 4.7, 5.5, 7.1, 11.2, 12.8, 13.4 ),
 "transitions": PoolRealArray( 1, 0.535887, 2, 0.210224, 1, 0.5, 1 ),
 "update": 0,
 "values": [ Vector3( 0, -180, 0 ), Vector3( 0, -180, 0 ), Vector3( 20.242, -150.301, 0 ), Vector3( 35.711, -123.085, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -227.73, 0 ), Vector3( 0, -180, 0 ) ]
@@ -195,7 +195,7 @@ height = 2.51186
 script = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -4.37114e-08, -0.5, 0.866025, 0, 0.866026, 0.5, -1, 2.18557e-08, -3.78551e-08, 148.025, -3.21886, 57.8075 )
+transform = Transform( -0.99999, 0.00404656, -0.00189494, 0, 0.424089, 0.90562, 0.00446828, 0.905612, -0.424084, -2.48, 0, -52.746 )
 
 [node name="SpotLight" type="SpotLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
