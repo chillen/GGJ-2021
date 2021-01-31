@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Models/Environment/lectern.glb" type="PackedScene" id=1]
+[ext_resource path="res://Interactables/Interactable.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Spatial
+
+var read_once = false
+var teleported_away = false
+onready var interactable = $Interactable
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass 
+
+
+func _on_Interactable_interacted(interaction_string, interaction_caller):
+	var valid_commands = [\"read\", \"read book\", \"open book\", \"open\"]
+	var out_text = \"I read the book and it speaks of a... being...\"
+	out_text += \"There are pages missing, text I cannot comprehend. It seems something horrific lives here, and this is a guide to banish it.\"
+	out_text += \"Perhaps if I look around I will be able to uncover the secret of this dark being.\"
+	
+	# Give them some different flavour if they've been teleported away
+	# Set by parent room
+	if teleported_away:
+		interactable.display_text = \"After attempting to read this book, I blinked and appeared in the hallway I came from. Perhaps the beast is pushing me from finding the pages which will banish it once and for all.\"
+		
+	if interaction_string in valid_commands:
+		read_once = true
+		interaction_caller.terminal_call(out_text)
+		
+		
+	
+"
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.749366
+
+[node name="Lectern" instance=ExtResource( 1 )]
+script = SubResource( 2 )
+
+[node name="Interactable" parent="." index="1" instance=ExtResource( 2 )]
+display_text = "A strange and familiar book with pages missing."
+
+[node name="CollisionShape" type="CollisionShape" parent="Interactable" index="1"]
+shape = SubResource( 1 )
+
+[connection signal="interacted" from="Interactable" to="." method="_on_Interactable_interacted"]

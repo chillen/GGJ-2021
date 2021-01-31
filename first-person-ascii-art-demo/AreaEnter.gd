@@ -4,7 +4,6 @@ export var text = "Area Entered"
 export var multiple_enter = true
 var inital_enter = false
 
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

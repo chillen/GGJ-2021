@@ -4,14 +4,14 @@ extends Node
 # interactive fiction interface
 var screen_buffer_data = []
 var screen_buffer_wide : int = 60
-var screen_buffer_high : int = 9  # a weird "off-by-one" issue... e.g., 9 will allow 10 lines onscreen
+var screen_buffer_high : int = 15  # a weird "off-by-one" issue... e.g., 9 will allow 10 lines onscreen
 
 var last_printed_row : int = 0
 var last_printed_col : int = 0
 var last_buffered_row : int = 0
 var last_buffered_col : int = 0
 
-var display_speed : int = 3
+var display_speed : int = 2
 var max_input_len : int = 32
 
 var backspace_cooldown : int = 0
@@ -30,15 +30,18 @@ func _ready():
 	print_to_terminal("Loss for Words")
 	
 	# populate the english to rlyehian dictionary
-	english_to_rlyehian["RUN"] = "BUGNAH" # actually "walk"
-	english_to_rlyehian["LOOK"] = "MGRLUH"
-	english_to_rlyehian["OPEN"] = "MGAHNNN"
-	english_to_rlyehian["HELP"] = "HAFH"
-	english_to_rlyehian["TAKE"] = "MGGOKA"
-	english_to_rlyehian["USE"] = "AHUAAAH"
+	# english_to_rlyehian["RUN"] = "BUGNAH" # actually "walk"
+	# english_to_rlyehian["LOOK"] = "MGRLUH"
+	# english_to_rlyehian["OPEN"] = "MGAHNNN"
+	# english_to_rlyehian["HELP"] = "HAFH"
+	# english_to_rlyehian["TAKE"] = "MGGOKA"
+	# english_to_rlyehian["USE"] = "AHUAAAH"
 
 	# puzzle specific
-	english_to_rlyehian["LIGHT THE WAY"] = "MGNGHFT H YOGOR"
+	# english_to_rlyehian["LIGHT THE WAY"] = "MGNGHFT H YOGOR"
+	
+	english_to_rlyehian["SAY PLEASE"] = "SAY AHLLOIGEHYE"
+	
 
 func _process(delta):
 	

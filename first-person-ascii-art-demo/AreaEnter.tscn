@@ -3,6 +3,8 @@
 [ext_resource path="res://AreaEnter.gd" type="Script" id=1]
 
 [node name="AreaEnter" type="Area"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource( 1 )
 
 [connection signal="body_shape_entered" from="." to="." method="_on_Object_body_shape_entered"]

@@ -3,7 +3,9 @@ extends Spatial
 onready var animation_player = $"AnimationPlayer"
 onready var black_board = get_node("/root/BlackBoard").bb
 onready var interactable = get_node("Interactable")
-var lit = false setget set_lit
+onready var particles = get_node("PedestalParticles")
+
+export var lit = false setget set_lit
 
 signal on
 signal off
@@ -16,6 +18,7 @@ func _ready():
 
 func handle_command(command,interaction_caller):
 	# todo: probably can light the same pillar 3 times right now
+
 	print(interaction_caller.item_in_inventory)
 	if command == "light" and \
 		not interaction_caller.item_in_inventory == null and \
@@ -45,8 +48,11 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 
 
 func set_lit(val: bool):
-	if val:
-		interactable.display_text = "The brazier gives off a warm flame."
-	else:
-		interactable.display_text = "The brazier is warm, but remains unlit."
+	if interactable:
+		if val:
+			interactable.display_text = "The brazier gives off a warm flame."
+		else:
+			interactable.display_text = "The brazier is warm, but remains unlit."
 	lit = val
+	if particles:
+		particles.emitting = val
