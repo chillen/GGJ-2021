@@ -4,7 +4,7 @@
 
 [name:Sandstone_Trim;color:RGBA(0.871, 0.765, 0.647, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
 [name:Sandstone_Floor;color:RGBA(0.945, 0.898, 0.851, 1.000);scale:(0.5, 0.5);texture:Stone/greybricks;shader:Default;valueA:0.5;valueB:0;]
-[name:Wood_Dark;color:RGBA(0.518, 0.420, 0.333, 1.000);scale:(1.0, 1.0);texture:Stone/tiles;shader:Default;valueA:0.5;valueB:0;]
+[name:Wood_Dark;color:RGBA(0.814, 0.575, 0.363, 1.000);scale:(1.0, 1.0);texture:Stone/tiles;shader:Default;valueA:1;valueB:1;]
 [name:Sandstone_4;color:RGBA(0.835, 0.698, 0.545, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
 [name:Sandstone_5;color:RGBA(0.800, 0.628, 0.439, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
 [name:Sandstone_6;color:RGBA(0.761, 0.561, 0.337, 1.000);scale:(1.0, 1.0);texture:Stone/tiles;shader:Default;valueA:0.5;valueB:0;]
@@ -28,6 +28,7 @@
 [name:Grey;color:RGBA(0.114, 0.114, 0.114, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
 [name:Glass;color:RGBA(0.640, 0.640, 0.640, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
 [name:DarkWood;color:RGBA(0.114, 0.070, 0.035, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:Rock;color:RGBA(0.195, 0.207, 0.243, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
 
 :models
 
@@ -78,10 +79,6 @@
 [name:;collection:Dungeons;type:stairs;position:(7.0701, -0.7700, -26.6801);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_6+Wood_Dark;]
 [name:;collection:Dungeons;type:stairs;position:(7.0701, -1.6200, -27.5101);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_6+Wood_Dark;]
 [name:;collection:Dungeons;type:stairs;position:(7.0701, -2.4700, -28.3501);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_6+Wood_Dark;]
-[name:;collection:Quaternius Modular Dungeons;type:Book_Open;position:(6.6617, 1.0326, -24.4835);rotation:(357.6465, 178.5953, 312.8599);scale:(0.4556, 0.4556, 0.4556);group:;locked:False;hidden:False;materials:Cover+Paper+Ink;]
-[name:;collection:Primitives;type:cylinderVertex_half;position:(6.8900, 0.8500, -24.1124);rotation:(315.0000, 270.0000, 90.0000);scale:(0.5970, 0.7353, 0.5970);group:;locked:False;hidden:False;materials:stoneDark;]
-[name:;collection:Primitives;type:block;position:(6.7669, 0.4500, -24.5000);rotation:(0.0000, 270.0000, 0.0000);scale:(0.4100, 0.4100, 0.3237);group:;locked:False;hidden:False;materials:stoneDark;]
-[name:;collection:Primitives;type:block;position:(6.7900, 0.3500, -24.5000);rotation:(0.0000, 270.0000, 0.0000);scale:(0.5986, 0.0599, 0.5986);group:;locked:False;hidden:False;materials:stoneDark;]
 [name:;collection:Modular Temple;type:Prop_Rubble_1;position:(-5.3000, -2.1500, -26.3000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Prop_Rubble_2;position:(-4.7600, -2.1800, -23.3200);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_4;]
 [name:;collection:Modular Temple;type:Pillar_Wall_Base;position:(-5.2900, -2.1100, -23.2800);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.9497, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_4+Sandstone_5;]
@@ -106,7 +103,6 @@
 [name:;collection:Modular Temple;type:Prop_Rubble_1;position:(7.1400, 0.3000, -24.0425);rotation:(0.0000, 150.0000, 0.0000);scale:(0.6600, 0.6600, 0.6600);group:;locked:False;hidden:False;materials:Sandstone_6;]
 [name:;collection:Modular Temple;type:Wall_Curved_Small_Middle;position:(-5.1700, -2.0000, -12.8600);rotation:(0.0000, 270.0000, 0.0000);scale:(1.0000, 7.7550, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
 [name:;collection:Primitives;type:block;position:(7.5370, -2.1400, -12.3150);rotation:(0.0000, 270.0000, 0.0000);scale:(1.1700, 2.4400, 0.1994);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
-[name:;collection:Primitives;type:block;position:(5.1070, -2.1400, -12.3450);rotation:(0.0000, 270.0000, 0.0000);scale:(1.1100, 2.4400, 0.1994);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Wall_Straight_Arch_Top;position:(5.5100, 0.1900, -12.3700);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
 [name:;collection:Primitives;type:block;position:(6.2200, 0.9921, -12.3347);rotation:(0.0000, 270.0000, 0.0000);scale:(1.1907, 0.2030, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Wall_Straight_Arch_Top;position:(7.1550, 0.1900, -12.3100);rotation:(0.0000, 0.0000, 0.0000);scale:(0.9700, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
@@ -117,7 +113,6 @@
 [name:;collection:Modular Temple;type:Wall_Straight_Middle;position:(5.1656, -2.1470, -6.8480);rotation:(0.0000, 270.0000, 0.0000);scale:(10.8477, 8.0274, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Wall_Straight_Middle;position:(-0.0144, -2.1470, -12.8394);rotation:(0.0000, 0.0000, 0.0000);scale:(10.4305, 8.0274, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Wall_Straight_Middle;position:(8.5956, -2.1470, -6.8480);rotation:(0.0000, 270.0000, 0.0000);scale:(10.8477, 8.0274, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
-[name:;collection:Modular Temple;type:Floor_Normal_Square;position:(6.3859, -2.1200, -6.9365);rotation:(0.0000, 270.0000, 0.0000);scale:(10.9093, 1.0000, 3.6924);group:;locked:False;hidden:False;materials:Sandstone_Trim+Wood_Dark;]
 [name:;collection:Modular Temple;type:Wall_Straight_Middle;position:(-6.1630, -2.1470, -17.7423);rotation:(0.0000, 90.0000, 0.0000);scale:(8.7909, 8.1356, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Wall_Straight_Middle;position:(-6.1630, -2.1470, -32.3137);rotation:(0.0000, 90.0000, 0.0000);scale:(9.4785, 8.1356, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Wall_Straight_Middle;position:(-6.1630, -2.1481, -24.8260);rotation:(0.0000, 90.0000, 0.0000);scale:(5.6236, 2.0280, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
@@ -164,3 +159,9 @@
 [name:;collection:Modular Temple;type:Wall_Straight_Arch_Top;position:(8.8024, 3.8100, -23.3400);rotation:(0.0000, 269.9999, 0.0000);scale:(1.0000, 0.9900, 0.9207);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Wall_Arch_Corner_Outer;position:(7.8500, 2.8000, -22.3500);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:Sandstone_Floor+Sandstone_Floor;]
 [name:;collection:Modular Temple;type:Floor_Normal_Square;position:(6.7250, -2.3100, -24.7000);rotation:(0.0000, 180.0000, 0.0000);scale:(25.0000, -1.0000, 25.0000);group:;locked:False;hidden:False;materials:Wood_Dark+Sandstone_Floor;]
+[name:;collection:Modular Temple;type:Floor_Normal_Square;position:(6.3859, -2.1200, -6.9365);rotation:(0.0000, 270.0000, 0.0000);scale:(10.9120, 1.0000, 3.6938);group:;locked:False;hidden:False;materials:Sandstone_Trim+Wood_Dark;]
+[name:;collection:Primitives;type:block;position:(5.1070, -2.1400, -12.3450);rotation:(0.0000, 270.0000, 0.0000);scale:(1.1100, 2.4400, 0.1994);group:;locked:False;hidden:False;materials:Sandstone_Floor;]
+[name:;collection:Primitives;type:block;position:(29.8769, 0.4500, -24.5900);rotation:(0.0000, 270.0000, 0.0000);scale:(0.4100, 0.4100, 0.3237);group:;locked:False;hidden:False;materials:stoneDark;]
+[name:;collection:Primitives;type:cylinderVertex_half;position:(30.0000, 0.8500, -24.2024);rotation:(315.0000, 270.0000, 90.0000);scale:(0.5970, 0.7353, 0.5970);group:;locked:False;hidden:False;materials:stoneDark;]
+[name:;collection:Quaternius Modular Dungeons;type:Book_Open;position:(29.7717, 1.0326, -24.5735);rotation:(357.6465, 178.5953, 312.8599);scale:(0.4556, 0.4556, 0.4556);group:;locked:False;hidden:False;materials:Cover+Paper+Ink;]
+[name:;collection:Primitives;type:block;position:(29.9000, 0.3500, -24.5900);rotation:(0.0000, 270.0000, 0.0000);scale:(0.5986, 0.0599, 0.5986);group:;locked:False;hidden:False;materials:stoneDark;]

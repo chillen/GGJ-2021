@@ -45,7 +45,9 @@ onready var lineedit_handle: LineEdit = $"/root/Main/LineEdit"
 onready var examine_memory: Node
 onready var looking_memory: Node
 
+
 var hidden_torch = null
+onready var item_in_inventory = null
 
 # used by AsciiArt
 var object_to_interact_with
@@ -191,6 +193,8 @@ func equip_item(item):
 	$Camera/Item/Right.add_child(item)
 	item.set_owner($Camera/Item/Right)
 	
+	item_in_inventory = item
+	
 	return true
 
 # checks if interaction item, is item in hand
@@ -206,6 +210,8 @@ func de_equip_item(item_inter):
 	self.get_parent().add_child(item)
 	item.set_owner(self.get_parent())
 	item.translation = self.translation
+	
+	item_in_inventory = null
 	
 	return true
 

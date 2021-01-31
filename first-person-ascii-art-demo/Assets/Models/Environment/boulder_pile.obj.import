@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/boulder_pile.obj-122bd45ef16b03acf2bf6eb93af31826.mesh"
+
+[deps]
+
+files=[ "res://.import/boulder_pile.obj-122bd45ef16b03acf2bf6eb93af31826.mesh" ]
+
+source_file="res://Assets/Models/Environment/boulder_pile.obj"
+dest_files=[ "res://.import/boulder_pile.obj-122bd45ef16b03acf2bf6eb93af31826.mesh", "res://.import/boulder_pile.obj-122bd45ef16b03acf2bf6eb93af31826.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true

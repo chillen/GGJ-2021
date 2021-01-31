@@ -104,7 +104,7 @@ func _draw():
 			# (it might not be necessary to add alpha here, but if we wanted to,
 			# then this would be where it would be added)
 
-			if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60):
+			if mask_array[char_row][char_col] == 1 and (char_row < 28 or char_col > 60):
 				# if mask_array[char_row][char_col] == 1 and (char_row < 33 or char_col > 60) and (not player_handle.user_input_state == player_handle.UserInputMode.FP_TXT_ENTRY or (char_col < txt_frame_lft or char_col > txt_frame_rgt or char_row < txt_frame_top or char_row > txt_frame_btm)):
 
 				# get the pixel and compute it's luminance

@@ -12,7 +12,9 @@ extents = Vector3( 0.192384, 0.238018, 0.853122 )
 radius = 0.3
 height = 1.4
 
-[node name="Torch" type="RigidBody"]
+[node name="Torch" type="RigidBody" groups=[
+"fire",
+]]
 mode = 1
 mass = 1000.0
 script = ExtResource( 1 )
