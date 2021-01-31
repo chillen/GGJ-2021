@@ -154,7 +154,7 @@ func _ready():
 	area_fails["EXT_DOOR"] = [
 		[
 			"OPEN DOOR",
-			"Even with a crowbar I would not be able to force this stone slab out of the way. Perhaps Ishould LOOK over the door more closely."
+			"Even with a crowbar I would not be able to force this stone slab out of the way. Perhaps I should LOOK over the door more closely."
 		],
 		[
 			"*",
@@ -174,7 +174,7 @@ func _ready():
 	area_gates["EXT_DOOR"] = [
 		[
 			"SAY PLEASE",
-			"As I shape my lips to speak, my mouth suddenly goes dry and I feel the curious sensation of insects crawling over my tongue. Although it was my intention to plead for entry, my ears heard only the word \"ahlloigehye\" in a voice that Ino longer recognize as my own. But the guardian of this temple seems satisfied, and I suspect that I will now be able to open the door.",
+			"As I shape my lips to speak, my mouth suddenly goes dry and I feel the curious sensation of insects crawling over my tongue. Although it was my intention to plead for entry, my ears heard only the word \"ahlloigehye\" in a voice that I no longer recognize as my own. But the guardian of this temple seems satisfied, and I suspect that I will now be able to open the door.",
 			["OPEN DOOR", ["ANTE_CAMP", "ext_door_to_ante_camp"]]
 		]
 	]
@@ -198,7 +198,7 @@ func _ready():
 	item_names["LITTORCH"] = "a lit torch"
 	
 	# these are the long descriptions of the items, shown when the player "LOOKS" at the item
-	item_descs["DOOR"] = "There are telltale signs of the crude tools once used to cut this great stone door, but Ican find no evidence of a lock or hinges. As Iinspect more closely, my gaze is drawn inexplicably to the green stone in the center. A hush falls over the forest, and Icannot help but feel that the stone is... Listening... There is a familiarity to this scene that Icannot explain, and Isuspect that Imay have something in my inventory that might help."
+	item_descs["DOOR"] = "There are telltale signs of the crude tools once used to cut this great stone door, but I can find no evidence of a lock or hinges. As I inspect more closely, my gaze is drawn inexplicably to the green stone in the center. A hush falls over the forest, and I cannot help but feel that the stone is... Listening... There is a familiarity to this scene that I cannot explain, and Isuspect that I may have something in my inventory that might help."
 	item_descs["PAGE"] = "It was not unreasonable to hope that this page held some clue to my lost identity, but this was not the case. It appears to be a page torn from an expedition journal. The tone is academic, and most of the details recorded would be of little use, but one passage in particular echoes in my mind. \"Their savage rituals notwithstanding, the woshippers of the H' ahf' Mggoka were always strangely courteous with outsiders. When i bore this in mind, it became quite clear why the warden stone paid no heed to words like open or unlock. All I needed to do was to remember my manners and ask nicely.\""
 	item_descs["UNLITTORCH"] = "There are flakes of burnt parchment throughout the area, and Isuspect this torch to be the culprit. It is not currently lit."
 	item_descs["LITTORCH"] = "The torch is burning brightly now."
