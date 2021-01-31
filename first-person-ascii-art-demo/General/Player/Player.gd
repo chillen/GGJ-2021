@@ -18,6 +18,7 @@ export var pitch_deviance = 0.2
 var initial_pitch = 1
 
 export var fidelity_colour : float = 1
+export var char_colour : float = 1
 
 # this code is adapted from a first-person shooter in Godot tutorial that I was
 # working through the other day... it could probably use some refinement... :)
