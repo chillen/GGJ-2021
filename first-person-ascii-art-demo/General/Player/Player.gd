@@ -140,10 +140,10 @@ func _physics_process(delta):
 				if Input.is_action_pressed("interact"):
 					# my changes
 					
-					user_input_state = UserInputMode.FP_TXT_ENTRY
+					# user_input_state = UserInputMode.FP_TXT_ENTRY
 					object_to_interact_with = camera_raycast.get_collider()
-					terminal_handle.flashing_prompt_timer = 10
-
+					# terminal_handle.flashing_prompt_timer = 10
+					self.action("", object_to_interact_with)
 					
 
 					# code that works but doesnt take input
@@ -165,9 +165,9 @@ func _physics_process(delta):
 			# If we have an item equiped, the interact with item though terminal
 			elif $Camera/Item/Right.get_child_count() > 0 and Input.is_action_pressed("interact"):
 				
-				user_input_state = UserInputMode.FP_TXT_ENTRY
+#				user_input_state = UserInputMode.FP_TXT_ENTRY
 				object_to_interact_with = $Camera/Item/Right.get_child(0).find_node("Interactable")
-				terminal_handle.flashing_prompt_timer = 20
+#				terminal_handle.flashing_prompt_timer = 20
 				
 				
 			else:

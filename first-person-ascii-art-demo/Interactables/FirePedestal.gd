@@ -20,7 +20,7 @@ func handle_command(command,interaction_caller):
 	# todo: probably can light the same pillar 3 times right now
 
 	print(interaction_caller.item_in_inventory)
-	if command == "light" and \
+	if (command == "light" or 1 == 1) and \
 		not interaction_caller.item_in_inventory == null and \
 		interaction_caller.item_in_inventory.is_in_group("fire") and \
 		interaction_caller.item_in_inventory.get("on") == true:
