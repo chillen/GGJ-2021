@@ -158,7 +158,7 @@ func _ready():
 		],
 		[
 			"*",
-			"I am thoroughly consumed by the need to OPEN this door, and Idare not return to the forest anyway..."
+			"I am thoroughly consumed by the need to OPEN this door, and I dare not return to the forest anyway..."
 		]
 	]
 	area_fails["ANTE_CAMP"] = []
@@ -174,7 +174,7 @@ func _ready():
 	area_gates["EXT_DOOR"] = [
 		[
 			"SAY PLEASE",
-			"As I shape my lips to speak, my mouth suddenly goes dry and Ifeel the curious sensation of insects crawling over my tongue. Although it was my intention to plead for entry, my ears heard only the word \"ahlloigehye\" in a voice that Ino longer recognize as my own. But the guardian of this temple seems satisfied, and Isuspect that Iwill now be able to open the door.",
+			"As I shape my lips to speak, my mouth suddenly goes dry and I feel the curious sensation of insects crawling over my tongue. Although it was my intention to plead for entry, my ears heard only the word \"ahlloigehye\" in a voice that Ino longer recognize as my own. But the guardian of this temple seems satisfied, and I suspect that I will now be able to open the door.",
 			["OPEN DOOR", ["ANTE_CAMP", "ext_door_to_ante_camp"]]
 		]
 	]
