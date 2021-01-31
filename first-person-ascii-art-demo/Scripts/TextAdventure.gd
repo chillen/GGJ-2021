@@ -26,50 +26,46 @@ signal cutscene
 
 func _ready():
 	# a "desc" is a long description of an area
-	area_descs["AREA_00"] = "You are dimly aware of strange life all around you, but the angry snarl of a not so distant beast wrenches you from your stupor. You are in a dense forest, surrounded by the menacing shadows of twisted trees. As the savage sounds grow to a chorus and start to draw closer, you know that you are no longer safe here."
-	area_descs["AREA_01"] = "Hands outstretched, you race away from the howling darkness. Branches claw at your face and you nearly stumble on the thick roots, but you know that falling now will mean certain death."
-	area_descs["AREA_02"] = "Your heart hammers your chest as the blood roars through your veins. You can see fractured moonlight through the trees ahead, but the thundering hoofbeats tell you that the beasts are nearly upon you."
-	area_descs["AREA_03"] = "You throw yourself into the clearing at the last moment. You can feel the hateful eyes at your back but it seems that they will not follow you out of the denser part of the forest. But as your eyes adjust to the light, your relief is replaced by a dread that you cannot explain."
-	area_descs["AREA_04"] = "You are inside the first room. Or you would be, at least, if this game was finished. But it isn't, so here is a picture of Rob. Something about his smug expression enrages you, and you have an irresistable urge to PUNCH him."
-	area_descs["AREA_05"] = "You are on the east side of the room."
-	area_descs["AREA_06"] = "You are on the west side of the room."
-	area_descs["AREA_07"] = "Punching Rob was childish, but because you took the initiative, we are now granting you the ability to move about the world freely. You know what to do."
+	area_descs["FOREST_01"] = "You are dimly aware of strange life all around you, but the angry snarl of a not so distant beast wrenches you from your stupor. You are in a dense forest, surrounded by the menacing shadows of twisted trees. As the savage sounds grow to a chorus and start to draw closer, you know that you are no longer safe here."
+	area_descs["FOREST_02"] = "Hands outstretched, you race away from the howling darkness. Branches claw at your face and you nearly stumble on the thick roots, but you know that falling now will mean certain death."
+	area_descs["FOREST_03"] = "Your heart hammers your chest as the blood roars through your veins. You can see fractured moonlight through the trees ahead, but the thundering hoofbeats tell you that the beasts are nearly upon you."
+	area_descs["EXT_DOOR"] = "You throw yourself into the clearing at the last moment. Even though you can still feel hateful eyes at your back, it seems that your pursuers will not follow you out of the denser part of the forest. But your relief is quickly overshadowed by the building that looms before you. A voice from your own forgotten history tells you that it has been constructed in the style of the ancient lemurians. You dare not try to explain its presence here, far from the shifting sands. Perhaps it is the fear of this monument to a forgotten age that keeps the beasts of the forest at bay. Even still, you would feel more comfortable with that heavy door between you and the night."
+	area_descs["ANTE_CAMP"] = "The light and warmth exhaled from the antechamber before you banishes the chill in the night air. Much of the detail on the statue in the middle of the room has been consumed by time, but you are still able to recognize the being that was depicted here. You also know that it would once have worn the untreated skin of a leopard, as one might have expected of a lemurian scribe or record keeper. There is a lit brazier on the western side of the room, which makes the unlit brazier on the eastern side all the more curious. Not wanting to disturb the site, you make your way towards a corner on the southern wall, suddenly finding yourself standing in the center of a small basecamp."
+	area_descs["ANTE_W_BRAZIER"] = "The cast iron brazier before you can barely contain its crackling flames, and the fact that the brazier is lit at all suggests that you are not alone in this temple. The other brazier is on the eastern side of the room, and the camp is against the southern wall by the entrance."
+	area_descs["ANTE_E_BRAZIER"] = "It would appear that this brazier was hastily extinguished only a short while ago. You can see a tin-plated canteen half buried in the still warm coals, but you have little use for an empty canteen. The other brazier  is on the western side of the room, and the camp is against the southern wall by the entrance."
 
 	# a "flag" can indicate if an area has already been visited or if a special effect is to occur (upon entry)
-	area_flags["AREA_00"] = []
-	area_flags["AREA_01"] = []
-	area_flags["AREA_02"] = []
-	area_flags["AREA_03"] = [
+	area_flags["FOREST_01"] = []
+	area_flags["FOREST_02"] = []
+	area_flags["FOREST_03"] = []
+	area_flags["EXT_DOOR"] = [
 							"trigger fp_still_image mode",
 							"cutscene intro_walking"]
-	area_flags["AREA_04"] = []
-	area_flags["AREA_05"] = []
-	area_flags["AREA_06"] = []
-	area_flags["AREA_07"] = ["trigger fp_free_look mode"]
+	area_flags["ANTE_CAMP"] = []
+	area_flags["ANTE_W_BRAZIER"] = []
+	area_flags["ANTE_E_BRAZIER"] = []
 
 	# a "hint" really is just an additional text entry played when an area is entered
-	area_hints["AREA_00"] = "You have no choice but to run."
-	area_hints["AREA_01"] = "You have no choice but to run."
-	area_hints["AREA_02"] = "You have no choice but to run."
-	area_hints["AREA_03"] = "But there is a familiarity to this scene that you cannot explain, and you suspect that you may have something in your INVENTORY that can help you."
-	area_hints["AREA_04"] = ""
-	area_hints["AREA_05"] = ""
-	area_hints["AREA_06"] = ""
-	area_hints["AREA_07"] = ""
+	area_hints["FOREST_01"] = "You have no choice but to run."
+	area_hints["FOREST_02"] = "You have no choice but to run."
+	area_hints["FOREST_03"] = "You have no choice but to run."
+	area_hints["EXT_DOOR"] = ""
+	area_hints["ANTE_CAMP"] = ""
+	area_hints["ANTE_W_BRAZIER"] = ""
+	area_hints["ANTE_E_BRAZIER"] = ""
 
 	# an "exit" pairs a command with the identifier for the area that you will reach if you issue that command
-	area_exits["AREA_00"] = {"RUN": "AREA_01"}
-	area_exits["AREA_01"] = {"RUN": "AREA_02"}
-	area_exits["AREA_02"] = {"RUN": "AREA_03"}
-	area_exits["AREA_03"] = {"OPEN DOOR": "AREA_04"}
-	area_exits["AREA_04"] = {"W": "AREA_05", "E": "AREA_06", "PUNCH ROB": "AREA_07"}
-	area_exits["AREA_05"] = {"E": "AREA_04"}
-	area_exits["AREA_06"] = {"W": "AREA_04"}
-	area_exits["AREA_07"] = {}
+	area_exits["FOREST_01"] = {"RUN": "FOREST_02"}
+	area_exits["FOREST_02"] = {"RUN": "FOREST_03"}
+	area_exits["FOREST_03"] = {"RUN": "EXT_DOOR"}
+	area_exits["EXT_DOOR"] = {}
+	area_exits["ANTE_CAMP"] = {"W": "ANTE_W_BRAZIER", "E": "ANTE_E_BRAZIER"}
+	area_exits["ANTE_W_BRAZIER"] = {"S": "ANTE_CAMP", "E": "ANTE_E_BRAZIER"}
+	area_exits["ANTE_E_BRAZIER"] = {"S": "ANTE_CAMP", "W": "ANTE_W_BRAZIER"}
 
 	# a "fail" is a text entry displayed when the user does a specific command that, while normally valid, will not work for some reason
 	# a "fail" that is associated with a "gate" can be removed once the "gate" is opened
-	area_fails["AREA_00"] = [
+	area_fails["FOREST_01"] = [
 		["*", "There's no time for that now."],
 		[
 			"NORTH",
@@ -88,7 +84,7 @@ func _ready():
 			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
 		]
 	]
-	area_fails["AREA_01"] = [
+	area_fails["FOREST_02"] = [
 		["*", "There's no time for that now."],
 		[
 			"NORTH",
@@ -107,7 +103,7 @@ func _ready():
 			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
 		]
 	]
-	area_fails["AREA_02"] = [
+	area_fails["FOREST_03"] = [
 		["*", "There's no time for that now."],
 		[
 			"NORTH",
@@ -126,64 +122,62 @@ func _ready():
 			"The only direction you are concerned about right now is the one that takes you away from your pursuers. You need to RUN."
 		]
 	]
-	area_fails["AREA_03"] = [
+	area_fails["EXT_DOOR"] = [
 		[
 			"OPEN DOOR",
-			"Even with a crowbar you would not be able to force this lock. There is no way in without a KEY."
+			"Even with a crowbar you would not be able to force this stone slab out of the way. Perhaps you should LOOK over the door more closely."
 		],
 		[
 			"*",
 			"You are thoroughly consumed by the need to OPEN this door, and you dare not return to the forest anyway..."
 		]
 	]
-	area_fails["AREA_04"] = []
-	area_fails["AREA_05"] = []
-	area_fails["AREA_06"] = []
-	area_fails["AREA_07"] = []
+	area_fails["ANTE_CAMP"] = []
+	area_fails["ANTE_W_BRAZIER"] = []
+	area_fails["ANTE_E_BRAZIER"] = []
 
 	# a "gate" is a bit of an abstract concept here, but each "gate" groups an action (action + object), a text description, and an "exit" (that ends up being added to the current area)
 	# the exit action + object also needs to be removed from area_fails
 	# e.g., in area_03, the command "USE KEY", will print the description "Finally reunited...", and then add ["OPEN DOOR", "AREA_04"] as an exit to area_03
-	area_gates["AREA_00"] = []
-	area_gates["AREA_01"] = []
-	area_gates["AREA_02"] = []
-	area_gates["AREA_03"] = [
+	area_gates["FOREST_01"] = []
+	area_gates["FOREST_02"] = []
+	area_gates["FOREST_03"] = []
+	area_gates["EXT_DOOR"] = [
 		[
-			"USE KEY",
-			"Finally reunited with the strange key, the lock snaps open. You should be able to OPEN the door now.",
+			"USE PLEASE",
+			"As you shape your lips to speak, your mouth suddenly goes dry and you feel the curious sensation of insects crawling over your tongue. Although it was your intention to plead for entry, your ears heard only the word \"ahlloigehye\" in a voice that you no longer recognize as your own. But the guardian of this temple seems satisfied, and you suspect that you will now be able to open the door.",
 			["OPEN DOOR", "AREA_04"]
 		]
 	]
-	area_gates["AREA_04"] = []
-	area_gates["AREA_05"] = []
-	area_gates["AREA_06"] = []
-	area_gates["AREA_07"] = []
+	area_gates["ANTE_CAMP"] = []
+	area_gates["ANTE_W_BRAZIER"] = []
+	area_gates["ANTE_E_BRAZIER"] = []
 
 	# these are the locations of the items
-	area_items["AREA_00"] = []
-	area_items["AREA_01"] = []
-	area_items["AREA_02"] = []
-	area_items["AREA_03"] = ["DOOR"]
-	area_items["AREA_04"] = []
-	area_items["AREA_05"] = []
-	area_items["AREA_06"] = []
-	area_items["AREA_07"] = []
+	area_items["FOREST_01"] = []
+	area_items["FOREST_02"] = []
+	area_items["FOREST_03"] = []
+	area_items["EXT_DOOR"] = ["DOOR"]
+	area_items["ANTE_CAMP"] = []
+	area_items["ANTE_W_BRAZIER"] = []
+	area_items["ANTE_E_BRAZIER"] = []
+
 
 	# these are the short descriptions of the items, used for inventory (and upon changing areas)
 	item_names["DOOR"] = "a heavy wooden door"
-	item_names["KEY"] = "a silver key"
+	item_names["PAGE"] = "a crumpled page"
 
 	# these are the long descriptions of the items, shown when the player "LOOKS" at the item
-	item_descs["DOOR"] = "Cast iron bands desperately grip this heavy oak door, and the curious sigil burned into the planks seems to beckon you inside. Unfortunately, it also bears an impressive warded lock."
-	item_descs["KEY"] = "The blade of this ancient silver key has been cut to resemble a glyph from some exotic alphabet. You seem to recall once reading something about a silver key, but this probably isn't it."
+	item_descs["DOOR"] = "There are telltale signs of the crude tools once used to cut this great stone door, but you can find no evidence of a lock or hinges. As you inspect more closely, your gaze is drawn inexplicably to the green stone in the center. A hush falls over the forest, and you cannot help but feel that the stone is... Listening... There is a familiarity to this scene that you cannot explain, and you suspect that you may have something in your inventory that might help."
+	item_descs["PAGE"] = "It was not unreasonable to hope that this page held some clue to your lost identity, but this was not the case. It appears to be a page torn from an expedition journal. The tone is academic, and most of the details recorded would be of little use, but one passage in particular echoes in your mind. \"Their savage rituals notwithstanding, the woshippers of the H' ahf' Mggoka were always strangely courteous with outsiders. When i bore this in mind, it became quite clear why the warden stone paid no heed to words like open or unlock. All I needed to do was to remember my manners and ask nicely.\""
 
 	# items can be portable (or not), and portable items are either consumed, retained, or discarded upon use
 	item_flags["DOOR"] = []
-	item_flags["KEY"] = ["portable", "consumed"]
+	item_flags["PAGE"] = ["portable", "consumed"]
 
 	# initialize the important values for the "player"
-	curr_area = "AREA_00"
-	inventory = ["KEY"]
+	curr_area = "FOREST_01"
+	inventory = ["PAGE"]
 	area_flags[curr_area].append("visited")
 
 	# print the initial room description
@@ -310,8 +304,10 @@ func play(input_string):
 				else:
 					terminal_handle.print_to_terminal("You don't have any " + input_object + " to use.")
 
-		elif input_action == "DROP":
-			pass
+		elif input_action == "MATT":
+			masktimer_handle.start(0.01)
+			player_handle.transform.origin = Vector3(155.58,0,54.084)
+			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 
 		elif input_action == "TAKE":
 			area_items[curr_area].erase(input_object)
@@ -384,25 +380,27 @@ func play(input_string):
 		if len(area_items[curr_area]) > 0:
 			var items_in_area = []
 			for item in area_items[curr_area]:
-				items_in_area.append(item_names[item])
-			terminal_handle.print_to_terminal(list_to_nice_string(items_in_area))
+				if "portable" in item_flags[item]:
+					items_in_area.append(item_names[item])
+			if len(items_in_area) > 0: 
+				terminal_handle.print_to_terminal(list_to_nice_string(items_in_area))
 
+		for command in area_flags[curr_area]:
+			var arguments = command.split(" ")
+			match arguments[0]:
+				"trigger":
+					match arguments[1]:
+						"fp_still_image":
+							player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
+							masktimer_handle.start(2)
+						"fp_free_look":
+							player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+							
+				"cutscene":
+					print("cutscene")
+					emit_signal("cutscene", arguments[1])
+					
 	terminal_handle.print_to_terminal(">")
-	
-	for command in area_flags[curr_area]:
-		var arguments = command.split(" ")
-		match arguments[0]:
-			"trigger":
-				match arguments[1]:
-					"fp_still_image":
-						player_handle.user_input_state = player_handle.UserInputMode.FP_STILL_IMG
-						masktimer_handle.start(2)
-					"fp_free_look":
-						player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
-						
-			"cutscene":
-				print("cutscene")
-				emit_signal("cutscene", arguments[1])
 
 func list_to_nice_string(list):
 	if len(list) == 1:
