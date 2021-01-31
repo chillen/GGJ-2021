@@ -17,6 +17,7 @@ func _ready():
 func _on_Interactable_interacted(interaction_string,interaction_caller):
 	if interaction_string == "take" or state == 0:
 		interaction_caller.equip_item(self)
+		self.on = true
 		self.rotation_degrees = Vector3(0,0, 0)
 		self.translation = Vector3(0,0,0)
 		state = 1
@@ -30,6 +31,7 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 			$TorchLight.show()
 			interaction_caller.terminal_call("You take the Flint in your pocket and light the torch.")
 		on = !on
+		# on = !on
 		state = 2
 	
 	
