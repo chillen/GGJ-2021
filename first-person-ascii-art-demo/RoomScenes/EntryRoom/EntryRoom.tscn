@@ -57,6 +57,7 @@ animation_open = "Hinge_Up"
 
 [node name="DoorTemplate" parent="." instance=ExtResource( 1 )]
 transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, -0.197, 1.022, -8.483 )
+locked = true
 
 [node name="Torch" parent="DoorTemplate" instance=ExtResource( 7 )]
 transform = Transform( -1.62921e-07, -0.258819, -0.965926, 0, 0.965926, -0.258819, 1, -4.2167e-08, -1.57369e-07, 6.72901, 1.19253, -3.00878 )
