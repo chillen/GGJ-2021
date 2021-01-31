@@ -32,7 +32,7 @@ func handle_command(command,interaction_caller):
 		interaction_caller.item_in_inventory.on == true:
 			
 		self.lit = true
-		interaction_caller.terminal_call("You light a fire with your torch. It crackles as it roars to life.")
+		interaction_caller.terminal_call("I light a fire with your torch. It crackles as it roars to life.")
 		
 		emit_signal("on")
 		
