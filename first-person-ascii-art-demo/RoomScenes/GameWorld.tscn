@@ -239,6 +239,43 @@ anims/EnterTemple = SubResource( 2 )
 "anims/Intro walking" = SubResource( 3 )
 anims/ThrowOff = SubResource( 4 )
 
+
+[node name="TorchPair1" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.49538, 1.89455, 17.9638 )
+
+[node name="TorchP1" parent="TorchPair1" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 1.33878e-09, -3.72529e-09, -2.85218e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair1" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
+[node name="TorchPair2" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 27.9585 )
+
+[node name="TorchP1" parent="TorchPair2" instance=ExtResource( 8 )]
+transform = Transform( 1, -9.31323e-10, 0, -9.31323e-10, 1, 1.33878e-09, -7.45058e-09, -8.82428e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair2" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
+[node name="TorchPair3" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 37.9585 )
+
+[node name="TorchP1" parent="TorchPair3" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 1.33878e-09, -3.72529e-09, -2.85218e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair3" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
+[node name="TorchPair4" type="Spatial" parent="."]
+transform = Transform( -0.0449968, -0.258557, -0.964948, 0, 0.965926, -0.258819, 0.998987, -0.011646, -0.0434636, 1.52149, 1.89455, 47.9585 )
+
+[node name="TorchP1" parent="TorchPair4" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 1.33878e-09, -3.72529e-09, -2.85218e-08, 1, 0, 0, 0 )
+
+[node name="TorchP2" parent="TorchPair4" instance=ExtResource( 8 )]
+transform = Transform( -0.998987, -0.0116461, -0.0434638, 0.0116461, 0.866093, -0.499747, 0.0434638, -0.499747, -0.86508, 0.208254, 1.19665, 4.46596 )
+
 [node name="AreaEnter" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65262, 10.5234, 5.83062 )
 

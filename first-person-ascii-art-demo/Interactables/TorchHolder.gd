@@ -17,4 +17,10 @@ func _ready():
 
 
 func _on_Interactable_interacted(interaction_string, interaction_caller):
-	pass # Replace with function body.
+	if (interaction_string == "light" or 1 == 1) and \
+		not interaction_caller.item_in_inventory == null and \
+		interaction_caller.item_in_inventory.is_in_group("fire"):
+			
+		
+		interaction_caller.item_in_inventory.on = true
+		return true
