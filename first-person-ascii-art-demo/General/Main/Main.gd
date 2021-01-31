@@ -1,7 +1,7 @@
 extends Node2D
 
 onready var player_handle: KinematicBody = $"FirstPersonViewport/GameWorld/Player"
-
+onready var black_board = get_node("/root/BlackBoard")
 
 func _input(event):
 	# for debugging purposes, since the mouse is locked, escape can be used to quit
@@ -9,18 +9,19 @@ func _input(event):
 		get_tree().quit()
 
 	# Give debug views with f keys
-	if Input.is_action_pressed("f1"):
-		$FirstPersonSprite.visible = true
-		$AsciiArt.visible = false
-		$FirstPersonViewport.set_debug_draw(0)
-	elif Input.is_action_pressed("f2"):
-		$FirstPersonSprite.visible = false
-		$AsciiArt.visible = true
-		$FirstPersonViewport.set_debug_draw(0)
-	elif Input.is_action_pressed("f3"):
-		$FirstPersonSprite.visible = false
-		$AsciiArt.visible = true
-		$FirstPersonViewport.set_debug_draw(1)
+	if black_board.DEBUG == true:
+		if Input.is_action_pressed("f1"):
+			$FirstPersonSprite.visible = true
+			$AsciiArt.visible = false
+			$FirstPersonViewport.set_debug_draw(0)
+		elif Input.is_action_pressed("f2"):
+			$FirstPersonSprite.visible = false
+			$AsciiArt.visible = true
+			$FirstPersonViewport.set_debug_draw(0)
+		elif Input.is_action_pressed("f3"):
+			$FirstPersonSprite.visible = false
+			$AsciiArt.visible = true
+			$FirstPersonViewport.set_debug_draw(1)
 
 	# it is necessary to pass the mouse movement from the Main node (where
 	# it gets captured), into the Player node in the Viewport (where it is
