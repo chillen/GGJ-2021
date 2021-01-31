@@ -1,0 +1,9 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl stoneLight(Clone)
+Kd 1 1 1
+
+newmtl stoneDark(Clone)
+Kd 0.5310345 0.4698573 0.35
+map_Kd Textures/stoneDark(Clone).png
+
