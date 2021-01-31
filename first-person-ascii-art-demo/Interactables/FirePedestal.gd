@@ -21,11 +21,15 @@ func handle_command(command,interaction_caller):
 	if animation_player.is_playing():
 		return false
 
-	print(interaction_caller.item_in_inventory)
+	if not (interaction_caller.item_in_inventory == null):
+		print(interaction_caller.item_in_inventory)
+		print(interaction_caller.item_in_inventory.is_in_group("fire"))
+		print(interaction_caller.item_in_inventory.on )
+	
 	if (command == "light" or 1 == 1) and \
-		not interaction_caller.item_in_inventory == null and \
+		not (interaction_caller.item_in_inventory == null) and \
 		interaction_caller.item_in_inventory.is_in_group("fire") and \
-		interaction_caller.item_in_inventory.get("on") == true:
+		interaction_caller.item_in_inventory.on == true:
 			
 		animation_player.play("Activated")
 		self.lit = true
