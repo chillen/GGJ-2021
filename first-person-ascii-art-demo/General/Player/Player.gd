@@ -137,7 +137,7 @@ func _physics_process(delta):
 					#spotlight_handle.show()
 
 				# if the player is trying to interact with an interactible object in front of them, then change mode to text entry
-				if Input.is_action_pressed("interact"):
+				if Input.is_action_just_pressed("interact"):
 					# my changes
 					
 					# user_input_state = UserInputMode.FP_TXT_ENTRY
@@ -151,7 +151,7 @@ func _physics_process(delta):
 
 				# if the raycast collides with something that has a description, then change mode to show text
 				elif (
-					Input.is_action_pressed("examine")
+					Input.is_action_just_pressed("examine")
 					and 'display_text' in camera_raycast.get_collider()
 					and examine_memory != camera_raycast.get_collider()
 				):
@@ -163,7 +163,7 @@ func _physics_process(delta):
 				else:
 					user_input_state = UserInputMode.FP_FREE_LOOK
 			# If we have an item equiped, the interact with item though terminal
-			elif $Camera/Item/Right.get_child_count() > 0 and Input.is_action_pressed("interact"):
+			elif $Camera/Item/Right.get_child_count() > 0 and Input.is_action_just_pressed("interact"):
 				
 #				user_input_state = UserInputMode.FP_TXT_ENTRY
 				object_to_interact_with = $Camera/Item/Right.get_child(0).find_node("Interactable")
