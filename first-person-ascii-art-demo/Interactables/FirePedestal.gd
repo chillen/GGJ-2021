@@ -21,7 +21,6 @@ func handle_command(command,interaction_caller):
 	if animation_player.is_playing():
 		return false
 
-	print(interaction_caller.item_in_inventory)
 	# If player has a torch
 	if (command == "light" or 1 == 1) and \
 		not interaction_caller.item_in_inventory == null and \
@@ -33,9 +32,8 @@ func handle_command(command,interaction_caller):
 			emit_signal("on")
 			return true
 		elif self.lit:
-			interaction_caller.item_in.inventory.on = true
+			interaction_caller.item_in_inventory.on = true
 			return true
-
 	
 	return false
 
