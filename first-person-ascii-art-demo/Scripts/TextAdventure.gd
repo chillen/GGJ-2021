@@ -159,21 +159,27 @@ func _ready():
 	area_items["FOREST_02"] = []
 	area_items["FOREST_03"] = []
 	area_items["EXT_DOOR"] = ["DOOR"]
-	area_items["ANTE_CAMP"] = []
+	area_items["ANTE_CAMP"] = ["UNLITTORCH"]
 	area_items["ANTE_W_BRAZIER"] = []
 	area_items["ANTE_E_BRAZIER"] = []
 
 	# these are the short descriptions of the items, used for inventory (and upon changing areas)
 	item_names["DOOR"] = "a heavy wooden door"
 	item_names["PAGE"] = "a page torn from a journal"
-
+	item_names["UNLITTORCH"] = "an unlit torch"
+	item_names["LITTORCH"] = "a lit torch"
+	
 	# these are the long descriptions of the items, shown when the player "LOOKS" at the item
 	item_descs["DOOR"] = "There are telltale signs of the crude tools once used to cut this great stone door, but you can find no evidence of a lock or hinges. As you inspect more closely, your gaze is drawn inexplicably to the green stone in the center. A hush falls over the forest, and you cannot help but feel that the stone is... Listening... There is a familiarity to this scene that you cannot explain, and you suspect that you may have something in your inventory that might help."
 	item_descs["PAGE"] = "It was not unreasonable to hope that this page held some clue to your lost identity, but this was not the case. It appears to be a page torn from an expedition journal. The tone is academic, and most of the details recorded would be of little use, but one passage in particular echoes in your mind. \"Their savage rituals notwithstanding, the woshippers of the H' ahf' Mggoka were always strangely courteous with outsiders. When i bore this in mind, it became quite clear why the warden stone paid no heed to words like open or unlock. All I needed to do was to remember my manners and ask nicely.\""
+	item_descs["UNLITTORCH"] = "There are flakes of burnt parchment throughout the area, and you suspect this torch to be the culprit. It is not currently lit."
+	item_descs["LITTORCH"] = "The torch is burning brightly now."
 
 	# items can be portable (or not), and portable items are either consumed, retained, or discarded upon use
 	item_flags["DOOR"] = []
 	item_flags["PAGE"] = ["portable", "consumed"]
+	item_flags["UNLITTORCH"] = ["portable"]
+	item_flags["LITTORCH"] = ["portable"]
 
 	# initialize the important values for the "player"
 	curr_area = "FOREST_01"
@@ -281,6 +287,12 @@ func play(input_string):
 								area_fails[curr_area].erase(fail_details)
 								break
 
+		elif input_action == "LIGHT" and input_object == "TORCH":
+			# if the object is in the players inventory
+			if "UNLITTORCH" in inventory and curr_area == "ANTE_W_BRAZIER":
+				inventory.erase("UNLITTORCH")
+				inventory.append("LITTORCH")
+				
 		elif input_action == "USE":
 			# if the object is in the players inventory
 			if input_object in inventory:
@@ -327,8 +339,15 @@ func play(input_string):
 		elif input_action == "MATT":
 			masktimer_handle.start(0.01)
 			player_handle.transform.origin = Vector3(155.58,0,54.084)
+			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/Torch"._on_Interactable_interacted("take", player_handle)
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 
+		elif input_action == "CONNOR":
+			masktimer_handle.start(0.01)
+			player_handle.transform.origin = Vector3(-.1, 0, 50)
+			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/Torch"._on_Interactable_interacted("take", player_handle)
+			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+			
 		elif input_action == "TAKE":
 			area_items[curr_area].erase(input_object)
 			inventory.append(input_object)
@@ -366,22 +385,6 @@ func play(input_string):
 						),
 						"."
 					)
-
-#		elif input_action in ["RUN", "NORTH", "SOUTH", "EAST", "WEST"]:
-#			if input_action in area_exits[curr_area]:
-#				var selected_exit = area_exits[curr_area][input_action]
-#				curr_area = selected_exit[0]
-#				var cutscene_title = selected_exit[1]
-#				var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
-#				if not (pos3d_ref == null):
-#					player_handle.position = pos3d_ref.position
-#				emit_signal("cutscene", cutscene_title)	
-#
-#			elif input_action == "RUN":
-#				terminal_handle.print_to_terminal("Where do you think you can run?")
-#
-#			else:
-#				terminal_handle.print_to_terminal("You can't go in that direction.")
 
 		elif input_action == "HELP":
 			terminal_handle.print_to_terminal("Haven't you ever played a text adventure game?")
