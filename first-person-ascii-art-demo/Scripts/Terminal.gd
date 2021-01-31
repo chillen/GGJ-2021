@@ -41,6 +41,7 @@ func _ready():
 	# english_to_rlyehian["LIGHT THE WAY"] = "MGNGHFT H YOGOR"
 	
 	english_to_rlyehian["SAY PLEASE"] = "SAY AHLLOIGEHYE"
+	english_to_rlyehian["PLEASE"] = "AHLLOIGEHYE"
 	
 
 func _process(delta):
