@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Models/AssetForge/temple_main_room.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Interactables/Parchment.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Models/Environment/boulder_pile.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Interactables/TorchHolder.tscn" type="PackedScene" id=4]
 [ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=5]
@@ -117,6 +118,10 @@ shape = SubResource( 5 )
 
 [node name="PlayerTPLocation" type="Position3D" parent="."]
 transform = Transform( -0.0547058, 0, 0.998502, 0, 1, 0, -0.998502, 0, -0.0547058, 41.4979, 1.97124, -60.1117 )
+
+[node name="Parchment" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.19388, -2.1141, -40.5148 )
+interact_text = "This appears to be a page from the book! The writing is strange, but seems to confirm my suspicions. I should continue my search."
 
 [connection signal="body_shape_entered" from="Messages/BoulderObserve" to="." method="_on_BoulderObserve_body_shape_entered"]
 [connection signal="body_shape_entered" from="Messages/PotsMessage" to="." method="_on_BoulderObserve_body_shape_entered"]
