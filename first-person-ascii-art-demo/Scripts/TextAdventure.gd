@@ -47,13 +47,36 @@ func _ready():
 
 
 	# a "hint" really is just an additional text entry played when an area is entered
-	area_hints["FOREST_01"] = "You have no choice but to run."
-	area_hints["FOREST_02"] = "You have no choice but to run."
-	area_hints["FOREST_03"] = "You have no choice but to run."
-	area_hints["EXT_DOOR"] = ""
+	area_hints["FOREST_01"] = [
+		2,
+		"You have no choice but to run.",
+		"You should run!",
+		"Try typing 'run'"
+	]
+	area_hints["FOREST_02"] = [
+		2,
+		"You have no choice but to run.",
+		"You should run!",
+		"Try typing 'run'"
+	]
+	area_hints["FOREST_03"] = [
+		2,
+		"You have no choice but to run.",
+		"You should run!",
+		"Try typing 'run'"
+	]
+	area_hints["EXT_DOOR"] = [
+		2,
+		"You should open your inventory",
+		"Try typing 'open inventory'",
+		"There is a page in your inventory, what does it say?",
+		"Try typing 'read page'",
+		"Hmm, the door is still locked. Maybe we should ask nicely for it to open?",
+		"Try typing 'say please' and then 'open door'",
+	]
 	area_hints["ANTE_CAMP"] = "You now realize that you have been moving as though in a deep trance. Taking a few deep breaths, you force your limbs to relax. (Use your mouse to look around, WASD to move, and left-click to interact.) "
-	area_hints["ANTE_W_BRAZIER"] = ""
-	area_hints["ANTE_E_BRAZIER"] = ""
+	area_hints["ANTE_W_BRAZIER"] = []
+	area_hints["ANTE_E_BRAZIER"] = []
 
 	# an "exit" pairs a command with the identifier for the area that you will reach if you issue that command
 	area_exits["FOREST_01"] = {"RUN": ["FOREST_02", "no cutscene"]}
@@ -188,8 +211,8 @@ func _ready():
 
 	# print the initial room description
 	terminal_handle.print_to_terminal(area_descs[curr_area])
-	if not area_hints[curr_area] == "":
-		terminal_handle.print_to_terminal(area_hints[curr_area])
+	if not area_hints[curr_area] == []:
+		terminal_handle.print_to_terminal(area_hints[curr_area][1])
 
 	# print the terminal prompt
 	terminal_handle.print_to_terminal(">")
@@ -402,6 +425,11 @@ func play(input_string):
 			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/Torch"._on_Interactable_interacted("take", player_handle)
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 			
+		elif input_action == "ENTRY":
+			masktimer_handle.start(0.01)
+			player_handle.transform.origin = Vector3(0, 0, 0)
+			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
+			
 		elif input_action == "TAKE":
 			area_items[curr_area].erase(input_object)
 			inventory.append(input_object)
@@ -448,14 +476,16 @@ func play(input_string):
 
 		else:
 			terminal_handle.print_to_terminal("I don't understand what you mean...")
+			# Print the next hint
+			if area_hints[curr_area] != []:
+				var current_hint = min(area_hints[curr_area][0], len(area_hints[curr_area]) - 1)
+				area_hints[curr_area][0] += 1
+				terminal_handle.print_to_terminal(area_hints[curr_area][current_hint])
 
 	# this is the "render" stage of the text adventure game loop	
 	if not ("visited" in area_flags[curr_area]):
 		area_flags[curr_area].append("visited")
 		terminal_handle.print_to_terminal(area_descs[curr_area])
-		
-		if not area_hints[curr_area] == "":
-			terminal_handle.print_to_terminal(area_hints[curr_area])
 
 # I don't need to describe items in the scene any more
 #		if len(area_items[curr_area]) > 0:

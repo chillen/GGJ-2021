@@ -8,6 +8,8 @@
 extents = Vector3( 1, 0.338606, 1 )
 
 [node name="Object" type="Area"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource( 1 )
 fidelity_1 = ExtResource( 3 )
 fidelity_2 = ExtResource( 2 )
