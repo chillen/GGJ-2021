@@ -45,6 +45,8 @@ onready var lineedit_handle: LineEdit = $"/root/Main/LineEdit"
 onready var examine_memory: Node
 onready var looking_memory: Node
 
+
+var hidden_torch = null
 onready var item_in_inventory = null
 
 # used by AsciiArt
@@ -203,7 +205,6 @@ func de_equip_item(item_inter):
 	var item = $Camera/Item/Right.get_child(0)
 	if $Camera/Item/Right.get_child_count() <= 0 or not item_inter == item:
 		return false
-		
 	
 	$Camera/Item/Right.remove_child(item)
 	self.get_parent().add_child(item)
@@ -213,7 +214,28 @@ func de_equip_item(item_inter):
 	item_in_inventory = null
 	
 	return true
+
+func equip_torch_from_holder():
+	if hidden_torch == null or $Camera/Item/Right.get_child_count() > 0:
+		return false
 	
+	hidden_torch.show()
+	$Camera/Item/Right.add_child(hidden_torch)
+	hidden_torch.set_owner($Camera/Item/Right)
+	hidden_torch = null
+	
+func unequip_torch_to_holder():
+	if $Camera/Item/Right.get_child_count() <= 0:
+		return false
+		
+	hidden_torch = $Camera/Item/Right.get_child(0)
+	$Camera/Item/Right.remove_child(hidden_torch)
+	hidden_torch.hide()
+
+func jump_off():
+	$"../PlayerAnimations".play("ThrowOff")
+	
+
 func _process(delta):
 	# using the mouse movement captured and passed down from main, rotate the camera (if permitted by the current state)
 	if user_input_state == UserInputMode.FP_FREE_LOOK:
