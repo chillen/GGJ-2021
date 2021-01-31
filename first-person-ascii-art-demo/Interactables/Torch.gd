@@ -30,7 +30,7 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 		else:
 			$TorchLight.show()
 			interaction_caller.terminal_call("You take the Flint in your pocket and light the torch.")
-		on = !on
+		# on = !on
 		# on = !on
 		state = 2
 	
