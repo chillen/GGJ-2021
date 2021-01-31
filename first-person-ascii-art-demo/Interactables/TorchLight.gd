@@ -1,10 +1,10 @@
 extends OmniLight
 
-var initialFlickerTimer = 0.15
-var deviationFlikerTimer = 0.25
+export var initialFlickerTimer = 0.25
+export var deviationFlikerTimer = 0.15
 
-var initialLight = 0.75
-var deviationLight = 0.6
+export var initialLight = 2
+export var deviationLight = 0.3
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -27,6 +27,5 @@ func timer():
 func _on_RandomTimer_timeout():
 	timer()
 	self.light_energy = rand_range(initialLight-deviationLight,initialLight+deviationLight)
-	print("test")
 
 	pass # Replace with function body.
