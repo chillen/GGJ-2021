@@ -31,7 +31,6 @@ func handle_command(command,interaction_caller):
 		interaction_caller.item_in_inventory.is_in_group("fire") and \
 		interaction_caller.item_in_inventory.on == true:
 			
-		animation_player.play("Activated")
 		self.lit = true
 		interaction_caller.terminal_call("You light a fire with your torch. It crackles as it roars to life.")
 		
