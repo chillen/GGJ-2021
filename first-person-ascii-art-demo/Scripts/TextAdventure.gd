@@ -304,8 +304,10 @@ func play(input_string):
 				else:
 					terminal_handle.print_to_terminal("You don't have any " + input_object + " to use.")
 
-		elif input_action == "DROP":
-			pass
+		elif input_action == "MATT":
+			masktimer_handle.start(0.01)
+			player_handle.transform.origin = Vector3(155.58,0,54.084)
+			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 
 		elif input_action == "TAKE":
 			area_items[curr_area].erase(input_object)
