@@ -74,7 +74,6 @@ func _on_FirePedestal2_on():
 
 
 func _on_Hallway_body_shape_entered(body_id, body, body_shape, local_shape):
-	print("test")
 	a = false
 	b = false
 	check_door_close()

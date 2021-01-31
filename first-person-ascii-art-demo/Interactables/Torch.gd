@@ -21,7 +21,7 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 		self.rotation_degrees = Vector3(0,0, 0)
 		self.translation = Vector3(0,0,0)
 		state = 1
-		interaction_caller.terminal_call("You pick up the lit torche.")
+		interaction_caller.terminal_call("I pick up the torche.")
 		interaction_caller.terminal_call("Maybe I can Light Something with this?")
 	if interaction_string == "drop":
 		interaction_caller.de_equip_item(self)
