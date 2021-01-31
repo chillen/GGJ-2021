@@ -5,7 +5,7 @@ Kd 0.945 0.898 0.851
 map_Kd Textures/Sandstone_Floor(Clone).png
 
 newmtl Wood_Dark(Clone)
-Kd 0.518 0.42 0.333
+Kd 0.814 0.575 0.363
 map_Kd Textures/Wood_Dark(Clone).png
 
 newmtl Black(Clone)
@@ -38,9 +38,6 @@ Kd 0.835 0.698 0.545
 newmtl Sandstone_5(Clone)
 Kd 0.8 0.628 0.439
 
-newmtl Sandstone_Trim(Clone)
-Kd 0.871 0.765 0.647
-
 newmtl custom5(Clone)
 Kd 0.414 0.414 0.414
 map_Kd Textures/custom5(Clone).png
@@ -50,4 +47,7 @@ Kd 0.64 0.64 0.64
 
 newmtl Brown(Clone)
 Kd 0.11 0.06 0.041
+
+newmtl Sandstone_Trim(Clone)
+Kd 0.871 0.765 0.647
 

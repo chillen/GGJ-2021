@@ -36,9 +36,11 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 
 
 func set_lit(val: bool):
-	if val:
-		interactable.display_text = "The brazier gives off a warm flame."
-	else:
-		interactable.display_text = "The brazier is warm, but remains unlit."
+	if interactable:
+		if val:
+			interactable.display_text = "The brazier gives off a warm flame."
+		else:
+			interactable.display_text = "The brazier is warm, but remains unlit."
 	lit = val
-	particles.emitting = val
+	if particles:
+		particles.emitting = val
