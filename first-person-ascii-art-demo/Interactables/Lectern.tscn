@@ -29,6 +29,9 @@ func _on_Interactable_interacted(interaction_string, interaction_caller):
 	if interaction_string in valid_commands or 1==1:
 		read_once = true
 		interaction_caller.terminal_call(out_text)
+		$\"/root/Main/FirstPersonViewport/GameWorld/PlayerAnimations\".play(\"Ascension\")
+		yield($PlayerAnimations, \"animation_finished\")
+		get_tree().quit()
 		
 		
 	
