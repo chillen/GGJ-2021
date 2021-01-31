@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Models/AssetForge/temple_main_room.obj" type="ArrayMesh" id=1]
-[ext_resource path="res://Interactables/FirePedestal.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Models/Environment/boulder_pile.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Interactables/TorchHolder.tscn" type="PackedScene" id=4]
 [ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=5]
@@ -74,9 +73,6 @@ transform = Transform( -0.56, -1.2852e-08, -4.79642e-08, 0, 0.579556, -0.155291,
 
 [node name="Torch4" parent="Lights" instance=ExtResource( 4 )]
 transform = Transform( 0.56, -1.81013e-10, -6.75549e-10, 0, 0.579556, -0.155291, -6.99384e-10, 0.14908, 0.556373, -0.422184, 2.90009, 10.0895 )
-
-[node name="FirePedestal" parent="Lights" instance=ExtResource( 2 )]
-lit = true
 
 [node name="Messages" type="Spatial" parent="."]
 
