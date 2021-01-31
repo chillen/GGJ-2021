@@ -1,0 +1,15 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl stoneDark(Clone)
+Kd 0.403 0.39 0.594
+map_Kd Textures/stoneDark(Clone).png
+
+newmtl Cover(Clone)
+Kd 0.398 0.029 0.05
+
+newmtl Paper(Clone)
+Kd 0.578 0.516 0.391
+
+newmtl Ink(Clone)
+Kd 0.118 0.083 0.038
+
