@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Models/Environment/lectern.glb" type="PackedScene" id=1]
 [ext_resource path="res://Interactables/Interactable.tscn" type="PackedScene" id=2]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 script/source = "extends Spatial
 
 var read_once = false
@@ -26,7 +26,7 @@ func _on_Interactable_interacted(interaction_string, interaction_caller):
 	if teleported_away:
 		interactable.display_text = \"After attempting to read this book, I blinked and appeared in the hallway I came from. Perhaps the beast is pushing me from finding the pages which will banish it once and for all.\"
 		
-	if interaction_string in valid_commands:
+	if interaction_string in valid_commands or 1==1:
 		read_once = true
 		interaction_caller.terminal_call(out_text)
 		
@@ -34,16 +34,16 @@ func _on_Interactable_interacted(interaction_string, interaction_caller):
 	
 "
 
-[sub_resource type="SphereShape" id=1]
+[sub_resource type="SphereShape" id=2]
 radius = 0.749366
 
 [node name="Lectern" instance=ExtResource( 1 )]
-script = SubResource( 2 )
+script = SubResource( 1 )
 
 [node name="Interactable" parent="." index="1" instance=ExtResource( 2 )]
 display_text = "A strange and familiar book with pages missing."
 
 [node name="CollisionShape" type="CollisionShape" parent="Interactable" index="1"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [connection signal="interacted" from="Interactable" to="." method="_on_Interactable_interacted"]
