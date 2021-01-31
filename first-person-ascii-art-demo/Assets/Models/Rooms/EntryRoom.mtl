@@ -39,21 +39,9 @@ Kd 0.403 0.39 0.594
 newmtl Gold(Clone)
 Kd 0.64 0.306 0.052
 
-newmtl Glass(Clone)
-Kd 0.64 0.64 0.64
+newmtl Grass(Clone)
+Kd 0.1333 0.5451 0.1333
 
-newmtl Brown(Clone)
-Kd 0.11 0.06 0.041
-
-newmtl DarkRed(Clone)
-Kd 1 1 1
-
-newmtl Black(Clone)
-Kd 0.015 0.015 0.015
-
-newmtl Grey(Clone)
-Kd 0.114 0.114 0.114
-
-newmtl DarkWood(Clone)
-Kd 0.113907 0.06979501 0.035405
+newmtl Rock(Clone)
+Kd 0.6314 0.6235 0.6118
 
