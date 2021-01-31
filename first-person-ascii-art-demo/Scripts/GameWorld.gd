@@ -17,6 +17,7 @@ func _on_Cutscene_Request(scene):
 		
 		"ext_door_to_ante_camp":
 			$PlayerAnimations.play("EnterTemple")
+			player_handle.user_input_state = player_handle.UserInputMode.FP_NONE
 			yield($PlayerAnimations, "animation_finished")
 			player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 			$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/DoorTemplate".close_non_interaction()
