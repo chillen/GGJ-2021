@@ -67,11 +67,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.638443, -0.32129, 4.26719 )
 [node name="MainRoom" parent="." instance=ExtResource( 3 )]
 transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 59.4498, -0.291376, 57.0022 )
 
-[node name="AREA_04" type="Position3D" parent="."]
-transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.7325, 0, -14.844 )
+[node name="ANTE_CAMP" type="Position3D" parent="."]
+transform = Transform( 0.978057, 0, 0.208339, 0, 1, 0, -0.208339, 0, 0.978057, -2.96604, 1.66883, -2.04931 )
 
-[node name="AREA_07" type="Position3D" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24305, 0, -7.61742 )
+[node name="ANTE_W_BRAZIER" type="Position3D" parent="."]
+transform = Transform( -0.687164, 0, -0.726503, 0, 1, 0, 0.726503, 0, -0.687164, 3.02317, 0, 2.64899 )
+
+[node name="ANTE_E_BRAZIER" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.98091, 0, 2.42827 )
 
 [node name="EntryWoods" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.54793, -8.10181 )

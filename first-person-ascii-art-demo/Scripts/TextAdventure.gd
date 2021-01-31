@@ -45,6 +45,7 @@ func _ready():
 	area_flags["ANTE_W_BRAZIER"] = []
 	area_flags["ANTE_E_BRAZIER"] = []
 
+
 	# a "hint" really is just an additional text entry played when an area is entered
 	area_hints["FOREST_01"] = "You have no choice but to run."
 	area_hints["FOREST_02"] = "You have no choice but to run."
@@ -55,13 +56,13 @@ func _ready():
 	area_hints["ANTE_E_BRAZIER"] = ""
 
 	# an "exit" pairs a command with the identifier for the area that you will reach if you issue that command
-	area_exits["FOREST_01"] = {"RUN": "FOREST_02"}
-	area_exits["FOREST_02"] = {"RUN": "FOREST_03"}
-	area_exits["FOREST_03"] = {"RUN": "EXT_DOOR"}
+	area_exits["FOREST_01"] = {"RUN": ["FOREST_02", "no cutscene"]}
+	area_exits["FOREST_02"] = {"RUN": ["FOREST_03", "no cutscene"]}
+	area_exits["FOREST_03"] = {"RUN": ["EXT_DOOR", "no cutscene"]}
 	area_exits["EXT_DOOR"] = {}
-	area_exits["ANTE_CAMP"] = {"W": "ANTE_W_BRAZIER", "E": "ANTE_E_BRAZIER"}
-	area_exits["ANTE_W_BRAZIER"] = {"S": "ANTE_CAMP", "E": "ANTE_E_BRAZIER"}
-	area_exits["ANTE_E_BRAZIER"] = {"S": "ANTE_CAMP", "W": "ANTE_W_BRAZIER"}
+	area_exits["ANTE_CAMP"] = {"W": ["ANTE_W_BRAZIER", "ante_camp_to_ante_w_brazier"], "E": ["ANTE_E_BRAZIER", "ante_camp_to_ante_e_brazier"]}
+	area_exits["ANTE_W_BRAZIER"] = {"S": ["ANTE_CAMP", "ante_w_brazier_to_ante_camp"], "E": ["ANTE_E_BRAZIER", "ante_w_brazier_to_ante_e_brazier"]}
+	area_exits["ANTE_E_BRAZIER"] = {"S": ["ANTE_CAMP", "ante_e_brazier_to_ante_camp"], "W": ["ANTE_W_BRAZIER", "ante_e_brazier_to_ante_w_brazier"]}
 
 	# a "fail" is a text entry displayed when the user does a specific command that, while normally valid, will not work for some reason
 	# a "fail" that is associated with a "gate" can be removed once the "gate" is opened
@@ -144,9 +145,9 @@ func _ready():
 	area_gates["FOREST_03"] = []
 	area_gates["EXT_DOOR"] = [
 		[
-			"USE PLEASE",
+			"SAY PLEASE",
 			"As you shape your lips to speak, your mouth suddenly goes dry and you feel the curious sensation of insects crawling over your tongue. Although it was your intention to plead for entry, your ears heard only the word \"ahlloigehye\" in a voice that you no longer recognize as your own. But the guardian of this temple seems satisfied, and you suspect that you will now be able to open the door.",
-			["OPEN DOOR", "AREA_04"]
+			["OPEN DOOR", ["ANTE_CAMP", "ext_door_to_ante_camp"]]
 		]
 	]
 	area_gates["ANTE_CAMP"] = []
@@ -162,10 +163,9 @@ func _ready():
 	area_items["ANTE_W_BRAZIER"] = []
 	area_items["ANTE_E_BRAZIER"] = []
 
-
 	# these are the short descriptions of the items, used for inventory (and upon changing areas)
 	item_names["DOOR"] = "a heavy wooden door"
-	item_names["PAGE"] = "a crumpled page"
+	item_names["PAGE"] = "a page torn from a journal"
 
 	# these are the long descriptions of the items, shown when the player "LOOKS" at the item
 	item_descs["DOOR"] = "There are telltale signs of the crude tools once used to cut this great stone door, but you can find no evidence of a lock or hinges. As you inspect more closely, your gaze is drawn inexplicably to the green stone in the center. A hush falls over the forest, and you cannot help but feel that the stone is... Listening... There is a familiarity to this scene that you cannot explain, and you suspect that you may have something in your inventory that might help."
@@ -232,27 +232,28 @@ func play(input_string):
 				fail_encountered = true
 				fail_text = fail_details[1]
 				break
-			
-#		if not fail_encountered:
-#
-#			for fail_details in area_fails[curr_area]:
-#				if fail_details[0] == "*":
-#					fail_encountered = true
-#					fail_text = fail_details[1]
-#					break
 		
 	if fail_encountered:
 		terminal_handle.print_to_terminal(fail_text)
 		
 	else:
 
-		if (input_action + " " + input_object) in area_exits[curr_area]:
-			# this needs to be its own function...
-			curr_area = area_exits[curr_area][input_action + " " + input_object]
+		if (input_action + " " + input_object).trim_suffix(" ") in area_exits[curr_area]:
 
-			var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
-			if not (pos3d_ref == null):
-				player_handle.transform = pos3d_ref.transform
+			var selected_exit = area_exits[curr_area][(input_action + " " + input_object).trim_suffix(" ")]
+			curr_area = selected_exit[0]
+			var cutscene_title = selected_exit[1]
+#			var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
+#			if not (pos3d_ref == null):
+#				player_handle.position = pos3d_ref.position
+			emit_signal("cutscene", cutscene_title)	
+			
+			# and now it gets klugey...
+			
+			if cutscene_title == "ext_door_to_ante_camp":
+				$"/root/Main/FirstPersonViewport/GameWorld/EntryRoom/DoorTemplate".open()
+			
+			
 
 		# this is the "update" stage of the text adventure game loop
 		elif input_action == "LOOK":
@@ -260,6 +261,25 @@ func play(input_string):
 				terminal_handle.print_to_terminal(item_descs[input_object])
 			elif input_object in inventory:
 				terminal_handle.print_to_terminal(item_descs[input_object])
+
+		elif input_action == "SAY":
+			
+			# check each of the "gates" in the area to see if one has been removed by this "use"
+			var had_effect = false
+			for gate_details in area_gates[curr_area]:
+				
+				print(gate_details)
+				
+				if gate_details[0] == input_action + " " + input_object:
+					had_effect = true
+					terminal_handle.print_to_terminal(gate_details[1])
+					
+					if gate_details[2] != []:
+						area_exits[curr_area][gate_details[2][0]] = gate_details[2][1]
+						for fail_details in area_fails[curr_area]:
+							if fail_details[0] == gate_details[2][0]:
+								area_fails[curr_area].erase(fail_details)
+								break
 
 		elif input_action == "USE":
 			# if the object is in the players inventory
@@ -347,18 +367,21 @@ func play(input_string):
 						"."
 					)
 
-		elif input_action in ["RUN", "NORTH", "SOUTH", "EAST", "WEST"]:
-			if input_action in area_exits[curr_area]:
-				curr_area = area_exits[curr_area][input_action]
-				var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
-				if not (pos3d_ref == null):
-					player_handle.position = pos3d_ref.position
-
-			elif input_action == "RUN":
-				terminal_handle.print_to_terminal("Where do you think you can run?")
-
-			else:
-				terminal_handle.print_to_terminal("You can't go in that direction.")
+#		elif input_action in ["RUN", "NORTH", "SOUTH", "EAST", "WEST"]:
+#			if input_action in area_exits[curr_area]:
+#				var selected_exit = area_exits[curr_area][input_action]
+#				curr_area = selected_exit[0]
+#				var cutscene_title = selected_exit[1]
+#				var pos3d_ref = get_node("/root/Main/FirstPersonViewport/GameWorld/" + curr_area)
+#				if not (pos3d_ref == null):
+#					player_handle.position = pos3d_ref.position
+#				emit_signal("cutscene", cutscene_title)	
+#
+#			elif input_action == "RUN":
+#				terminal_handle.print_to_terminal("Where do you think you can run?")
+#
+#			else:
+#				terminal_handle.print_to_terminal("You can't go in that direction.")
 
 		elif input_action == "HELP":
 			terminal_handle.print_to_terminal("Haven't you ever played a text adventure game?")
@@ -397,7 +420,6 @@ func play(input_string):
 							player_handle.user_input_state = player_handle.UserInputMode.FP_FREE_LOOK
 							
 				"cutscene":
-					print("cutscene")
 					emit_signal("cutscene", arguments[1])
 					
 	terminal_handle.print_to_terminal(">")

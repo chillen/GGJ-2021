@@ -40,7 +40,7 @@ func _ready():
 	# puzzle specific
 	# english_to_rlyehian["LIGHT THE WAY"] = "MGNGHFT H YOGOR"
 	
-	english_to_rlyehian["PLEASE"] = "AHLLOIGEHYE"
+	english_to_rlyehian["SAY PLEASE"] = "SAY AHLLOIGEHYE"
 	
 
 func _process(delta):
