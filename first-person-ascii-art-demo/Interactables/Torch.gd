@@ -30,7 +30,7 @@ func _on_Interactable_interacted(interaction_string,interaction_caller):
 			$TorchLight.hide()
 		else:
 			$TorchLight.show()
-		on = !on
+		#on = !on
 		# on = !on
 		state = 2
 	
