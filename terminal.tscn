@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_right = 278.0
+margin_bottom = 62.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
