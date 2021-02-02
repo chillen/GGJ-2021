@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://AreaEnter.gd" type="Script" id=1]
+[ext_resource path="res://General/AreaEntered/AreaEnter.gd" type="Script" id=1]
 
 [node name="AreaEnter" type="Area"]
 collision_layer = 4

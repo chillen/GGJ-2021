@@ -4,7 +4,7 @@
 [ext_resource path="res://Interactables/Parchment.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Models/Environment/boulder_pile.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://Interactables/TorchHolder.tscn" type="PackedScene" id=4]
-[ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=5]
+[ext_resource path="res://General/AreaEntered/AreaEnter.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/Lectern.tscn" type="PackedScene" id=6]
 [ext_resource path="res://RoomScenes/MainRoom/MainRoom.gd" type="Script" id=7]
 

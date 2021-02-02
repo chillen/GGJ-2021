@@ -1,68 +1,68 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://NoteWall.gd" type="Script" id=1]
-[ext_resource path="res://Interactables/Parchment.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Interactables/Parchment.tscn" type="PackedScene" id=1]
+[ext_resource path="res://General/NoteWall.gd" type="Script" id=2]
 
 [node name="Notes" type="Spatial"]
 transform = Transform( -0.203915, 0.978989, 0, -0.978989, -0.203915, 0, 0, 0, 1, -169.912, 4.39952, 14.5297 )
 visible = false
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
-[node name="Parchment" parent="." instance=ExtResource( 2 )]
+[node name="Parchment" parent="." instance=ExtResource( 1 )]
 
-[node name="Parchment2" parent="." instance=ExtResource( 2 )]
+[node name="Parchment2" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.480446, -0.108219, 0.870322, -0.108219, 0.977459, 0.181281, -0.870322, -0.181281, 0.457905, -1.66705, -0.34726, 5.62392 )
 
-[node name="Parchment3" parent="." instance=ExtResource( 2 )]
+[node name="Parchment3" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.638604, 0.000842303, 0.769535, -0.194428, 0.967733, 0.160288, -0.744569, -0.251979, 0.618161, 1.43863, 0.299652, 4.87794 )
 
-[node name="Parchment4" parent="." instance=ExtResource( 2 )]
+[node name="Parchment4" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.782099, -0.0453871, 0.6215, -0.0453871, 0.990547, 0.129453, -0.6215, -0.129453, 0.772645, -3.32405, -0.692459, 1.84773 )
 
-[node name="Parchment5" parent="." instance=ExtResource( 2 )]
+[node name="Parchment5" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.409944, -0.122904, 0.903793, -0.122904, 0.974401, 0.188252, -0.903793, -0.188252, 0.384344, 1.14413, 0.238281, 9.88911 )
 
-[node name="Parchment6" parent="." instance=ExtResource( 2 )]
+[node name="Parchment6" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.79145, -0.0434393, -0.609689, -0.0434392, 0.990952, -0.126993, 0.609689, 0.126993, 0.782402, 1.66162, 0.3461, 0.211105 )
 
-[node name="Parchment7" parent="." instance=ExtResource( 2 )]
+[node name="Parchment7" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.915576, -0.017585, 0.401762, -0.0175849, 0.996338, 0.0836838, -0.401762, -0.0836836, 0.911913, -3.07152, -0.639801, 3.5508 )
 
-[node name="Parchment8" parent="." instance=ExtResource( 2 )]
+[node name="Parchment8" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.967824, 0.112258, 0.2252, -0.125854, 0.99094, 0.0469072, -0.217893, -0.0737401, 0.973183, -0.186823, -0.0389099, 4.94278 )
 
-[node name="Parchment9" parent="." instance=ExtResource( 2 )]
+[node name="Parchment9" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.999885, -2.41846e-05, 0.0151897, -2.40505e-05, 0.999996, 0.00316391, -0.0151894, -0.00316381, 0.99988, -2.06565, -0.43045, -0.457808 )
 
-[node name="Parchment10" parent="." instance=ExtResource( 2 )]
+[node name="Parchment10" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.880821, -0.0248242, 0.472799, -0.0248241, 0.99483, 0.0984801, -0.472799, -0.09848, 0.87565, -3.47248, -0.723389, 8.67618 )
 
-[node name="Parchment11" parent="." instance=ExtResource( 2 )]
+[node name="Parchment11" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.994953, -0.00105141, -0.100344, -0.00105135, 0.999781, -0.0209008, 0.100344, 0.0209007, 0.994733, -0.801744, -0.167053, 2.06346 )
 
-[node name="Parchment12" parent="." instance=ExtResource( 2 )]
+[node name="Parchment12" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.565466, -0.0905099, 0.819791, -0.0905097, 0.981149, 0.170756, -0.81979, -0.170756, 0.546613, -3.02433, -0.629974, 7.48322 )
 
-[node name="Parchment13" parent="." instance=ExtResource( 2 )]
+[node name="Parchment13" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.710298, 0.0251051, 0.703454, -0.179494, 0.972787, 0.146524, -0.680631, -0.230341, 0.695474, 0.139826, 0.029129, 7.06632 )
 
-[node name="Parchment14" parent="." instance=ExtResource( 2 )]
+[node name="Parchment14" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.840563, -0.0332097, 0.540697, -0.0332096, 0.993084, 0.112623, -0.540696, -0.112623, 0.833645, -4.2937, -0.894531, 3.55343 )
 
-[node name="Parchment15" parent="." instance=ExtResource( 2 )]
+[node name="Parchment15" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.498694, -0.104418, 0.860466, -0.104418, 0.978252, 0.179228, -0.860466, -0.179228, 0.476944, -0.655945, -0.13678, 12.0203 )
 
-[node name="Parchment16" parent="." instance=ExtResource( 2 )]
+[node name="Parchment16" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.95304, -0.00978142, -0.302687, -0.00978135, 0.997963, -0.0630472, 0.302686, 0.0630471, 0.951003, 3.79053, 0.789383, 1.28759 )
 
-[node name="Parchment17" parent="." instance=ExtResource( 2 )]
+[node name="Parchment17" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.722378, -0.0578265, 0.689078, -0.0578263, 0.987956, 0.143529, -0.689077, -0.143529, 0.710333, 0.502884, 0.10466, 6.10947 )
 
-[node name="Parchment18" parent="." instance=ExtResource( 2 )]
+[node name="Parchment18" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.835889, 0.0676077, 0.544721, -0.153335, 0.98164, 0.113461, -0.527048, -0.178365, 0.830907, 3.68217, 0.766876, 6.38086 )
 
-[node name="Parchment19" parent="." instance=ExtResource( 2 )]
+[node name="Parchment19" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.933936, -0.013761, 0.357179, -0.0137608, 0.997135, 0.0743975, -0.357179, -0.0743973, 0.931069, 0.070055, 0.0144043, 1.99498 )
 
-[node name="Parchment20" parent="." instance=ExtResource( 2 )]
+[node name="Parchment20" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.665461, -0.0696821, 0.743174, -0.0696818, 0.985487, 0.154797, -0.743173, -0.154797, 0.650946, 1.8853, 0.392502, 11.0535 )

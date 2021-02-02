@@ -15,9 +15,9 @@
 [ext_resource path="res://Assets/Textures/Particles/star_09.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Models/Environment/Textures/stoneDark(Clone).png" type="Texture" id=14]
 [ext_resource path="res://RoomScenes/LightMaze/HiddenDoors.gd" type="Script" id=15]
-[ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=16]
+[ext_resource path="res://General/AreaEntered/AreaEnter.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Audio/ghostbreath.ogg" type="AudioStream" id=17]
-[ext_resource path="res://NoteWall.tscn" type="PackedScene" id=18]
+[ext_resource path="res://General/NoteWall.tscn" type="PackedScene" id=18]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 14 )

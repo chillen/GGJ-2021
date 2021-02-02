@@ -12,7 +12,11 @@ config_version=4
 
 config/name="Loss for Words (2021-01-27)"
 run/main_scene="res://General/Main/Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/Sprites/icon.png"
+
+[audio]
+
+default_bus_layout="res://General/default_bus_layout.tres"
 
 [autoload]
 
@@ -120,4 +124,4 @@ run={
 
 limits/rendering/max_lights_per_object=64
 environment/default_clear_color=Color( 0, 0, 0, 1 )
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://General/default_env.tres"

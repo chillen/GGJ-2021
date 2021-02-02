@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/cc0_statue.dae-63044fab81ee8b31f6564ddd6d21592e.scn"
+path="res://.import/cc0_statue.dae-cbe92c258fed17515560d2de7a1ac703.scn"
 
 [deps]
 
-source_file="res://cc0_statue.dae"
-dest_files=[ "res://.import/cc0_statue.dae-63044fab81ee8b31f6564ddd6d21592e.scn" ]
+source_file="res://Assets/Models/Objects/cc0_statue.dae"
+dest_files=[ "res://.import/cc0_statue.dae-cbe92c258fed17515560d2de7a1ac703.scn" ]
 
 [params]
 

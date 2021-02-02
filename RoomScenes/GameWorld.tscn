@@ -7,8 +7,8 @@
 [ext_resource path="res://RoomScenes/LightMaze/LightMaze.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Interactables/Campfire.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/GameWorld.gd" type="Script" id=7]
-[ext_resource path="res://cc0_statue.obj" type="ArrayMesh" id=8]
-[ext_resource path="res://AreaEnter.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Models/Objects/cc0_statue.obj" type="ArrayMesh" id=8]
+[ext_resource path="res://General/AreaEntered/AreaEnter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://RoomScenes/AmbientLight.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
