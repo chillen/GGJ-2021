@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Camera/AsciiInterpolation.gd" type="Script" id=1]
+[ext_resource path="res://Camera/PlayerViewport.gd" type="Script" id=2]
+[ext_resource path="res://Camera/PlayerCamera.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Font/iosevka-curly-slab-regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 4 )
+
+[node name="PlayerCamera" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+size_override_stretch = true
+handle_input_locally = false
+hdr = false
+render_target_v_flip = true
+render_target_update_mode = 3
+script = ExtResource( 2 )
+
+[node name="ViewportCamera" type="Camera" parent="Viewport"]
+current = true
+
+[node name="ViewportDisplay" type="Sprite" parent="."]
+visible = false
+texture = SubResource( 1 )
+centered = false
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+position = Vector2( 518, 300 )
+current = true
+
+[node name="AsciiInterpolation" type="Sprite" parent="."]
+light_mask = 2
+script = ExtResource( 1 )
+dynamic_font = SubResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.60348 )
+height = 13.667
